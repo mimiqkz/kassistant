@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class PageController {
     @RequestMapping("/")
-    public String initialPage() {
-        //model.addAttribute("name", " ");
+    public String initialPage(Model model) {
+        model.addAttribute("name", "Hey guys");
         return "mainpage";
     }
 }

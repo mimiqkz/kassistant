@@ -3,5 +3,9 @@
 <head lang="en"></head>
 <body>
     <h1>Im here</h1>
+    <h2>
+        <!--/*@thymesVar id="name" type="java"*/-->
+        <span th:text="'Message: ' + ${name}"></span>
+    </h2>
 </body>
 </html>
