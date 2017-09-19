@@ -1,42 +1,44 @@
 package teymi15.kassistant.service;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import teymi15.model.Ingredient;
+import teymi15.model.Recipe;
+
+import teymi15.repository.*;
 
 public class Search {
-    public ArrayList getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(ArrayList recipes) {
-        this.recipes = recipes;
-    }
-
-    public ArrayList getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(ArrayList ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    private ArrayList recipes = new ArrayList();
+    private RecipeRepositoryImp repo = new RecipeRepositoryImp();
+    private List<Recipe> recipes = repo.getAll();
     private ArrayList ingredients = new ArrayList();
+
+
+
 
     public ArrayList searchRecipeByName(String name){
         ArrayList found = new ArrayList();
         for(Object x : recipes){
-            if(x.equals(name)) found.add(x);
+            if(x.getClass().getName().equals(name)) {
+                found.add(x);
+            }
         }
         return found;
     }
-    public ArrayList searchRecipeByCuisine(String Cuisine){
+    public ArrayList searchRecipeByCuisine(String cuisine){
         ArrayList found = new ArrayList();
-
+        /*for(Object x : recipes){
+            if(x.getClass().equals(cuisine)) {
+                found.add(x);
+            }
+        }*/
         return found;
     }
     public ArrayList searchRecipeByPrimaryIngredient(String ingredient) {
         ArrayList found = new ArrayList();
-
+        for(Object x : recipes){
+           // List<Ingredient> in = x.getIngredients();
+        }
         return found;
     }
     public ArrayList searchRecipeByType(String type){
