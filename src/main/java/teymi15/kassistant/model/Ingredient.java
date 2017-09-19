@@ -6,10 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+
 public class Ingredient {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+
     private int id;
     private double price; //Using different currency
     private String name; //Name of the ingredient e.g cherry tomato, apple etc.
