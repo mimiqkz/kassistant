@@ -4,15 +4,23 @@ package teymi15.model;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Ingredient {
-    private int ID;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
     private double price; //Using different currency
     private String name; //Name of the ingredient e.g cherry tomato, apple etc.
     private String location;
     private String store;
 
     public Ingredient(int id, double price, String name, String location, String store) {
-        this.ID = id;
+        this.id = id;
         this.price = price;
         this.name = name;
         this.location = location;
@@ -20,11 +28,11 @@ public class Ingredient {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public double getPrice() {
@@ -57,5 +65,11 @@ public class Ingredient {
 
     public void setStore(String store) {
         this.store = store;
+    }
+    @Override
+    public String toString() {
+        return String.format(
+                "Ingredient[id=%d, name='%s']",
+                id, name);
     }
 }

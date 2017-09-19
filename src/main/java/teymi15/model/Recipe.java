@@ -4,25 +4,34 @@ package teymi15.model;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.List;
+
+@Entity
 public class Recipe {
-    private int ID;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
     private String name;
     private String instruction;
-    private Ingredient[] ingredients;
+    private List<Ingredient> ingredients;
 
-    public Recipe(int ID, String name, String instruction, Ingredient[] in) {
-        this.ID = ID;
+    public Recipe(int id, String name, String instruction, List<Ingredient> in) {
+        this.id = id;
         this.name = name;
         this.instruction = instruction;
         this.ingredients = in;
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -41,11 +50,18 @@ public class Recipe {
         this.instruction = instruction;
     }
 
-    public Ingredient[] getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Ingredient[] ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Recipe[id=%d, name='%s', ingredients = '%s', instruction='%s']",
+                id, name, ingredients, instruction);
     }
 }
