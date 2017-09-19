@@ -7,11 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class PageController {
-    @RequestMapping("/")
-    public String initialPage(Model model) {
-        model.addAttribute("name", "Hey guys");
-        return "mainpage";
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String searchPage() {
+        return "searchpage";
+    }
+
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public String displaySearchResults(HttpServletRequest request, Model model) {
+
+        String search = request.getParameter("search");
+
+        model.addAttribute("search", search);
+        return "resultpage";
     }
 }
