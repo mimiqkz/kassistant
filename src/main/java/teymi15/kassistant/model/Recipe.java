@@ -1,8 +1,5 @@
-package teymi15.model;
+package teymi15.kassistant.model;
 
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

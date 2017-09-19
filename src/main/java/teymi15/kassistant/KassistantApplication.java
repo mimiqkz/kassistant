@@ -7,13 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.boot.CommandLineRunner;
-import teymi15.model.Ingredient;
-import teymi15.model.Recipe;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The main class extends the Spring Boot Servlet requires to run the project

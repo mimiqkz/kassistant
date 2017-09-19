@@ -1,7 +1,7 @@
-package teymi15.repository;
+package teymi15.kassistant.repository;
 
 
-import teymi15.model.Recipe;
+import teymi15.kassistant.model.Recipe;
 
 import java.util.List;
 

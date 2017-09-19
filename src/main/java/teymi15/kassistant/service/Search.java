@@ -3,10 +3,9 @@ package teymi15.kassistant.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import teymi15.model.Ingredient;
-import teymi15.model.Recipe;
+import teymi15.kassistant.model.Recipe;
 
-import teymi15.repository.*;
+import teymi15.kassistant.repository.*;
 
 public class Search {
     private RecipeRepositoryImp repo = new RecipeRepositoryImp();
