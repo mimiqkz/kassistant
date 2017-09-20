@@ -2,11 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en"></head>
 <body>
-<h2>
-    <!--/*@thymesVar id="search" type="java"*/-->
-    <span th:text="'Your search: ' + ${search}"></span>
-    <h2>Results: </h2>
-</h2>
+
+<table>
+    <tr>
+        <th>NAME</th>
+        <th>Instructions</th>
+
+    </tr>
+    <tr th:each="res : ${recipeList}">
+        <td th:text="${res.name}">Dummy</td>
+        <td th:text="${res.instruction}">Dummy</td>
+    </tr>
+</table>
+
 </body>
 </html>
 
