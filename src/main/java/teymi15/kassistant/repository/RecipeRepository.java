@@ -29,5 +29,10 @@ public interface RecipeRepository {
      * @param recipe recipe
      */
     void add (Recipe recipe);
+    /**
+     * add all the dumy data to the recipe list
+     * @param
+     */
+    void addAll();
 
 }
