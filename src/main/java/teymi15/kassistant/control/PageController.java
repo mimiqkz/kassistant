@@ -57,32 +57,8 @@ public class PageController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String submitSearch(HttpServletRequest request, Model model) {
 
-
-/*
-        in.add(new Ingredient(1,65, "chickpeas", "Grandi", "Bónus"));
-        in.add(new Ingredient(2,65, "Olive oil", "Grandi", "Bónus"));
-        recipes[0] = new Recipe(1,"hummus","take chickpeas and cruz them and add oliv oil",in);
-        res.add(new Recipe(1,"hummus","take chickpeas and cruz them and add oliv oil",in));
-        in.clear();
-
-        in.add(new Ingredient(1,65, "chickpeas", "Grandi", "Bónus"));
-        in.add(new Ingredient(3,65, "Pasta", "Grandi", "Bónus"));
-        res.add(new Recipe(1,"pasta with bean","just pasta bro",in));
-        recipes[1] = new Recipe(1,"pasta with bean","just pasta bro",in);
-        in.clear();
-        in.add(new Ingredient(4,65, "vegitables", "Grandi", "Bónus"));
-        in.add(new Ingredient(5,65, "tofu", "Grandi", "Bónus"));
-        recipes[2] = new Recipe(1,"stirfry","just stir fry",in);
-        res.add(new Recipe(1,"stirfry","just stir fry",in));
-
-
-/*
-        for(int i= 0; i<res.size(); i++){
-            System.out.println(res.get(i).getName());
-        }
-*/
         searchController = new SearchController();
-
+        
         String search = request.getParameter("search");
         results = searchController.searchRecipeByName(search);
 
