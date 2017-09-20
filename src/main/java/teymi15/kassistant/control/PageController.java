@@ -11,12 +11,14 @@ package teymi15.kassistant.control;
  */
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import teymi15.kassistant.model.Ingredient;
+import teymi15.kassistant.model.Recipe;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The class controls the main page to tells which route it should be rending
@@ -25,6 +27,13 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PageController {
+
+    List<Recipe> results = new ArrayList();
+
+
+    SearchController searchController;
+
+
     /**
      * The function tells the search page to be displayed at route predefined
      * in the configuration application.properties
@@ -48,9 +57,36 @@ public class PageController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String submitSearch(HttpServletRequest request, Model model) {
 
-        String search = request.getParameter("search");
 
-        model.addAttribute("search", search);
+/*
+        in.add(new Ingredient(1,65, "chickpeas", "Grandi", "Bónus"));
+        in.add(new Ingredient(2,65, "Olive oil", "Grandi", "Bónus"));
+        recipes[0] = new Recipe(1,"hummus","take chickpeas and cruz them and add oliv oil",in);
+        res.add(new Recipe(1,"hummus","take chickpeas and cruz them and add oliv oil",in));
+        in.clear();
+
+        in.add(new Ingredient(1,65, "chickpeas", "Grandi", "Bónus"));
+        in.add(new Ingredient(3,65, "Pasta", "Grandi", "Bónus"));
+        res.add(new Recipe(1,"pasta with bean","just pasta bro",in));
+        recipes[1] = new Recipe(1,"pasta with bean","just pasta bro",in);
+        in.clear();
+        in.add(new Ingredient(4,65, "vegitables", "Grandi", "Bónus"));
+        in.add(new Ingredient(5,65, "tofu", "Grandi", "Bónus"));
+        recipes[2] = new Recipe(1,"stirfry","just stir fry",in);
+        res.add(new Recipe(1,"stirfry","just stir fry",in));
+
+
+/*
+        for(int i= 0; i<res.size(); i++){
+            System.out.println(res.get(i).getName());
+        }
+*/
+        searchController = new SearchController();
+
+        String search = request.getParameter("search");œ
+        results = searchController.searchRecipeByName(search);
+
+        model.addAttribute("recipeList", results);
         return "resultpage";
     }
 }
