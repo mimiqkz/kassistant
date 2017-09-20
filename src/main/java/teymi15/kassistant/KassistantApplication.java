@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import teymi15.kassistant.control.SearchController;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.repository.RecipeRepositoryImp;
@@ -35,7 +34,7 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*//some dumby data to the repository
+		//some dumby data to the repository
 		RecipeRepositoryImp res = new RecipeRepositoryImp();
 		List<Ingredient> in = new ArrayList<>();
 		in.add(new Ingredient(1,65, "chickpeas", "Grandi", "Bónus"));
@@ -49,9 +48,7 @@ public class KassistantApplication extends SpringBootServletInitializer{
 		in.add(new Ingredient(4,65, "vegitables", "Grandi", "Bónus"));
 		in.add(new Ingredient(5,65, "tofu", "Grandi", "Bónus"));
 		res.add(new Recipe(1,"stirfry","just stir fry",in));
-*/
-		SearchController s = new SearchController();
-		System.out.print(s.searchRecipeByName("hummus"));
+
 		//lunch the Spring Application
 		SpringApplication.run(KassistantApplication.class, args);
 	}
