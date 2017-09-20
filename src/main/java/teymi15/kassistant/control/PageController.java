@@ -83,7 +83,7 @@ public class PageController {
 */
         searchController = new SearchController();
 
-        String search = request.getParameter("search");œ
+        String search = request.getParameter("search");
         results = searchController.searchRecipeByName(search);
 
         model.addAttribute("recipeList", results);
