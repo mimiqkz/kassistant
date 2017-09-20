@@ -23,7 +23,7 @@ import java.util.List;
 public class KassistantApplication extends SpringBootServletInitializer{
 	private static final Logger log = LoggerFactory.getLogger(KassistantApplication.class);
 	/**
-	 * This is the protected funcion which configurate the Spring Application
+	 * This is the protected function which configurate the Spring Application
 	 * @param applicationBuilder
 	 */
 	@Override

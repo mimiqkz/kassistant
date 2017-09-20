@@ -18,14 +18,14 @@ import java.util.List;
 
 @Repository
 public class RecipeRepositoryImp implements RecipeRepository {
-    //the List of Recipe's
+    //the List of recipes
     private final List<Recipe> recipes;
 
     public RecipeRepositoryImp() {
         this.recipes = new ArrayList<Recipe>();
     }
 
-    // get all the Recipe's in the repository
+    // get all the recipes in the repository
     @Override
     public List<Recipe> getAll() {
         return recipes;
@@ -49,7 +49,7 @@ public class RecipeRepositoryImp implements RecipeRepository {
 
     }
 
-    //add data to the Reposetory
+    //add data to the repository
     @Override
     public void add (Recipe recipe) {
         recipes.add(recipe);

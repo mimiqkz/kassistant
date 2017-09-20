@@ -32,7 +32,7 @@ public class RecipeServiceImp implements RecipeService{
         recipeRep.add(k);
     }
 
-    //search for maching recipe by name
+    //search for matching recipe by name
     @Override
     public List<Recipe> matchingRecipe(String k) {
         List found = new ArrayList();
