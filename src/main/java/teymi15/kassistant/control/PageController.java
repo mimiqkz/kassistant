@@ -23,7 +23,7 @@ public class PageController {
     /**
      * The function tells the search page to be displayed at route predefined
      * in the configuration application.properties
-     * @param
+     *
      * @return String
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)

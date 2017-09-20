@@ -9,16 +9,11 @@ package teymi15.kassistant.control;
  * @version 1.0
  * @since   2017-09-20
  */
-import java.util.ArrayList;
 import java.util.List;
 
-import teymi15.kassistant.model.Ingredient;
-import teymi15.kassistant.model.Recipe;
-
-import teymi15.kassistant.repository.*;
 import teymi15.kassistant.service.RecipeServiceImp;
 
-public class SearchManager {
+public class SearchController {
     private RecipeServiceImp repo = new RecipeServiceImp();
 
     public List searchRecipeByName(String name){
