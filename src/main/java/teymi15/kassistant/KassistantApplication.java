@@ -7,8 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import teymi15.kassistant.repository.ConnectionToDB;
 import teymi15.kassistant.service.Search;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -31,6 +33,9 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		/*ConnectionToDB c = new ConnectionToDB();
+		java.sql.Connection b = c.connection();
+		System.out.print(b);*/
 		SpringApplication.run(KassistantApplication.class, args);
 	}
 
