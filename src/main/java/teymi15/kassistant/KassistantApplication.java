@@ -1,12 +1,10 @@
 package teymi15.kassistant;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import teymi15.kassistant.control.SearchController;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.repository.RecipeRepositoryImp;
@@ -20,7 +18,6 @@ import java.util.List;
  */
 @SpringBootApplication
 public class KassistantApplication extends SpringBootServletInitializer{
-	private static final Logger log = LoggerFactory.getLogger(KassistantApplication.class);
 	/**
 	 * This is the protected funcion which configurate the Spring Application
 	 * @param applicationBuilder
@@ -34,7 +31,7 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//some dumby data to the repository
+		//some dummy data to the repository
 		RecipeRepositoryImp res = new RecipeRepositoryImp();
 		List<Ingredient> in = new ArrayList<>();
 		in.add(new Ingredient(1,65, "chickpeas", "Grandi", "Bónus"));
@@ -49,7 +46,9 @@ public class KassistantApplication extends SpringBootServletInitializer{
 		in.add(new Ingredient(5,65, "tofu", "Grandi", "Bónus"));
 		res.add(new Recipe(1,"stirfry","just stir fry",in));
 
-		//lunch the Spring Application
+		SearchController search = new SearchController();
+		search.searchRecipeByName("hummus");
+		//launch the Spring Application
 		SpringApplication.run(KassistantApplication.class, args);
 	}
 

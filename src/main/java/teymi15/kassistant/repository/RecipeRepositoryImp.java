@@ -30,7 +30,7 @@ public class RecipeRepositoryImp implements RecipeRepository {
         return recipes;
     }
 
-    //add data to the Reposetory
+    //add data to the Repository
     @Override
     public void add (Recipe recipe) {
         recipes.add(recipe);

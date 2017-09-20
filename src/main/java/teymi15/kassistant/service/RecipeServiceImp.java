@@ -34,6 +34,7 @@ public class RecipeServiceImp implements RecipeService{
     @Override
     public List<Recipe> matchingRecipe(String k) {
         List found = new ArrayList();
+        System.out.println(recipeRep.getAll());
         List<Recipe> everything = recipeRep.getAll();
         for(int i = 0;i<everything.size();i++){
             if(everything.get(i).getName().equals(k)){
