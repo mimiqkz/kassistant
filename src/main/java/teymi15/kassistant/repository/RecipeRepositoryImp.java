@@ -32,7 +32,7 @@ public class RecipeRepositoryImp implements RecipeRepository {
     }
 
     @Override
-    public  void  addAll(){
+    public void addAll(){
         recipes.clear();
         List<Ingredient> in = new ArrayList<>();
         in.add(new Ingredient(1,65, "chickpeas", "Grandi", "Bónus"));

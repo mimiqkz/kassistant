@@ -30,4 +30,9 @@ public interface RecipeRepository {
      */
     void add (Recipe recipe);
 
+    /**
+     * add all the dummy data to the repository
+     */
+    public void addAll();
+
 }
