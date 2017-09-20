@@ -13,7 +13,7 @@ import teymi15.kassistant.model.Recipe;
 import java.util.List;
 
 /**
- * The service class for the recipe
+ * The service class for the recipe, getting data from the repository
  */
 public interface RecipeService {
 
