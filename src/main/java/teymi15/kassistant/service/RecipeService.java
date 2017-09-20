@@ -23,7 +23,7 @@ public interface RecipeService {
      *
      * @param k Recipe
      */
-    void addRecipe(Recipe k);
+    public void addRecipe(Recipe k);
 
     /**
      * Return all of the matching recipe
@@ -31,7 +31,7 @@ public interface RecipeService {
      * @param k the name of the recipe
      * @return list of matching recipe
      */
-    List<Recipe> matchingRecipe(String k);
+    public List<Recipe> matchingRecipe(String k);
 
 
 }
