@@ -12,9 +12,11 @@ package teymi15.kassistant.service;
  */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import teymi15.kassistant.control.SearchManager;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.repository.RecipeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,8 +33,16 @@ public class RecipeServiceImp implements RecipeService{
 
     @Override
     public List<Recipe> matchingRecipe(String k) {
-        return null;
+        List found = new ArrayList();
+        List<Recipe> everything = recipeRep.getAll();
+        for(int i = 0;i<everything.size();i++){
+            if(everything.get(i).getName().equals(k)){
+                found.add(everything.get(i));
+            }
+        }
+        return found;
     }
+
 
 
 }

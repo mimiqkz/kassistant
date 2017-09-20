@@ -30,4 +30,12 @@ public interface RecipeService {
      * @return list of matching recipe
      */
     public List<Recipe> matchingRecipe(String k);
+    /**
+     * Return all of the recipes
+     *
+     *
+     * @return list of matching recipe
+     */
+
+
 }
