@@ -17,17 +17,20 @@ import java.util.List;
 
 @Repository
 public class RecipeRepositoryImp implements RecipeRepository {
+    //the List of Recipe's
     private final List<Recipe> recipes;
 
     public RecipeRepositoryImp() {
         this.recipes = new ArrayList<Recipe>();
     }
 
+    // get all the Recipe's in the repository
     @Override
     public List<Recipe> getAll() {
         return recipes;
     }
 
+    //add data to the Reposetory
     @Override
     public void add (Recipe recipe) {
         recipes.add(recipe);

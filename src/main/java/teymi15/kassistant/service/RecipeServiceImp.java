@@ -25,12 +25,13 @@ public class RecipeServiceImp implements RecipeService{
     // Connection to the recipe repository
     @Autowired
     RecipeRepository recipeRep;
-
+    // Add Recipe to the service
     @Override
     public void addRecipe(Recipe k) {
         recipeRep.add(k);
     }
 
+    //search for maching recipe by name
     @Override
     public List<Recipe> matchingRecipe(String k) {
         List found = new ArrayList();

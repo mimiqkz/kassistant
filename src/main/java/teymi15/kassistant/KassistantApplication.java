@@ -34,7 +34,7 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		//some dumby data to the repository
 		RecipeRepositoryImp res = new RecipeRepositoryImp();
 		List<Ingredient> in = new ArrayList<>();
 		in.add(new Ingredient(1,65, "chickpeas", "Grandi", "Bónus"));
@@ -49,11 +49,7 @@ public class KassistantApplication extends SpringBootServletInitializer{
 		in.add(new Ingredient(5,65, "tofu", "Grandi", "Bónus"));
 		res.add(new Recipe(1,"stirfry","just stir fry",in));
 
-
-
-
-
-
+		//lunch the Spring Application
 		SpringApplication.run(KassistantApplication.class, args);
 	}
 

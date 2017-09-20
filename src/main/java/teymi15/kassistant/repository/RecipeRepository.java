@@ -16,8 +16,16 @@ import java.util.List;
 
 public interface RecipeRepository {
 
+    /**
+     * get the list of all recipe
+     * @return List of all recipe
+     */
     List <Recipe> getAll();
 
+    /**
+     * add to the recipe list
+     * @param recipe
+     */
     void add (Recipe recipe);
 
 }
