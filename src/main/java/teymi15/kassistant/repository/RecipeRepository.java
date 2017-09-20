@@ -22,12 +22,12 @@ public interface RecipeRepository {
      * get the list of all recipe
      * @return List of all recipe
      */
-    public List <Recipe> getAll();
+    List <Recipe> getAll();
 
     /**
      * add to the recipe list
      * @param recipe recipe
      */
-    public void add (Recipe recipe);
+    void add (Recipe recipe);
 
 }
