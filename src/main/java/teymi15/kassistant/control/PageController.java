@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class PageController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String searchPage() {
+    public String displaySearchPage() {
         return "searchpage";
     }
 
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String displaySearchResults(HttpServletRequest request, Model model) {
+    public String submitSearch(HttpServletRequest request, Model model) {
 
         String search = request.getParameter("search");
 
