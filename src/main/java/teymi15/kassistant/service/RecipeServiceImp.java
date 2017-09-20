@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Ebba Þóra Hvannberg 
+ * @author Alexander Freyr Sveinsson
  * @date september 2017
  * HBV501G Hugbúnaðarverkefni 1
  * Háskóli Íslands
@@ -18,10 +18,10 @@ import java.util.List;
 @Service
 public class RecipeServiceImp implements RecipeService{
 
-    // Tenging yfir í safn af kennurum 
+    // Tenging yfir í safn af kennurum
     @Autowired
     RecipeRepository recipeRep;
-    
+
     @Override
     public boolean isNameCorrect(String nafn) {
         return true;
@@ -36,5 +36,5 @@ public class RecipeServiceImp implements RecipeService{
     public List<Recipe> allirKennarar() {
         return recipeRep.getAll();
     }
-    
+
 }

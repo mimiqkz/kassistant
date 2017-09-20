@@ -1,4 +1,4 @@
-package teymi15.kassistant.service;
+package teymi15.kassistant.manager;
 
 import java.util.ArrayList;
 import java.util.List;
