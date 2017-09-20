@@ -11,9 +11,11 @@ package teymi15.kassistant.repository;
  */
 
 import teymi15.kassistant.model.Recipe;
-
 import java.util.List;
 
+/**
+ * The repository for recipe
+ */
 public interface RecipeRepository {
 
     /**
@@ -24,7 +26,7 @@ public interface RecipeRepository {
 
     /**
      * add to the recipe list
-     * @param recipe
+     * @param recipe recipe
      */
     void add (Recipe recipe);
 

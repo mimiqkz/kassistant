@@ -10,9 +10,11 @@ package teymi15.kassistant.control;
  * @since   2017-09-20
  */
 import java.util.List;
-
 import teymi15.kassistant.service.RecipeServiceImp;
 
+/**
+ * The class searches for the correct recipe
+ */
 public class SearchController {
     private RecipeServiceImp repo = new RecipeServiceImp();
 

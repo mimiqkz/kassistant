@@ -10,12 +10,7 @@ package teymi15.kassistant.model;
  * @since   2017-09-20
  */
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-
+//The object class of ingredient
 public class Ingredient {
 
     private int id;

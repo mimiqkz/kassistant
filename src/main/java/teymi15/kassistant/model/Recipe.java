@@ -9,13 +9,13 @@ package teymi15.kassistant.model;
  * @version 1.0
  * @since   2017-09-20
  */
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+
 import java.util.List;
 
-
+/**
+ * The object class of recipe
+ */
 public class Recipe {
 
     private int id;

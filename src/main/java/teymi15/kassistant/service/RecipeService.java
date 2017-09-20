@@ -10,9 +10,11 @@ package teymi15.kassistant.service;
  * @since   2017-09-20
  */
 import teymi15.kassistant.model.Recipe;
-
 import java.util.List;
 
+/**
+ * The service class for the recipe
+ */
 public interface RecipeService {
 
 
@@ -21,7 +23,7 @@ public interface RecipeService {
      *
      * @param k Recipe
      */
-    public void addRecipe(Recipe k);
+    void addRecipe(Recipe k);
 
     /**
      * Return all of the matching recipe
@@ -29,13 +31,7 @@ public interface RecipeService {
      * @param k the name of the recipe
      * @return list of matching recipe
      */
-    public List<Recipe> matchingRecipe(String k);
-    /**
-     * Return all of the recipes
-     *
-     *
-     * @return list of matching recipe
-     */
+    List<Recipe> matchingRecipe(String k);
 
 
 }
