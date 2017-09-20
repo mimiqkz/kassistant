@@ -18,14 +18,9 @@ import java.util.List;
 @Service
 public class RecipeServiceImp implements RecipeService{
 
-    // Tenging yfir í safn af kennurum
+    // Connection to the recipe repository
     @Autowired
     RecipeRepository recipeRep;
-
-    @Override
-    public boolean isNameCorrect(String nafn) {
-        return true;
-    }
 
     @Override
     public void addRecipe(Recipe k) {
@@ -33,8 +28,9 @@ public class RecipeServiceImp implements RecipeService{
     }
 
     @Override
-    public List<Recipe> allirKennarar() {
-        return recipeRep.getAll();
+    public List<Recipe> matchingRecipe(String k) {
+        return null;
     }
+
 
 }

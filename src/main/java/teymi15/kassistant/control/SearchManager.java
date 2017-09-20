@@ -1,4 +1,4 @@
-package teymi15.kassistant.manager;
+package teymi15.kassistant.control;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import teymi15.kassistant.model.Recipe;
 
 import teymi15.kassistant.repository.*;
 
-public class Search {
+public class SearchManager {
     private RecipeRepositoryImp repo = new RecipeRepositoryImp();
 
     public List<Recipe> getRecipes() {
