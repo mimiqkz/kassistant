@@ -17,7 +17,7 @@ import teymi15.kassistant.model.Recipe;
 
 import teymi15.kassistant.repository.*;
 
-public class SearchManager {
+public class SearchController {
     private RecipeRepositoryImp repo = new RecipeRepositoryImp();
 
     public List<Recipe> getRecipes() {
