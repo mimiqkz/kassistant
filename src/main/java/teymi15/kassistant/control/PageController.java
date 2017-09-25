@@ -11,6 +11,7 @@ package teymi15.kassistant.control;
  */
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import teymi15.kassistant.model.Ingredient;
@@ -28,7 +29,6 @@ import java.util.List;
 @Controller
 public class PageController {
 
-    List<Recipe> results = new ArrayList();
 
 
     SearchController searchController;
@@ -56,13 +56,25 @@ public class PageController {
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String submitSearch(HttpServletRequest request, Model model) {
-
-        searchController = new SearchController();
-        
         String search = request.getParameter("search");
-        results = searchController.searchRecipeByName(search);
+        searchController = new SearchController();
+        List<Recipe> results = searchController.searchRecipeByName(search);
+        for (Recipe recipe: results) {
+            System.out.println(recipe.getID());
+        }
+
 
         model.addAttribute("recipeList", results);
         return "resultpage";
+    }
+
+    //Select recipe
+    @RequestMapping(value="recipe/{id}/details", method = RequestMethod.GET)
+    public String selectRecipe (@PathVariable int id, Model model) {
+        //1. use id to get recipe object
+        //2. add object to recipe page
+        //3. make recipe template to display data
+        model.addAttribute("recipe", id);
+        return "recipe";
     }
 }
