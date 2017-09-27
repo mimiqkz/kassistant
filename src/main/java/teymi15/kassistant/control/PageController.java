@@ -29,7 +29,7 @@ import java.util.List;
 @Controller
 public class PageController {
 
-
+    List<Recipe> results;
 
     SearchController searchController;
 
@@ -58,7 +58,7 @@ public class PageController {
     public String submitSearch(HttpServletRequest request, Model model) {
         String search = request.getParameter("search");
         searchController = new SearchController();
-        List<Recipe> results = searchController.searchRecipeByName(search);
+        results = searchController.searchRecipeByName(search);
         for (Recipe recipe: results) {
             System.out.println(recipe.getID());
         }
@@ -72,9 +72,12 @@ public class PageController {
     @RequestMapping(value="recipe/{id}/details", method = RequestMethod.GET)
     public String selectRecipe (@PathVariable int id, Model model) {
         //1. use id to get recipe object
-        //2. add object to recipe page
-        //3. make recipe template to display data
-        model.addAttribute("recipe", id);
+        Recipe selected = searchController.getRecipebyID(id);
+        model.addAttribute("recipe", selected);
         return "recipe";
     }
+
+    //Load log-in
+    @RequestMapping(value="login", method = RequestMethod.GET)
+    public String displayLoginPage () {return "login";}
 }
