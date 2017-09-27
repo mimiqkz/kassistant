@@ -15,7 +15,7 @@ import javax.persistence.*;
 
 //The object class of ingredient
     @Entity
-    @Table(name = "Ingredients")
+    @Table(name = "Ingredient")
 public class Ingredient {
 
     @Id
