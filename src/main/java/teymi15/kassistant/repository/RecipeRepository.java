@@ -10,25 +10,26 @@ package teymi15.kassistant.repository;
  * @since   2017-09-20
  */
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import teymi15.kassistant.model.Recipe;
 import java.util.List;
 
 /**
  * The repository for recipe
  */
-public interface RecipeRepository {
+public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     /**
      * get the list of all recipe
      * @return List of all recipe
      */
-    List <Recipe> getAll();
+    List <Recipe> findAll();
 
     /**
      * add to the recipe list
      * @param recipe recipe
      */
-    void add (Recipe recipe);
+    Recipe save (Recipe recipe);
 
     /**
      * add all the dummy data to the repository
