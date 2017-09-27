@@ -31,9 +31,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
      */
     Recipe save (Recipe recipe);
 
-    /**
-     * add all the dummy data to the repository
-     */
-    public void addAll();
 
 }

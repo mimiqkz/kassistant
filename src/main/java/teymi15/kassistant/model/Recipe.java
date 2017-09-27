@@ -26,26 +26,26 @@ public class Recipe {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
     private String instruction;
-    @ManyToMany(mappedBy = "recipe",fetch = FetchType.LAZY,
+   /* @ManyToMany(mappedBy = "recipe",fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
-    private Set<Ingredient> ingredients = new HashSet<Ingredient>();
+    private Set<Ingredient> ingredients = new HashSet<Ingredient>();*/
 
     public Recipe() {
-        this.ingredients = new HashSet<Ingredient>();
+        /*this.ingredients = new HashSet<Ingredient>();*/
     }
     public Recipe(String name,String instruction){
-        this.ingredients = new HashSet<Ingredient>();
+        //this.ingredients = new HashSet<Ingredient>();
         this.name = name;
         this.instruction= instruction;
     }
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -66,24 +66,25 @@ public class Recipe {
     public void setInstruction(String instruction) {
         this.instruction = instruction;
     }
-
+/*
     @Column(name = "ingredients")
     public Set<Ingredient> getIngredients() {
-        return ingredients;
+        ///return ingredients;
     }
 
     public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+        //this.ingredients = ingredients;
     }
-
+*/
     @Override
     public String toString() {
         return String.format(
                 "Recipe[id=%d, name='%s', ingredients = '%s', instruction='%s']",
-                id, name ,ingredients, instruction);
+                id, name /*ingredients*/, instruction);
     }
+    /*
     public void addIngredient(Ingredient i){
-        i.setRecipe(this);
+        i.setRecipe((Set) this);
         ingredients.add(i);
-    }
+    }*/
 }
