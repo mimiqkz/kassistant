@@ -20,7 +20,7 @@ import javax.persistence.*;
  * The object class of recipe
  */
 @Entity
-@Table (name = "Recipes")
+@Table (name = "Recipe")
 public class Recipe {
 
     @Id
@@ -29,7 +29,7 @@ public class Recipe {
     private Long id;
     private String name;
     private String instruction;
-    @ManyToMany(mappedBy = "Recipe",fetch = FetchType.LAZY,
+    @ManyToMany(mappedBy = "recipe",fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
