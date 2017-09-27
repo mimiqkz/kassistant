@@ -33,5 +33,6 @@ public interface RecipeService {
      */
     public List<Recipe> matchingRecipe(String k);
 
+    public Recipe getRecipeById(int id);
 
 }

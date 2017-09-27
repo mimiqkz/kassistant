@@ -49,6 +49,17 @@ public class RecipeServiceImp implements RecipeService{
         return found;
     }
 
+    @Override
+    public Recipe getRecipeById(int id) {
+        System.out.println("here " + id);
+        List<Recipe> everything = recipeRep.getAll();
+        for (int i = 0; i < everything.size(); i++) {
+            if (everything.get(i).getID() == id) {
+                return everything.get(i);
+            }
+        }
+        return null;
+    }
 
 
 }

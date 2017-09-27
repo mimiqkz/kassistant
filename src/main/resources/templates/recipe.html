@@ -4,9 +4,11 @@
 <body>
 
 <h1>RECIPE </h1>
-<h2>Template for selected object</h2>
 
-<p> <span th:text="'Here is the id for selected recipe: ' + ${recipe.toString()}"></span></p>
+<p> <span th:text=" ${recipe.name}"></span></p>
+<p> <span th:text=" ${recipe.instruction}"></span></p>
+
+
 
 
 </body>
