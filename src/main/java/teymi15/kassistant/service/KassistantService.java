@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * The service class for the recipe, getting data from the repository
  */
-public interface RecipeService {
+public interface KassistantService {
 
 
     /**
