@@ -8,12 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import teymi15.kassistant.control.SearchController;
-import teymi15.kassistant.model.Ingredient;
-import teymi15.kassistant.model.Recipe;
-import teymi15.kassistant.repository.RecipeRepositoryImp;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The main class extends the Spring Boot Servlet requires to run the project

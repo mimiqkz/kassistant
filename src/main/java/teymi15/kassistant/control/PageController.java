@@ -59,9 +59,7 @@ public class PageController {
         String search = request.getParameter("search");
         searchController = new SearchController();
         List<Recipe> results = searchController.searchRecipeByName(search);
-        for (Recipe recipe: results) {
-            System.out.println(recipe.getID());
-        }
+
 
 
         model.addAttribute("recipeList", results);

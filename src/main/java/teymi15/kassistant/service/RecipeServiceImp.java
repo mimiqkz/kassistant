@@ -14,13 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.repository.RecipeRepository;
-import teymi15.kassistant.repository.RecipeRepositoryImp;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class RecipeServiceImp implements RecipeService{
+
+
 
     // Connection to the recipe repository
     @Autowired
@@ -29,14 +30,14 @@ public class RecipeServiceImp implements RecipeService{
     // Add Recipe to the service
     @Override
     public void addRecipe(Recipe k) {
-        recipeRep.add(k);
+        recipeRep.save(k);
     }
 
     //search for matching recipe by name
     @Override
     public List<Recipe> matchingRecipe(String k) {
         List found = new ArrayList();
-        recipeRep = new RecipeRepositoryImp();
+      /*  recipeRep = new RecipeRepository();
         recipeRep.addAll();
         List<Recipe> everything = recipeRep.getAll();
         for(int i = 0;i<everything.size();i++){
@@ -44,7 +45,7 @@ public class RecipeServiceImp implements RecipeService{
                 found.add(everything.get(i));
             }
         }
-
+*/
         return found;
     }
 

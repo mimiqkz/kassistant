@@ -11,34 +11,45 @@ package teymi15.kassistant.model;
  */
 
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.*;
+
 
 /**
  * The object class of recipe
  */
+@Entity
+@Table (name = "Recipes")
 public class Recipe {
 
-    private int id;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String instruction;
-    private List<Ingredient> ingredients;
+    @ManyToMany(mappedBy = "Recipe",fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL)
+    private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
-    public Recipe(int id, String name, String instruction, List<Ingredient> in) {
-        this.id = id;
-        this.name = name;
-        this.instruction = instruction;
-        this.ingredients = in;
+    public Recipe() {
+        this.ingredients = new HashSet<Ingredient>();
     }
-
-    public int getID() {
+    public Recipe(String name,String instruction){
+        this.ingredients = new HashSet<Ingredient>();
+        this.name = name;
+        this.instruction= instruction;
+    }
+    public Long getId() {
         return id;
     }
 
-
-    public void setID(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -47,6 +58,7 @@ public class Recipe {
         this.name = name;
     }
 
+    @Column(name = "instruction")
     public String getInstruction() {
         return instruction;
     }
@@ -55,11 +67,12 @@ public class Recipe {
         this.instruction = instruction;
     }
 
-    public List<Ingredient> getIngredients() {
+    @Column(name = "ingredients")
+    public Set<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -67,6 +80,10 @@ public class Recipe {
     public String toString() {
         return String.format(
                 "Recipe[id=%d, name='%s', ingredients = '%s', instruction='%s']",
-                id, name, ingredients, instruction);
+                id, name ,ingredients, instruction);
+    }
+    public void addIngredient(Ingredient i){
+        i.setRecipe(this);
+        ingredients.add(i);
     }
 }
