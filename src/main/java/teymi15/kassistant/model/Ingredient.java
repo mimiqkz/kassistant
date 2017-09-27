@@ -1,6 +1,8 @@
 package teymi15.kassistant.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The program allows user to search for recipe with the matching name.
@@ -26,8 +28,11 @@ public class Ingredient {
     private String name; //Name of the ingredient e.g cherry tomato, apple etc.
     private String location; //Location of the store e.g Granda, Kringlan etc
     private String store; //The name of the store
-    private Recipe recipe; //vísa í Recipe
-
+    /*
+    @ManyToMany(mappedBy = "ingredients",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Recipe> recipe = new HashSet<>(); //vísa í Recipe
+*/
     public Ingredient(int id, double price, String name, String location, String store) {
         this.id = id;
         this.price = price;
@@ -80,11 +85,11 @@ public class Ingredient {
     public void setStore(String store) {
         this.store = store;
     }
-
-    public void setRecipe(Recipe recipe){
+/*
+    public void setRecipe(Set recipe){
         this.recipe = recipe;
     }
-
+*/
 
     @Override
     public String toString() {
