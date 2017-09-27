@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class RecipeServiceImp implements RecipeService{
+public class KassistantServiceImp implements KassistantService{
 
 
 
