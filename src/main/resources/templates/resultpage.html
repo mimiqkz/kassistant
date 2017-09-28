@@ -3,18 +3,26 @@
 <head lang="en"></head>
 <body>
 
-<table>
-    <tr>
-        <th>NAME</th>
-        <th>Instructions</th>
+<a th:href="@{/}">Home Page</a>
 
-    </tr>
-    <tr th:each="res : ${recipeList}">
 
-        <td> <a th:href="@{/recipe/{id}/details(id=${res.getID()})}" th:text="${res.name}"></a></td>
-        <td th:text="${res.instruction}">Dummy</td>
-    </tr>
-</table>
+<form method="post">
+        <input type="text" name="search" size="50" placeholder="Hummus, Indian, gluten-free..." />
+       <input type="submit" value="Search!" />
+    </form>
+
+    <table>
+        <tr>
+            <th>NAME</th>
+            <th>Instructions</th>
+
+        </tr>
+        <tr th:each="res : ${recipeList}">
+
+            <td> <a th:href="@{/recipe/{id}/details(id=${res.getID()})}" th:text="${res.name}"></a></td>
+            <td th:text="${res.instruction}">Dummy</td>
+        </tr>
+    </table>
 
 
 

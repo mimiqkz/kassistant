@@ -42,7 +42,7 @@ public class PageController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displaySearchPage() {
-        return "searchpage";
+        return "homepage";
     }
 
 
@@ -80,4 +80,11 @@ public class PageController {
     //Load log-in
     @RequestMapping(value="login", method = RequestMethod.GET)
     public String displayLoginPage () {return "login";}
+
+    // Login form with error -- yet to implement
+    @RequestMapping("/login")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login";
+    }
 }
