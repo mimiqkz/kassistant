@@ -31,7 +31,8 @@ public class PageController {
 
     List<Recipe> results;
 
-    SearchController searchController;
+    SearchController searchController = new SearchController();
+    UserController userController = new UserController();
 
 
     /**
@@ -57,7 +58,6 @@ public class PageController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String submitSearch(HttpServletRequest request, Model model) {
         String search = request.getParameter("search");
-        searchController = new SearchController();
         results = searchController.searchRecipeByName(search);
         for (Recipe recipe: results) {
             System.out.println(recipe.getID());
@@ -81,10 +81,23 @@ public class PageController {
     @RequestMapping(value="login", method = RequestMethod.GET)
     public String displayLoginPage () {return "login";}
 
-    // Login form with error -- yet to implement
-    @RequestMapping("/login")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String login(HttpServletRequest request, Model model) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+
+        if (userController.loginUser(username, password)) {
+            model.addAttribute("loginError", false);
+            model.addAttribute("loginSuccess", true);
+        } else {
+            model.addAttribute("loginError", true);
+            model.addAttribute("loginSuccess", false);
+
+        }
+
         return "login";
     }
+
+
 }
