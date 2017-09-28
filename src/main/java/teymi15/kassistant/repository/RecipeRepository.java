@@ -27,7 +27,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     /**
      * add to the recipe list
-     * @param recipe recipe
+     * @param recipe
      */
     Recipe save (Recipe recipe);
 

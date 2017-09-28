@@ -24,18 +24,19 @@ import javax.persistence.*;
 public class Recipe {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "recipeId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String instruction;
-   /* @ManyToMany(mappedBy = "recipe",fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
-    private Set<Ingredient> ingredients = new HashSet<Ingredient>();*/
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "RIngridients",joinColumns = {
+            @JoinColumn(name = "recipeId",nullable = false,updatable = false)
+    }, inverseJoinColumns = { @JoinColumn(name = "ingredientId",
+            nullable = false, updatable = false)})
+    private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
-    public Recipe() {
-        /*this.ingredients = new HashSet<Ingredient>();*/
-    }
+    public Recipe() {}
     public Recipe(String name,String instruction){
         //this.ingredients = new HashSet<Ingredient>();
         this.name = name;
@@ -66,25 +67,20 @@ public class Recipe {
     public void setInstruction(String instruction) {
         this.instruction = instruction;
     }
-/*
-    @Column(name = "ingredients")
+
+
     public Set<Ingredient> getIngredients() {
-        ///return ingredients;
+        return ingredients;
     }
 
     public void setIngredients(Set<Ingredient> ingredients) {
-        //this.ingredients = ingredients;
+        this.ingredients = ingredients;
     }
-*/
+
     @Override
     public String toString() {
         return String.format(
                 "Recipe[id=%d, name='%s', ingredients = '%s', instruction='%s']",
-                id, name /*ingredients*/, instruction);
+                id, name, ingredients, instruction);
     }
-    /*
-    public void addIngredient(Ingredient i){
-        i.setRecipe((Set) this);
-        ingredients.add(i);
-    }*/
 }

@@ -3,35 +3,35 @@ package teymi15.kassistant.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
+@Table(name = "KassistantUser")
 public class User {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "userId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int uid;
+    private int id;
     private String password;
     private String username;
     private String name;
     private int age;
 
-    public User(){
-
-    }
-    public User(String password, String username, String name, int age){
-        this.age = age;
-        this.name = name;
+    public User(){}
+    public User(String password, String username, String name, int age, int id){
+        this.id = id;
         this.password = password;
         this.username = username;
+        this.name = name;
+        this.age = age;
     }
 
-    public int getUid() {
-        return uid;
+    public int getId() {
+        return id;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setId(int uid) {
+        this.id = uid;
     }
+
     @Column(name = "password")
     public String getPassword() {
         return password;
@@ -40,6 +40,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
     @Column(name = "username")
     public String getUsername() {
         return username;
@@ -48,6 +49,7 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
     @Column(name = "name")
     public String getName() {
         return name;
@@ -56,6 +58,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
     @Column(name = "age")
     public int getAge() {
         return age;
