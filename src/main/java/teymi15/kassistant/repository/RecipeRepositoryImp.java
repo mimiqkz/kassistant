@@ -12,7 +12,6 @@ package teymi15.kassistant.repository;
 import org.springframework.stereotype.Repository;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
-
 import java.util.ArrayList;
 import java.util.List;
 
