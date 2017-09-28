@@ -40,7 +40,7 @@ public class UserServiceImp implements UserService{
 
 
     @Override
-    public Boolean findUser(String username, String password) {
+    public Boolean isUserInDatabase(String username, String password) {
         List<User> users = userRep.getAll();
 
         for (int i = 0; i < users.size(); i++) {
@@ -50,5 +50,21 @@ public class UserServiceImp implements UserService{
         }
 
         return false;
+    }
+
+    @Override
+    public User getUser(String username, String password) {
+        List<User> users = userRep.getAll();
+
+        for (int i = 0; i < users.size(); i++) {
+
+            if (username.equals(users.get(i).getUsername()) &&
+                    password.equals(users.get(i).getPassword())){
+                return users.get(i);
+
+                 }
+        }
+
+        return null;
     }
 }

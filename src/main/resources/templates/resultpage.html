@@ -6,7 +6,7 @@
 <a th:href="@{/}">Home Page</a>
 
 
-<form method="post">
+<form method="post" th:action="@{/search}">
         <input type="text" name="search" size="50" placeholder="Hummus, Indian, gluten-free..." />
        <input type="submit" value="Search!" />
     </form>

@@ -42,7 +42,12 @@ public class PageController {
      * @return String
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String displaySearchPage() {
+    public String displayHomePage(Model model) {
+        if(userController.isUserLoggedIn()){
+             model.addAttribute("user", userController.getCurrentUser());
+             model.addAttribute("loggedIn", true);
+        }
+
         return "homepage";
     }
 
@@ -55,7 +60,7 @@ public class PageController {
      * @param model model
      * @return String
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "search", method = RequestMethod.POST)
     public String submitSearch(HttpServletRequest request, Model model) {
         String search = request.getParameter("search");
         results = searchController.searchRecipeByName(search);
@@ -87,15 +92,19 @@ public class PageController {
         String password = request.getParameter("password");
 
 
-        if (userController.loginUser(username, password)) {
-            model.addAttribute("loginError", false);
-            model.addAttribute("loginSuccess", true);
+        if (userController.isLoginCorrect(username, password)) {
+           //If login successful set the current user
+            userController.setCurrentUser(username, password);
+            //Have to do this twice at the moment until i can
+            //think of something more clever
+            model.addAttribute("user", userController.getCurrentUser());
+            model.addAttribute("loggedIn", true);
+            return "homepage";
+
         } else {
             model.addAttribute("loginError", true);
-            model.addAttribute("loginSuccess", false);
 
         }
-
         return "login";
     }
 

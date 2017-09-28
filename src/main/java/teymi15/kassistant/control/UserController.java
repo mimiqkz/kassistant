@@ -22,12 +22,43 @@ import teymi15.kassistant.service.UserServiceImp;
 
 public class UserController {
 
-    UserServiceImp userService = new UserServiceImp();
+    private UserServiceImp userService = new UserServiceImp();
+
+    private User currentUser;
+
+    private Boolean loggedIn = false;
 
     public void registerUser(User newUser){ userService.addUser(newUser);}
 
-    //Return whether login was successful or not
-    public Boolean loginUser(String username, String password){
-        return userService.findUser(username, password);
+    //Returns true if login exists, else, false
+    public Boolean isLoginCorrect(String username, String password){
+
+        if(userService.isUserInDatabase(username, password)){return true;}
+
+        return false;
     }
+
+    //sets current user
+    public void setCurrentUser(String username, String password){
+        currentUser = userService.getUser(username, password);
+        loggedIn = true;
+        System.out.println("This should come second. User logged in: " +  loggedIn);
+
+    }
+
+    public User getCurrentUser(){
+        return currentUser;
+    }
+
+    public void signoutUser(){
+        loggedIn = false;
+        currentUser = null;
+    }
+
+    public Boolean isUserLoggedIn(){
+        return loggedIn;
+
+    }
+
+
 }
