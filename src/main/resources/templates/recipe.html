@@ -3,10 +3,14 @@
 <head lang="en"></head>
 <body>
 
-<h1>RECIPE </h1>
-<h2>Template for selected object</h2>
+<a th:href="@{/}">Home Page</a>
 
-<p> <span th:text="'Here is the id for selected recipe: ' + ${recipe.toString()}"></span></p>
+
+<h1><span th:text=" ${recipe.name}"></span> </h1>
+
+<p> <span th:text=" ${recipe.name}"></span></p>
+<p> <span th:text=" ${recipe.instruction}"></span></p>
+
 
 
 </body>

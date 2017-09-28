@@ -9,30 +9,28 @@ package teymi15.kassistant.service;
  * @version 1.0
  * @since   2017-09-20
  */
+
 import teymi15.kassistant.model.Recipe;
+import teymi15.kassistant.model.User;
+
 import java.util.List;
 
 /**
- * The service class for the recipe, getting data from the repository
+ * The service class for the user controller, getting data from the repository
  */
-public interface KassistantService {
+public interface UserService {
 
 
     /**
-     * Add the recipe
+     * Add the user
      *
-     * @param k Recipe
+     * @param newUser User
      */
-    public void addRecipe(Recipe k);
+    public void addUser(User newUser);
 
-    /**
-     * Return all of the matching recipe
-     * 
-     * @param k the name of the recipe
-     * @return list of matching recipe
-     */
-    public List<Recipe> matchingRecipe(String k);
+    public Boolean findUser(String username, String password);
 
-    public Recipe getRecipeById(int id);
+
+
 
 }

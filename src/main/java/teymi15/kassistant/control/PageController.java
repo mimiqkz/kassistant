@@ -29,9 +29,10 @@ import java.util.List;
 @Controller
 public class PageController {
 
+    List<Recipe> results;
 
-
-    SearchController searchController;
+    SearchController searchController = new SearchController();
+    UserController userController = new UserController();
 
 
     /**
@@ -42,7 +43,7 @@ public class PageController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displaySearchPage() {
-        return "searchpage";
+        return "homepage";
     }
 
 
@@ -57,9 +58,10 @@ public class PageController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String submitSearch(HttpServletRequest request, Model model) {
         String search = request.getParameter("search");
-        searchController = new SearchController();
-        List<Recipe> results = searchController.searchRecipeByName(search);
-
+        results = searchController.searchRecipeByName(search);
+        for (Recipe recipe: results) {
+            System.out.println(recipe.getID());
+        }
 
 
         model.addAttribute("recipeList", results);
@@ -70,9 +72,32 @@ public class PageController {
     @RequestMapping(value="recipe/{id}/details", method = RequestMethod.GET)
     public String selectRecipe (@PathVariable int id, Model model) {
         //1. use id to get recipe object
-        //2. add object to recipe page
-        //3. make recipe template to display data
-        model.addAttribute("recipe", id);
+        Recipe selected = searchController.getRecipebyID(id);
+        model.addAttribute("recipe", selected);
         return "recipe";
     }
+
+    //Load log-in
+    @RequestMapping(value="login", method = RequestMethod.GET)
+    public String displayLoginPage () {return "login";}
+
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String login(HttpServletRequest request, Model model) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+
+        if (userController.loginUser(username, password)) {
+            model.addAttribute("loginError", false);
+            model.addAttribute("loginSuccess", true);
+        } else {
+            model.addAttribute("loginError", true);
+            model.addAttribute("loginSuccess", false);
+
+        }
+
+        return "login";
+    }
+
+
 }

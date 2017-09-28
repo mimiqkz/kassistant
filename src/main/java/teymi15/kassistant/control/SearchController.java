@@ -12,6 +12,9 @@ package teymi15.kassistant.control;
 import java.util.List;
 import teymi15.kassistant.service.KassistantServiceImp;
 
+import teymi15.kassistant.model.Recipe;
+import teymi15.kassistant.service.KassistantServiceImp;
+
 /**
  * The class searches for the correct recipe
  */
@@ -21,6 +24,8 @@ public class SearchController {
     public List searchRecipeByName(String name){
         return repo.matchingRecipe(name);
     }
+
+    public Recipe getRecipebyID(int id){ return repo.getRecipeById(id);};
 
 
 }
