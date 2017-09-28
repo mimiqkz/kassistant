@@ -52,12 +52,12 @@ public class KassistantServiceImp implements KassistantService{
     //find recipe by its id
     @Override
     public Recipe getRecipeById(int id) {
-        List<Recipe> everything = recipeRep.getAll();
+        /*List<Recipe> everything = recipeRep.getAll();
         for (int i = 0; i < everything.size(); i++) {
             if (everything.get(i).getID() == id) {
                 return everything.get(i);
             }
-        }
+        }*/
         return null;
     }
 

@@ -28,7 +28,7 @@ public interface UserService {
      */
     public void addUser(User newUser);
 
-    public Boolean findUser(String username, String password);
+    public User findUser(String username, String password);
 
 
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
-import teymi15.kassistant.service.RecipeServiceImp;
+import teymi15.kassistant.service.KassistantServiceImp;
 import teymi15.kassistant.service.UserServiceImp;
 
 /**
@@ -28,6 +28,6 @@ public class UserController {
 
     //Return whether login was successful or not
     public Boolean loginUser(String username, String password){
-        return userService.findUser(username, password);
+        return false;//userService.findUser(username, password);
     }
 }

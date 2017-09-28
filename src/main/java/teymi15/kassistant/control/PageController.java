@@ -60,7 +60,7 @@ public class PageController {
         String search = request.getParameter("search");
         results = searchController.searchRecipeByName(search);
         for (Recipe recipe: results) {
-            System.out.println(recipe.getID());
+           // System.out.println(recipe.getID());
         }
 
 

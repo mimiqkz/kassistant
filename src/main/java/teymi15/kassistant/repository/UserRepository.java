@@ -19,4 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param user
      */
     User save(User user);
+
+    List<User> findByUsername(String nafn);
 }
