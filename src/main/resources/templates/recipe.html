@@ -3,11 +3,13 @@
 <head lang="en"></head>
 <body>
 
-<h1>RECIPE </h1>
+<a th:href="@{/}">Home Page</a>
+
+
+<h1><span th:text=" ${recipe.name}"></span> </h1>
 
 <p> <span th:text=" ${recipe.name}"></span></p>
 <p> <span th:text=" ${recipe.instruction}"></span></p>
-
 
 
 

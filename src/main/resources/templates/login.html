@@ -4,14 +4,21 @@
     <title>Login page</title>
 </head>
 <body>
-<h1>Login page</h1>
+<a th:href="@{/}">Home Page</a>
+
+
 <p th:if="${loginError}" class="error">Wrong user or password</p>
-<form th:action="@{/login.html}" method="post">
+<p th:if="${loginSuccess}" class="success">You successfully logged in!</p>
+
+<p> Username: "haskoli" Password: "islands" </p>
+
+
+<form th:action="@{/login}" method="post">
     <label for="username">Username</label>:
     <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
     <label for="password">Password</label>:
     <input type="password" id="password" name="password" /> <br />
-    <input type="submit" value="Log in" />
+    <input type="submit" value="LOG in" />
 </form>
 </body>
 </html>

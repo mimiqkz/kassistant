@@ -21,18 +21,16 @@ import java.util.Set;
 public class Ingredient {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ingredientId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private double price; //Using different currency
     private String name; //Name of the ingredient e.g cherry tomato, apple etc.
     private String location; //Location of the store e.g Granda, Kringlan etc
     private String store; //The name of the store
-    /*
-    @ManyToMany(mappedBy = "ingredients",fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set<Recipe> recipe = new HashSet<>(); //vísa í Recipe
-*/
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "ingredients")
+    private Set<Recipe> recipes = new HashSet<>();
+
     public Ingredient(int id, double price, String name, String location, String store) {
         this.id = id;
         this.price = price;
@@ -40,6 +38,7 @@ public class Ingredient {
         this.location = location;
         this.store = store;
     }
+    public  Ingredient(){}
     @Column(name = "id")
     public int getID() {
         return id;
@@ -85,16 +84,19 @@ public class Ingredient {
     public void setStore(String store) {
         this.store = store;
     }
-/*
-    public void setRecipe(Set recipe){
-        this.recipe = recipe;
-    }
-*/
 
     @Override
     public String toString() {
         return String.format(
                 "Ingredient[id=%d, name='%s']",
                 id, name);
+    }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }
