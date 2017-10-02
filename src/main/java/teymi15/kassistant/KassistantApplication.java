@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import teymi15.kassistant.control.SearchController;
+import teymi15.kassistant.service.KassistantService;
+import teymi15.kassistant.service.KassistantServiceImp;
 
 /**
  * The main class extends the Spring Boot Servlet requires to run the project
@@ -29,10 +31,7 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SearchController search = new SearchController();
 
-		System.out.println(search.searchRecipeByName("hummus"));
-		//launch the Spring Application
 		SpringApplication.run(KassistantApplication.class, args);
 	}
 

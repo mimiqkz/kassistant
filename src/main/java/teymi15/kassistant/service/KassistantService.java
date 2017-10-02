@@ -27,12 +27,14 @@ public interface KassistantService {
 
     /**
      * Return all of the matching recipe
-     * 
+     *
      * @param k the name of the recipe
      * @return list of matching recipe
      */
     public List<Recipe> matchingRecipe(String k);
 
     public Recipe getRecipeById(int id);
+
+    public void addAllData();
 
 }

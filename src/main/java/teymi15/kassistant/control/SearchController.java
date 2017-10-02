@@ -10,6 +10,9 @@ package teymi15.kassistant.control;
  * @since   2017-09-20
  */
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import teymi15.kassistant.service.KassistantService;
 import teymi15.kassistant.service.KassistantServiceImp;
 
 import teymi15.kassistant.model.Recipe;
@@ -19,13 +22,17 @@ import teymi15.kassistant.service.KassistantServiceImp;
  * The class searches for the correct recipe
  */
 public class SearchController {
-    private KassistantServiceImp repo = new KassistantServiceImp();
+    //private KassistantServiceImp repo = new KassistantServiceImp();
+
+    @Autowired
+    KassistantServiceImp kassistantService;
 
     public List searchRecipeByName(String name){
-        return repo.matchingRecipe(name);
+        return kassistantService.matchingRecipe(name);
     }
 
-    public Recipe getRecipebyID(int id){ return repo.getRecipeById(id);};
+    public Recipe getRecipebyID(int id){ return kassistantService.getRecipeById(id);};
 
+    public void addAll(){kassistantService.addAllData();}
 
 }

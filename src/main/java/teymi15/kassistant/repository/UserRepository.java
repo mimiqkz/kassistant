@@ -21,4 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User save(User user);
 
     List<User> findByUsername(String nafn);
+
+
 }

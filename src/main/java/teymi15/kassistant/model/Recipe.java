@@ -37,10 +37,11 @@ public class Recipe {
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     public Recipe() {}
-    public Recipe(String name,String instruction){
-        //this.ingredients = new HashSet<Ingredient>();
+    public Recipe(String name,String instruction,Set ingredients,int id){
+        this.ingredients = ingredients;
         this.name = name;
         this.instruction= instruction;
+        this.id = id;
     }
     public int getId() {
         return id;
@@ -75,6 +76,10 @@ public class Recipe {
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public void addIngredients(Ingredient i){
+        ingredients.add(i);
     }
 
     @Override

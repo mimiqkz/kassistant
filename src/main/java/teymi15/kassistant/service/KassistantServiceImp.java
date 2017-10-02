@@ -12,11 +12,17 @@ package teymi15.kassistant.service;
  */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
+import teymi15.kassistant.model.User;
+import teymi15.kassistant.repository.IngredientRepository;
 import teymi15.kassistant.repository.RecipeRepository;
+import teymi15.kassistant.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class KassistantServiceImp implements KassistantService{
@@ -27,7 +33,11 @@ public class KassistantServiceImp implements KassistantService{
     @Autowired
     RecipeRepository recipeRep;
 
-    // Add Recipe to the service
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    IngredientRepository ingredientRepository;
     @Override
     public void addRecipe(Recipe k) {
         recipeRep.save(k);
@@ -59,6 +69,23 @@ public class KassistantServiceImp implements KassistantService{
             }
         }*/
         return null;
+    }
+
+    @Override
+    public void addAllData(){
+        User u = new User("123456789","admin","admin",23,1);
+        userRepository.save(u);
+        Set s = new HashSet();
+        Ingredient i = new Ingredient(1,120,"chick pees","reykjavík","bónus",s);
+        Ingredient i2 = new Ingredient(2,400,"olive oil","reykjavík","bónus",s);
+        Recipe recipe = new Recipe("hummus","lorum lipsum lal li boobbs",s,2);
+        recipe.addIngredients(i);
+        recipe.addIngredients(i2);
+        i.addRecipe(recipe);
+        ingredientRepository.save(i);
+        ingredientRepository.save(i2);
+        recipeRep.save(recipe);
+
     }
 
 
