@@ -31,8 +31,12 @@ public class SearchController {
         return kassistantService.matchingRecipe(name);
     }
 
-    public Recipe getRecipebyID(int id){ return kassistantService.getRecipeById(id);};
-
+    public Recipe getRecipebyID(int id){
+        return kassistantService.getRecipeById(id);
+    }
+    public List searchIngredientByName(String name){
+        return kassistantService.matchingIngredient(name);
+    }
     public void addAll(){kassistantService.addAllData();}
 
 }

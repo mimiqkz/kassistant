@@ -58,6 +58,11 @@ public class KassistantServiceImp implements KassistantService{
 */
         return found;
     }
+    @Override
+    public List<Ingredient> matchingIngredient(String k) {
+        List found = new ArrayList();
+        return found;
+    }
 
     //find recipe by its id
     @Override

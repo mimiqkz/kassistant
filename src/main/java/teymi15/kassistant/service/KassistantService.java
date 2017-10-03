@@ -9,6 +9,7 @@ package teymi15.kassistant.service;
  * @version 1.0
  * @since   2017-09-20
  */
+import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import java.util.List;
 
@@ -37,4 +38,5 @@ public interface KassistantService {
 
     public void addAllData();
 
+    public List<Ingredient> matchingIngredient(String name);
 }
