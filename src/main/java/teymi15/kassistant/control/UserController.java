@@ -13,7 +13,7 @@ import java.util.List;
 
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
-import teymi15.kassistant.service.RecipeServiceImp;
+import teymi15.kassistant.service.KassistantServiceImp;
 import teymi15.kassistant.service.UserServiceImp;
 
 /**

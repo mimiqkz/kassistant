@@ -15,9 +15,7 @@ import org.springframework.stereotype.Service;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.repository.RecipeRepository;
-import teymi15.kassistant.repository.RecipeRepositoryImp;
 import teymi15.kassistant.repository.UserRepository;
-import teymi15.kassistant.repository.UserRepositoryImp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,18 +28,18 @@ public class UserServiceImp implements UserService{
     UserRepository userRep;
 
     public UserServiceImp(){
-        userRep = new UserRepositoryImp();
-        userRep.addAll();
+
         System.out.println("create userserviceimp");
 
     }
     @Override
-    public void addUser(User newUser) { userRep.add(newUser);}
+    public void addUser(User newUser) { //userRep.add(newUser);
+         }
 
 
     @Override
     public Boolean isUserInDatabase(String username, String password) {
-        List<User> users = userRep.getAll();
+        List<User> users = userRep.findAll();
 
         for (int i = 0; i < users.size(); i++) {
 
@@ -54,7 +52,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public User getUser(String username, String password) {
-        List<User> users = userRep.getAll();
+        List<User> users = userRep.findAll();
 
         for (int i = 0; i < users.size(); i++) {
 
