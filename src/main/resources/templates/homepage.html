@@ -3,10 +3,13 @@
 <head lang="en"></head>
 <body>
 
+<p th:if="${loggedIn}" class="user" th:text="'User: ' + ${user.username}">LOGGED IN</p>
+
+
 <h1>Kitchen Assistant </h1>
 <h2>What do you want to cook?</h2>
 
-<form method="post">
+<form method="post" th:action="@{/search}">
      <input type="text" name="search" size="50" placeholder="Hummus, Indian, gluten-free..." />
     <input type="submit" value="Search!" />
 </form>

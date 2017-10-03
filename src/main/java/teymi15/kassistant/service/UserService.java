@@ -28,8 +28,19 @@ public interface UserService {
      */
     public void addUser(User newUser);
 
-    public User findUser(String username, String password);
+    /**
+     * Returns true if user is in repository, false if not
+     *
+     * @param username String, password String
+     */
+    public Boolean isUserInDatabase(String username, String password);
 
+    /**
+     * Returns User based on username and password
+     *
+     * @param username String, password String
+     */
+    public User getUser(String username, String password);
 
 
 
