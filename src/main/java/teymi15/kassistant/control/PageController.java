@@ -11,11 +11,10 @@ package teymi15.kassistant.control;
  */
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
+import teymi15.kassistant.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -107,6 +106,18 @@ public class PageController {
 
         }
         return "login";
+    }
+
+    @GetMapping("register")
+    public String registrationForm(Model model){
+        model.addAttribute("user", new User());
+        return "signup";
+    }
+
+    @PostMapping("register")
+    public String registrationSubmit(@ModelAttribute User user){
+       // userController.registerUser(user);
+        return "signup";
     }
 
 
