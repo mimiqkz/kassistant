@@ -11,13 +11,17 @@ package teymi15.kassistant.repository;
  */
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import teymi15.kassistant.model.Recipe;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * The repository for recipe
  */
-public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+@Transactional
+public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 
     /**
      * get the list of all recipe
