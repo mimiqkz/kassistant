@@ -22,6 +22,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
      */
     User save(User user);
 
+    User findByName(String name);
+
     List<User> findByUsername(String nafn);
 
 

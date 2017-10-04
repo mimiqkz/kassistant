@@ -78,7 +78,7 @@ public class KassistantServiceImp implements KassistantService{
 
     @Override
     public void addAllData(){
-        User u = new User("123456789","admin","admin",23,1);
+        User u = new User("123456789","admin","admin",23);
         userRepository.save(u);
         Set s = new HashSet();
         Ingredient i = new Ingredient(120,"chick pees","reykjavík","bónus",s);

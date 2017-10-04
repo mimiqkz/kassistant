@@ -16,12 +16,14 @@ public class User {
     private int age;
 
     public User(){}
-    public User(String password, String username, String name, int age, int id){
-        this.id = id;
+    public User(String password, String username, String name, int age){
         this.password = password;
         this.username = username;
         this.name = name;
         this.age = age;
+    }
+    public User(int id){
+        this.id = id;
     }
 
 

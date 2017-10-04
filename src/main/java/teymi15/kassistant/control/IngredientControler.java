@@ -16,7 +16,7 @@ public class IngredientControler {
     /**
      * GET /create  --> Create a new user and save it in the database.
      */
-    @RequestMapping("/create")
+    @RequestMapping("/create-ingredient")
     @ResponseBody
     public String create(double price, String name, String location, String store,Set recipes) {
         String userId = "";
@@ -34,7 +34,7 @@ public class IngredientControler {
     /**
      * GET /delete  --> Delete the user having the passed id.
      */
-    @RequestMapping("/delete")
+    @RequestMapping("/delete-ingredient")
     @ResponseBody
     public String delete(int id) {
         try {
@@ -69,7 +69,7 @@ public class IngredientControler {
      * GET /update  --> Update the email and the name for the user in the
      * database having the passed id.
      */
-    @RequestMapping("/update")
+    @RequestMapping("/update-ingredient")
     @ResponseBody
     public String updateUser(long id, String location, String name) {
         try {
