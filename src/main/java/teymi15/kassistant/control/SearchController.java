@@ -22,7 +22,7 @@ import teymi15.kassistant.service.KassistantServiceImp;
  * The class searches for the correct recipe
  */
 public class SearchController {
-    //private KassistantServiceImp repo = new KassistantServiceImp();
+
 
     @Autowired
     KassistantServiceImp kassistantService;
@@ -37,6 +37,7 @@ public class SearchController {
     public List searchIngredientByName(String name){
         return kassistantService.matchingIngredient(name);
     }
-    public void addAll(){kassistantService.addAllData();}
+
+    public List getAllIngridients(){return  kassistantService.getAllIngredient();}
 
 }

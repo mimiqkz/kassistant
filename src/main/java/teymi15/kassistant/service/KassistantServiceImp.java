@@ -81,8 +81,8 @@ public class KassistantServiceImp implements KassistantService{
         User u = new User("123456789","admin","admin",23,1);
         userRepository.save(u);
         Set s = new HashSet();
-        Ingredient i = new Ingredient(1,120,"chick pees","reykjavík","bónus",s);
-        Ingredient i2 = new Ingredient(2,400,"olive oil","reykjavík","bónus",s);
+        Ingredient i = new Ingredient(120,"chick pees","reykjavík","bónus",s);
+        Ingredient i2 = new Ingredient(400,"olive oil","reykjavík","bónus",s);
         Recipe recipe = new Recipe("hummus","lorum lipsum lal li boobbs",s,2);
         recipe.addIngredients(i);
         recipe.addIngredients(i2);
@@ -90,6 +90,11 @@ public class KassistantServiceImp implements KassistantService{
         ingredientRepository.save(i);
         ingredientRepository.save(i2);
         recipeRep.save(recipe);
+
+    }
+    @Override
+    public List getAllIngredient(){
+        return ingredientRepository.findAll();
 
     }
 

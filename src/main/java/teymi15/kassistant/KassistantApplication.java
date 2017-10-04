@@ -7,9 +7,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import teymi15.kassistant.control.SearchController;
-import teymi15.kassistant.service.KassistantService;
-import teymi15.kassistant.service.KassistantServiceImp;
+import teymi15.kassistant.model.Ingredient;
+import teymi15.kassistant.repository.IngredientRepository;
+
+import java.util.List;
 
 /**
  * The main class extends the Spring Boot Servlet requires to run the project
@@ -31,7 +34,26 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		/*ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 
+		IngredientRepository ingredientRepository = context.getBean(IngredientRepository.class);
+
+		Ingredient ingredient = new Ingredient();
+		ingredient.setName("Pankaj"); ingredient.setLocation("India");
+		ingredient.setLocation("121"); ingredient.setID(123);
+
+
+		ingredientRepository.save(ingredient);
+
+		System.out.println("Person::"+ingredient);
+
+		List<Ingredient> list = ingredientRepository.findAll();
+
+		for(Ingredient p : list){
+			System.out.println("Person List::"+p);
+		}
+		//close resources
+		context.close();*/
 		SpringApplication.run(KassistantApplication.class, args);
 	}
 

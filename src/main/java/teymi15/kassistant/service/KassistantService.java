@@ -39,4 +39,6 @@ public interface KassistantService {
     public void addAllData();
 
     public List<Ingredient> matchingIngredient(String name);
+
+    public List<Ingredient> getAllIngredient();
 }

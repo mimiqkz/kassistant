@@ -31,8 +31,7 @@ public class Ingredient {
     @ManyToMany(fetch = FetchType.LAZY,mappedBy = "ingredients")
     private Set<Recipe> recipes = new HashSet<>();
 
-    public Ingredient(int id, double price, String name, String location, String store,Set recipes) {
-        this.id = id;
+    public Ingredient(double price, String name, String location, String store,Set recipes) {
         this.price = price;
         this.name = name;
         this.location = location;
@@ -40,6 +39,10 @@ public class Ingredient {
         this.recipes = recipes;
     }
     public  Ingredient(){}
+
+    public  Ingredient( int id){
+        this.id = id;
+    }
     @Column(name = "id")
     public int getID() {
         return id;

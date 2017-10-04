@@ -12,12 +12,9 @@ package teymi15.kassistant.service;
  */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
-import teymi15.kassistant.repository.RecipeRepository;
 import teymi15.kassistant.repository.UserRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
