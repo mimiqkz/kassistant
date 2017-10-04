@@ -8,6 +8,10 @@ import teymi15.kassistant.model.User;
 import teymi15.kassistant.repository.UserRepository;
 @Controller
 public class UserControler {
+    // Private fields
+    @Autowired
+    private UserRepository userRepository;
+
         /**
          * GET /create  --> Create a new user and save it in the database.
          */
@@ -81,10 +85,14 @@ public class UserControler {
             return "User succesfully updated!";
         }
 
-        // Private fields
+        public Boolean isLoginCorrect(String username, String password){
 
-        @Autowired
-        private UserRepository userRepository;
+          /*  if(userRepository.findByUsername(username) {
+            }
+*/
+
+        return false;
+        }
 
 }
 

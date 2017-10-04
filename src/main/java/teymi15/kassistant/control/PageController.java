@@ -90,7 +90,8 @@ public class PageController {
     public String login(HttpServletRequest request, Model model) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
+        System.out.println(username);
+        System.out.println(password);
 
         if (userController.isLoginCorrect(username, password)) {
            //If login successful set the current user
