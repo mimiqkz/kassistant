@@ -56,8 +56,8 @@ public class IngredientControler {
     public String getByEmail(String name) {
         String userId = "";
         try {
-            Ingredient ingredient = ingredientRepository.findByName(name);
-            userId = String.valueOf(ingredient.getID());
+            List<Ingredient> ingredient = ingredientRepository.findByName(name);
+            userId = String.valueOf(ingredient.get(0).getID());
         }
         catch (Exception ex) {
             return "Ingredient not found";

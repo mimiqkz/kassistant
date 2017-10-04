@@ -9,6 +9,7 @@ package teymi15.kassistant.service;
  * @version 1.0
  * @since   2017-09-20
  */
+import org.springframework.stereotype.Service;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 /**
  * The service class for the recipe, getting data from the repository
  */
+@Service
 public interface KassistantService {
 
 

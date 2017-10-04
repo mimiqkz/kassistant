@@ -12,6 +12,7 @@ package teymi15.kassistant.service;
  */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.repository.UserRepository;
 
@@ -30,11 +31,14 @@ public class UserServiceImp implements UserService{
 
     }
     @Override
+    @ResponseBody
+
     public void addUser(User newUser) { //userRep.add(newUser);
          }
 
 
     @Override
+    @ResponseBody
     public Boolean isUserInDatabase(String username, String password) {
         List<User> users = userRep.findAll();
 
@@ -48,6 +52,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
+    @ResponseBody
     public User getUser(String username, String password) {
         List<User> users = userRep.findAll();
 

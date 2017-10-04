@@ -12,6 +12,7 @@ package teymi15.kassistant.service;
  */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
@@ -49,32 +50,27 @@ public class KassistantServiceImp implements KassistantService{
 
     //search for matching recipe by name
     @Override
+    @ResponseBody
     public List<Recipe> getMatchingRecipe(String k) {
-        List found = new ArrayList();
-
-        String stringToSearch = "Four score and seven years ago our fathers ...";
-
-        Pattern p = Pattern.compile("score");   // the pattern to search for
-        Matcher m = p.matcher(stringToSearch);
-
-        // now try to find at least one match
-        if (m.find())
-            System.out.println("Found a match");
-        else
-            System.out.println("Did not find a match");
-        System.out.println("here is found: " + found);
-
+        List<Recipe> found = recipeRep.findAllByName("%" +k+ "%");
+        if(found!=null){System.out.print(found.get(0));
+            }
         return found;
     }
     @Override
+    @ResponseBody
     public List<Ingredient> getMatchingIngredient(String k) {
 
-        List found = new ArrayList();
-        return found;
+        List<Ingredient> stuff = ingredientRepository.findByName("%"+k+"%");
+        if(stuff != null){
+            System.out.print(stuff.get(0));
+        }
+        return stuff;
     }
 
     //find recipe by its id
     @Override
+    @ResponseBody
     public Recipe getRecipeById(int id) {
         /*List<Recipe> everything = recipeRep.getAll();
         for (int i = 0; i < everything.size(); i++) {
@@ -86,6 +82,7 @@ public class KassistantServiceImp implements KassistantService{
     }
 
     @Override
+    @ResponseBody
     public void addAllData(){
         User u = new User("123456789","admin","admin",23);
         userRepository.save(u);
@@ -102,6 +99,7 @@ public class KassistantServiceImp implements KassistantService{
 
     }
     @Override
+    @ResponseBody
     public List getAllIngredient(){
         return ingredientRepository.findAll();
 

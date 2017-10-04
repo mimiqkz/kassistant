@@ -10,6 +10,7 @@ package teymi15.kassistant.service;
  * @since   2017-09-20
  */
 
+import org.springframework.stereotype.Service;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 
@@ -18,6 +19,7 @@ import java.util.List;
 /**
  * The service class for the user controller, getting data from the repository
  */
+@Service
 public interface UserService {
 
 

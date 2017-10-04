@@ -12,7 +12,7 @@ public interface IngredientRepository extends CrudRepository<Ingredient,Long> {
 
     List<Ingredient> findAll();
 
-    Ingredient findByName(String name);
+    List<Ingredient> findByName(String name);
 
-    //void save(Ingredient ingredient);
+    Ingredient save(Ingredient ingredient);
 }
