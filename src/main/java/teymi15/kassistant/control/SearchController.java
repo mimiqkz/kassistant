@@ -28,16 +28,16 @@ public class SearchController {
     KassistantServiceImp kassistantService;
 
     public List searchRecipeByName(String name){
-        return kassistantService.matchingRecipe(name);
+        return kassistantService.getMatchingRecipe(name);
     }
 
     public Recipe getRecipebyID(int id){
         return kassistantService.getRecipeById(id);
     }
     public List searchIngredientByName(String name){
-        return kassistantService.matchingIngredient(name);
+        return kassistantService.getMatchingIngredient(name);
     }
 
-    public List getAllIngridients(){return  kassistantService.getAllIngredient();}
+    public List getAllIngredients(){return  kassistantService.getAllIngredient();}
 
 }

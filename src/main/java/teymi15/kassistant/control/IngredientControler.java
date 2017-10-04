@@ -49,7 +49,7 @@ public class IngredientControler {
 
     /**
      * GET /get-by-email  --> Return the id for the user having the passed
-     * email.
+     * name.
      */
     @RequestMapping("/get-ingredient-by-name")
     @ResponseBody
@@ -66,7 +66,7 @@ public class IngredientControler {
     }
 
     /**
-     * GET /update  --> Update the email and the name for the user in the
+     * GET /update  --> Update the ingredient list and the name for the user in the
      * database having the passed id.
      */
     @RequestMapping("/update-ingredient")

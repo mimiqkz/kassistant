@@ -19,6 +19,9 @@ import teymi15.kassistant.repository.IngredientRepository;
 import teymi15.kassistant.repository.RecipeRepository;
 import teymi15.kassistant.repository.UserRepository;
 
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -38,6 +41,7 @@ public class KassistantServiceImp implements KassistantService{
 
     @Autowired
     IngredientRepository ingredientRepository;
+
     @Override
     public void addRecipe(Recipe k) {
         recipeRep.save(k);
@@ -45,21 +49,26 @@ public class KassistantServiceImp implements KassistantService{
 
     //search for matching recipe by name
     @Override
-    public List<Recipe> matchingRecipe(String k) {
+    public List<Recipe> getMatchingRecipe(String k) {
         List found = new ArrayList();
-      /*  recipeRep = new RecipeRepository();
-        recipeRep.addAll();
-        List<Recipe> everything = recipeRep.getAll();
-        for(int i = 0;i<everything.size();i++){
-            if(everything.get(i).getName().equals(k)){
-                found.add(everything.get(i));
-            }
-        }
-*/
+
+        String stringToSearch = "Four score and seven years ago our fathers ...";
+
+        Pattern p = Pattern.compile("score");   // the pattern to search for
+        Matcher m = p.matcher(stringToSearch);
+
+        // now try to find at least one match
+        if (m.find())
+            System.out.println("Found a match");
+        else
+            System.out.println("Did not find a match");
+        System.out.println("here is found: " + found);
+
         return found;
     }
     @Override
-    public List<Ingredient> matchingIngredient(String k) {
+    public List<Ingredient> getMatchingIngredient(String k) {
+
         List found = new ArrayList();
         return found;
     }

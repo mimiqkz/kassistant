@@ -32,13 +32,13 @@ public interface KassistantService {
      * @param k the name of the recipe
      * @return list of matching recipe
      */
-    public List<Recipe> matchingRecipe(String k);
+    public List<Recipe> getMatchingRecipe(String k);
 
     public Recipe getRecipeById(int id);
 
     public void addAllData();
 
-    public List<Ingredient> matchingIngredient(String name);
+    public List<Ingredient> getMatchingIngredient(String name);
 
     public List<Ingredient> getAllIngredient();
 }
