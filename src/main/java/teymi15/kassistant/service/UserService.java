@@ -28,7 +28,7 @@ public interface UserService {
      *
      * @param newUser User
      */
-    public void addUser(User newUser);
+    public String addUser(String password,String username, String name, int age);
 
     /**
      * Returns true if user is in repository, false if not
@@ -43,6 +43,12 @@ public interface UserService {
      * @param username String, password String
      */
     public User getUser(String username, String password);
+
+    public String delete(int id);
+
+    public  String getUserByName(String name);
+
+    public  String updateUser(Long id,int age, String userName, String name,String password);
 
 
 

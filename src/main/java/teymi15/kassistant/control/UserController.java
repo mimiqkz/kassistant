@@ -11,9 +11,11 @@ package teymi15.kassistant.control;
  */
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.service.KassistantServiceImp;
+import teymi15.kassistant.service.UserService;
 import teymi15.kassistant.service.UserServiceImp;
 
 /**
@@ -21,8 +23,9 @@ import teymi15.kassistant.service.UserServiceImp;
  */
 
 public class UserController {
-
-    private UserServiceImp userService = new UserServiceImp();
+/*
+    @Autowired
+    private UserService userService;
 
     private User currentUser;
 
@@ -57,8 +60,7 @@ public class UserController {
 
     public Boolean isUserLoggedIn(){
         return loggedIn;
-
     }
 
-
+*/
 }

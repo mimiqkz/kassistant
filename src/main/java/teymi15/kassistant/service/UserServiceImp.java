@@ -25,16 +25,21 @@ public class UserServiceImp implements UserService{
     @Autowired
     UserRepository userRep;
 
-    public UserServiceImp(){
 
-        System.out.println("create userserviceimp");
-
-    }
     @Override
     @ResponseBody
-
-    public void addUser(User newUser) { //userRep.add(newUser);
-         }
+    public String addUser(String password,String username, String name, int age) {
+        String userId = "";
+        try {
+            User user = new User(password, username,name,age);
+            userRep.save(user);
+            userId = String.valueOf(user.getId());
+        }
+        catch (Exception ex) {
+            return "Error creating the user: " + ex.toString();
+        }
+        return "User succesfully created with id = " + userId;
+    }
 
 
     @Override
@@ -66,5 +71,46 @@ public class UserServiceImp implements UserService{
         }
 
         return null;
+    }
+    @Override
+    @ResponseBody
+    public String delete(int id){
+        try {
+            User user = new User(id);
+            userRep.delete(user);
+        }
+        catch (Exception ex) {
+            return "Error deleting the user:" + ex.toString();
+        }
+        return "User succesfully deleted!";
+    }
+    @Override
+    @ResponseBody
+    public String getUserByName(String name){
+        String userId = "";
+        try {
+            User user = userRep.findByName(name);
+            userId = String.valueOf(user.getId());
+        }
+        catch (Exception ex) {
+            return "User not found";
+        }
+        return "The user id is: " + userId;
+    }
+    @Override
+    @ResponseBody
+    public  String updateUser(Long id,int age, String userName, String name,String password){
+        try {
+            User user = userRep.findOne(id);
+            user.setName(name);
+            user.setUsername(userName);
+            user.setAge(age);
+            user.setPassword(password);
+            userRep.save(user);
+        }
+        catch (Exception ex) {
+            return "Error updating the user: " + ex.toString();
+        }
+        return "User succesfully updated!";
     }
 }

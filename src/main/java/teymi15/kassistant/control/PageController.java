@@ -42,11 +42,11 @@ public class PageController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayHomePage(Model model) {
-        if(userController.isUserLoggedIn()){
+       /* if(userController.isUserLoggedIn()){
              model.addAttribute("user", userController.getCurrentUser());
              model.addAttribute("loggedIn", true);
         }
-
+*/
         return "homepage";
     }
 
@@ -91,7 +91,7 @@ public class PageController {
         String password = request.getParameter("password");
         System.out.println(username);
         System.out.println(password);
-
+/*
         if (userController.isLoginCorrect(username, password)) {
            //If login successful set the current user
             userController.setCurrentUser(username, password);
@@ -104,7 +104,7 @@ public class PageController {
         } else {
             model.addAttribute("loginError", true);
 
-        }
+        }*/
         return "login";
     }
 
@@ -118,6 +118,10 @@ public class PageController {
     public String registrationSubmit(@ModelAttribute User user){
        // userController.registerUser(user);
         return "signup";
+    }
+    @RequestMapping("test")
+    public void testStuff(String name){
+
     }
 
 
