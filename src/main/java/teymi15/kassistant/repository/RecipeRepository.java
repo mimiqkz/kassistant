@@ -37,7 +37,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
      */
     Recipe save (Recipe recipe);
 
-    @Query("SELECT '*' FROM recipe WHERE lower(name) LIKE lower(:name)")
+    /*@Query("SELECT '*' FROM recipe WHERE lower(name) LIKE lower(:name)")*/
     List<Recipe> findAllByName(@Param("name") String name);
 
 
