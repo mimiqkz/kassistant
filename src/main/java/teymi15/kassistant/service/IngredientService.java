@@ -33,7 +33,7 @@ public interface IngredientService {
      */
     List<Ingredient> getMatchingIngredient(String k);
 
-    Ingredient getRecipeById(int id);
+    Ingredient getIngredientById(int id);
 
     void addAllData();
 

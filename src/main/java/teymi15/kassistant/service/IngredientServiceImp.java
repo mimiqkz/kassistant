@@ -22,7 +22,7 @@ public class IngredientServiceImp implements IngredientService{
     }
 
     @Override
-    public Ingredient getRecipeById(int id) {
+    public Ingredient getIngredientById(int id) {
         return null;
     }
 
