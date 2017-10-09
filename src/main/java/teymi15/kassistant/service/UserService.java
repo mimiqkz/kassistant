@@ -24,31 +24,34 @@ public interface UserService {
 
 
     /**
-     * Add the user
-     *
-     * @param newUser User
+     * add user
+     * @param password password
+     * @param username username
+     * @param name name
+     * @param age age
+     * @return String
      */
-    public String addUser(String password,String username, String name, int age);
+    String addUser(String password,String username, String name, int age);
 
     /**
      * Returns true if user is in repository, false if not
      *
      * @param username String, password String
      */
-    public boolean isUserInDatabase(String username, String password);
+    boolean isUserInDatabase(String username, String password);
 
     /**
      * Returns User based on username and password
      *
      * @param username String, password String
      */
-    public User getUser(String username, String password);
+    User getUser(String username, String password);
 
-    public String delete(int id);
+    String delete(int id);
 
-    public  String getUserByName(String name);
+    String getUserByName(String name);
 
-    public  String updateUser(Long id,int age, String userName, String name,String password);
+    String updateUser(Long id,int age, String userName, String name,String password);
 
 
 

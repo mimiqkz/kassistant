@@ -3,19 +3,10 @@ package teymi15.kassistant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import teymi15.kassistant.control.SearchController;
-import teymi15.kassistant.model.Ingredient;
-import teymi15.kassistant.repository.IngredientRepository;
-import teymi15.kassistant.service.KassistantService;
-import teymi15.kassistant.service.KassistantServiceImp;
-
-import java.util.List;
 
 /**
  * The main class extends the Spring Boot Servlet requires to run the project
@@ -26,7 +17,7 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	private static final Logger log = LoggerFactory.getLogger(KassistantApplication.class);
 	/**
 	 * This is the protected function which configurate the Spring Application
-	 * @param applicationBuilder
+	 * @param applicationBuilder application builder
 	 */
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder){
@@ -34,7 +25,7 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	}
 	/**
 	 * This is the main method which makes use of the Spring Application
-	 * @param args
+	 * @param args command-line argument
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(KassistantApplication.class, args);

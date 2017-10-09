@@ -12,11 +12,10 @@ package teymi15.kassistant.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import teymi15.kassistant.service.KassistantService;
-import teymi15.kassistant.service.KassistantServiceImp;
+import teymi15.kassistant.service.IngredientServiceImp;
+import teymi15.kassistant.service.RecipeServiceImp;
 
 import teymi15.kassistant.model.Recipe;
-import teymi15.kassistant.service.KassistantServiceImp;
 
 /**
  * The class searches for the correct recipe
@@ -25,19 +24,22 @@ public class SearchController {
 
 
     @Autowired
-    KassistantServiceImp kassistantService;
+    RecipeServiceImp RecipeService;
+
+    @Autowired
+    IngredientServiceImp IngredientService;
 
     public List searchRecipeByName(String name){
-        return kassistantService.getMatchingRecipe(name);
+        return RecipeService.getMatchingRecipe(name);
     }
 
     public Recipe getRecipebyID(int id){
-        return kassistantService.getRecipeById(id);
+        return RecipeService.getRecipeById(id);
     }
     public List searchIngredientByName(String name){
-        return kassistantService.getMatchingIngredient(name);
+        return IngredientService.getMatchingIngredient(name);
     }
 
-    public List getAllIngredients(){return  kassistantService.getAllIngredient();}
+    public List getAllIngredients(){return  IngredientService.getAllIngredient();}
 
 }

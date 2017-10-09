@@ -10,7 +10,6 @@ package teymi15.kassistant.service;
  * @since   2017-09-20
  */
 import org.springframework.stereotype.Service;
-import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
  * The service class for the recipe, getting data from the repository
  */
 @Service
-public interface KassistantService {
+public interface RecipeService {
 
 
     /**
@@ -26,7 +25,7 @@ public interface KassistantService {
      *
      * @param k Recipe
      */
-    public void addRecipe(Recipe k);
+    void addRecipe(Recipe k);
 
     /**
      * Return all of the matching recipe
@@ -34,13 +33,8 @@ public interface KassistantService {
      * @param k the name of the recipe
      * @return list of matching recipe
      */
-    public List<Recipe> getMatchingRecipe(String k);
+    List<Recipe> getMatchingRecipe(String k);
 
-    public Recipe getRecipeById(int id);
+    Recipe getRecipeById(int id);
 
-    public void addAllData();
-
-    public List<Ingredient> getMatchingIngredient(String name);
-
-    public List<Ingredient> getAllIngredient();
 }

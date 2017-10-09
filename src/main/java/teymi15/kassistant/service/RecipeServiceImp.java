@@ -13,23 +13,15 @@ package teymi15.kassistant.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
-import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
-import teymi15.kassistant.model.User;
 import teymi15.kassistant.repository.IngredientRepository;
 import teymi15.kassistant.repository.RecipeRepository;
 import teymi15.kassistant.repository.UserRepository;
 
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
-public class KassistantServiceImp implements KassistantService{
+public class RecipeServiceImp implements RecipeService {
 
 
 
@@ -37,11 +29,6 @@ public class KassistantServiceImp implements KassistantService{
     @Autowired
     RecipeRepository recipeRep;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    IngredientRepository ingredientRepository;
 
     @Override
     public void addRecipe(Recipe k) {
@@ -57,16 +44,6 @@ public class KassistantServiceImp implements KassistantService{
             }
         return found;
     }
-    @Override
-    @ResponseBody
-    public List<Ingredient> getMatchingIngredient(String k) {
-
-        List<Ingredient> stuff = ingredientRepository.findByName("%"+k+"%");
-        if(stuff != null){
-            System.out.print(stuff.get(0));
-        }
-        return stuff;
-    }
 
     //find recipe by its id
     @Override
@@ -80,30 +57,4 @@ public class KassistantServiceImp implements KassistantService{
         }*/
         return null;
     }
-
-    @Override
-    @ResponseBody
-    public void addAllData(){
-        User u = new User("123456789","admin","admin",23);
-        userRepository.save(u);
-        Set s = new HashSet();
-        Ingredient i = new Ingredient(120,"chick pees","reykjavík","bónus",s);
-        Ingredient i2 = new Ingredient(400,"olive oil","reykjavík","bónus",s);
-        Recipe recipe = new Recipe("hummus","lorum lipsum lal li boobbs",s,2);
-        recipe.addIngredients(i);
-        recipe.addIngredients(i2);
-        i.addRecipe(recipe);
-        ingredientRepository.save(i);
-        ingredientRepository.save(i2);
-        recipeRep.save(recipe);
-
-    }
-    @Override
-    @ResponseBody
-    public List getAllIngredient(){
-        return ingredientRepository.findAll();
-
-    }
-
-
 }
