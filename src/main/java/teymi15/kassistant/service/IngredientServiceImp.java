@@ -17,8 +17,8 @@ public class IngredientServiceImp implements IngredientService{
     }
 
     @Override
-    public List<Ingredient> getMatchingIngredient(String k) {
-        return null;
+    public List<Ingredient> getMatchingIngredient(String name) {
+        return ingredientRepository.findAllByNameLikeIgnoreCase("%" +name+ "%");
     }
 
     @Override

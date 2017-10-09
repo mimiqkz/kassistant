@@ -28,10 +28,10 @@ public interface IngredientService {
     /**
      * Return all of the matching ingredient
      *
-     * @param k the name of the ingredient
+     * @param name the name of the ingredient
      * @return list
      */
-    List<Ingredient> getMatchingIngredient(String k);
+    List<Ingredient> getMatchingIngredient(String name);
 
     Ingredient getIngredientById(int id);
 

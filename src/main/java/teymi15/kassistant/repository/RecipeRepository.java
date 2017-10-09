@@ -10,8 +10,6 @@ package teymi15.kassistant.repository;
  * @since   2017-09-20
  */
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import teymi15.kassistant.model.Recipe;
@@ -33,12 +31,12 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 
     /**
      * add to the recipe list
-     * @param recipe
+     * @param recipe recipe
      */
     Recipe save (Recipe recipe);
 
-    /*@Query("SELECT '*' FROM recipe WHERE lower(name) LIKE lower(:name)")*/
-    List<Recipe> findAllByName(@Param("name") String name);
+
+    List<Recipe> findAllByNameLikeIgnoreCase(String name);
 
 
 }

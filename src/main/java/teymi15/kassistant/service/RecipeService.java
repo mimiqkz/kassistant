@@ -30,10 +30,10 @@ public interface RecipeService {
     /**
      * Return all of the matching recipe
      *
-     * @param k the name of the recipe
+     * @param name the name of the recipe
      * @return list of matching recipe
      */
-    List<Recipe> getMatchingRecipe(String k);
+    List<Recipe> getMatchingRecipe(String name);
 
     Recipe getRecipeById(int id);
 

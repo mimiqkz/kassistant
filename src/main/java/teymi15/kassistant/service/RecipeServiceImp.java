@@ -14,16 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 import teymi15.kassistant.model.Recipe;
-import teymi15.kassistant.repository.IngredientRepository;
 import teymi15.kassistant.repository.RecipeRepository;
-import teymi15.kassistant.repository.UserRepository;
 
 import java.util.List;
 
 @Service
 public class RecipeServiceImp implements RecipeService {
-
-
 
     // Connection to the recipe repository
     @Autowired
@@ -38,23 +34,14 @@ public class RecipeServiceImp implements RecipeService {
     //search for matching recipe by name
     @Override
     @ResponseBody
-    public List<Recipe> getMatchingRecipe(String k) {
-        List<Recipe> found = recipeRep.findAllByName("%" +k+ "%");
-        if(found!=null){System.out.print(found.get(0));
-            }
-        return found;
+    public List<Recipe> getMatchingRecipe(String name) {
+        return recipeRep.findAllByNameLikeIgnoreCase("%" +name+ "%");
     }
 
     //find recipe by its id
     @Override
     @ResponseBody
     public Recipe getRecipeById(int id) {
-        /*List<Recipe> everything = recipeRep.getAll();
-        for (int i = 0; i < everything.size(); i++) {
-            if (everything.get(i).getID() == id) {
-                return everything.get(i);
-            }
-        }*/
         return null;
     }
 }
