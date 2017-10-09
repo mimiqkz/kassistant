@@ -35,7 +35,7 @@ public interface UserService {
      *
      * @param username String, password String
      */
-    public Boolean isUserInDatabase(String username, String password);
+    public boolean isUserInDatabase(String username, String password);
 
     /**
      * Returns User based on username and password

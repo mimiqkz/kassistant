@@ -44,7 +44,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     @ResponseBody
-    public Boolean isUserInDatabase(String username, String password) {
+    public boolean isUserInDatabase(String username, String password) {
         List<User> users = userRep.findAll();
 
         for (int i = 0; i < users.size(); i++) {
