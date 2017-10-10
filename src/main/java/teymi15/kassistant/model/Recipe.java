@@ -18,6 +18,7 @@ import javax.persistence.*;
 
 /**
  * The object class of recipe
+ * is a entity in the data base
  */
 @Entity
 @Table (name = "Recipe")
@@ -26,9 +27,13 @@ public class Recipe {
     @Id
     @Column(name = "recipeId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
-    private String instruction;
+    private int id; // the primary key in the recipe table
+    private String name; // string for the name of the recipe
+    private String instruction; // instruction string
+    /**
+    * connecting the to tables recipe and user with a many to many
+     * relacion makes a table that conects the ingredients and recipes
+    * */
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "RIngridients",joinColumns = {
             @JoinColumn(name = "recipeId",nullable = false,updatable = false)

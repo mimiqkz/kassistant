@@ -1,19 +1,24 @@
 package teymi15.kassistant.model;
 
 import javax.persistence.*;
-
+/**
+ * user model class
+ * makes the user table in the database
+ * */
 @Entity
 @Table(name = "KassistantUser")
 public class User {
-
+    /**
+     * primary key of user
+     * */
     @Id
     @Column(name = "userId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String password;
-    private String username;
-    private String name;
-    private int age;
+    private String password; // user password string that holds the password
+    private String username; // user name e.g. peat12
+    private String name; // name of the user e.g. pétur pétursson
+    private int age; //age of the user
 
     public User(){}
     public User(String password, String username, String name, int age){
