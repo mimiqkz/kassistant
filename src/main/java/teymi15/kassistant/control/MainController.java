@@ -93,7 +93,9 @@ public class MainController {
      *  The function tells the login page to be displayed at path returned
      *  by the string
      * @return String
-     */    @RequestMapping(value="login", method = RequestMethod.GET)
+     *
+     */
+    @RequestMapping(value="login", method = RequestMethod.GET)
     public String displayLoginPage () {return "login";}
 
     /**
@@ -145,11 +147,12 @@ public class MainController {
      * @param user User
      * @return String
      */
-    @PostMapping("register")
-    public String registrationSubmit(@ModelAttribute User user){
-        System.out.println("USER ID " + user.getId());
-        userController.registerUser(user);
-        return "signup";
-    }
+
+    //@PostMapping("register")
+    //public String registrationSubmit(@ModelAttribute User user){
+    //   System.out.println("USER ID " + user.getId());
+    //   userController.registerUser(user);
+    //    return "signup";
+    //}
     
 }

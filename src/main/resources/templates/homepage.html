@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en"></head>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
-
+    <link  rel="stylesheet" th:href="@{/css/style.css}"/>
 <body>
     <!--Nav Bar-->
     <nav class = "navbar-default">
@@ -31,13 +30,14 @@
         <div class="page-header">
         <h1>Kitchen Assistant </h1>
         </div>
-<div class="jumbotron">
-    <h2>What do you want to cook?</h2>
-    <form method="post" th:action="@{/search}">
-        <input type="text" name="search" size="50" placeholder="Hummus, Indian, gluten-free..." />
-        <input type="submit" value="Search!"/>
-    </form>
-</div>
+        <div class="jumbotron">
+            <h2>What do you want to cook?</h2>
+            <form method="post" th:action="@{/search}">
+            <input type="text" name="search" size="50" placeholder="Hummus, Indian, gluten-free..." />
+                <input type="submit" value="Search!"/>
+            </form>
+        </div>
     </div>
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
 </body>
 </html>
