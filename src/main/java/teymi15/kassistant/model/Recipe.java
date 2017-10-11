@@ -35,10 +35,11 @@ public class Recipe {
      * relacion makes a table that conects the ingredients and recipes
     * */
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "RIngridients",joinColumns = {
+    @JoinTable(name = "ringridients",joinColumns = {
             @JoinColumn(name = "recipeId",nullable = false,updatable = false)
     }, inverseJoinColumns = { @JoinColumn(name = "ingredientId",
-            nullable = false, updatable = false)})
+            nullable = false, updatable = false)
+    })
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     public Recipe() {}

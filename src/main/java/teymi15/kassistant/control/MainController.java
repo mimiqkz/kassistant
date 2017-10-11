@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 @Controller
-public class PageController {
+public class MainController {
 
     List<Recipe> results;
 
@@ -63,10 +63,6 @@ public class PageController {
     public String submitSearch(HttpServletRequest request, Model model) {
         String search = request.getParameter("search");
         results = searchController.searchRecipeByName(search);
-        for (Recipe recipe: results) {
-           // System.out.println(recipe.getID());
-        }
-
 
         model.addAttribute("recipeList", results);
         return "resultpage";
