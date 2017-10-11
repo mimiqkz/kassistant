@@ -30,7 +30,10 @@ public class UserController {
     private Boolean loggedIn = false;
 
 
-    public void registerUser(User newUser){ userService.addUser(newUser);}
+    public void registerUser(String username, String password, String email, String name, int age){
+
+        userService.addUser(username,password,email,name,age);
+    }
 
     /**
      * checks if the login is correct
