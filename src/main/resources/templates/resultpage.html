@@ -19,7 +19,7 @@
         </tr>
         <tr th:each="res : ${recipeList}">
 
-            <td> <a th:href="@{/recipe/{id}/details(id=${res.getID()})}" th:text="${res.name}"></a></td>
+            <td> <a href="#" th:text="${res.name}"></a></td>
             <td th:text="${res.instruction}">Dummy</td>
         </tr>
     </table>
