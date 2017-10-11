@@ -17,8 +17,11 @@ import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
+import teymi15.kassistant.service.RecipeServiceImp;
 
 /**
  * The class controls the main page to tells which route it should be rending
@@ -27,6 +30,9 @@ import java.util.List;
 
 @Controller
 public class PageController {
+    
+    @Autowired
+    RecipeServiceImp recipeService;
 
     List<Recipe> results;
 
@@ -62,11 +68,12 @@ public class PageController {
     @RequestMapping(value = "search", method = RequestMethod.POST)
     public String submitSearch(HttpServletRequest request, Model model) {
         String search = request.getParameter("search");
-        results = searchController.searchRecipeByName(search);
+        
+        results = recipeService.getMatchingRecipe(search);
+ 
         for (Recipe recipe: results) {
-           // System.out.println(recipe.getID());
+            //System.out.println(recipe.getId());
         }
-
 
         model.addAttribute("recipeList", results);
         return "resultpage";

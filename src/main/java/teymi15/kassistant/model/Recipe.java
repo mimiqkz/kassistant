@@ -27,36 +27,34 @@ public class Recipe {
     @Id
     @Column(name = "recipeId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // the primary key in the recipe table
+    private Integer id; // the primary key in the recipe table
     private String name; // string for the name of the recipe
     private String instruction; // instruction string
+    
     /**
     * connecting the to tables recipe and user with a many to many
      * relacion makes a table that conects the ingredients and recipes
     * */
+    
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "RIngridients",joinColumns = {
-            @JoinColumn(name = "recipeId",nullable = false,updatable = false)
-    }, inverseJoinColumns = { @JoinColumn(name = "ingredientId",
-            nullable = false, updatable = false)})
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     public Recipe() {}
-    public Recipe(String name,String instruction,Set ingredients,int id){
+    public Recipe(String name, String instruction, Set ingredients, Integer id){
         this.ingredients = ingredients;
         this.name = name;
         this.instruction= instruction;
         this.id = id;
     }
+    
     public int getId() {
-        return id;
+        return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -65,7 +63,6 @@ public class Recipe {
         this.name = name;
     }
 
-    @Column(name = "instruction")
     public String getInstruction() {
         return instruction;
     }

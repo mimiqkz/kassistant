@@ -21,7 +21,7 @@ import java.util.List;
  * The repository for recipe
  */
 @Transactional
-public interface RecipeRepository extends CrudRepository<Recipe, Long> {
+public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     /**
      * get the list of all recipe
