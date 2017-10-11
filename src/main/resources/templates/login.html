@@ -2,9 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login page</title>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
-<a th:href="@{/}">Home Page</a>
+
+<!--Nav Bar-->
+<nav class = "navbar-default">
+    <div class ="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/}">Kitchen Assistant</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a th:href="@{/}">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a th:if="${loggedIn}" th:href="@{/}" class="user" th:text="'User: ' + ${user.username}">
+                <span class="glyphicon glyphicon-user"></span> Logged in</a></li>
+            <li><a th:if="${loggedIn}" th:href="@{/signout}">
+                <span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
+            <li> <a th:unless="${loggedIn}" th:href="@{/register}">
+                <span class="glyphicon glyphicon-user"></span> Sign up</a></li>
+            <li><a th:unless="${loggedIn}" th:href="@{/login}">
+                <span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+        </ul>
+    </div>
+</nav>
+
+
 
 
 <p th:if="${loginError}" class="error">Wrong user or password</p>
