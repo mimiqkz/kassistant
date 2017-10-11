@@ -32,25 +32,50 @@ public class UserController {
 
     public void registerUser(User newUser){ userService.addUser(newUser);}
 
-    //Returns true if login exists, else, false
+    /**
+     * checks if the login is correct
+     * @param username
+     * @param password
+     * @return boolean
+     */
     public Boolean isLoginCorrect(String username, String password){
         if(userService.isUserInDatabase(username, password)){return true;}
         return false;
     }
 
-    //sets current user
+    /**
+     * sets the current user if he is
+     * int the database
+     * @param username
+     * @param password
+     */
     public void setCurrentUser(String username, String password){
         currentUser = userService.getUser(username, password);
         loggedIn = true;
         System.out.println("This should come second. User logged in: " +  loggedIn);
     }
+
+    /**
+     * Gets the current user
+     * @return currentUser
+     */
     public User getCurrentUser(){
         return currentUser;
     }
+
+    /**
+     * logs the user out
+     * by clering the loggedIn
+     * and currentuser variables
+     */
     public void signoutUser(){
         loggedIn = false;
         currentUser = null;
     }
+
+    /**
+     * @return loggedIn
+     */
     public Boolean isUserLoggedIn(){
         return loggedIn;
     }

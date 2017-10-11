@@ -28,18 +28,13 @@ public class UserServiceImp implements UserService{
 
     @Override
     @ResponseBody
-    public void addUser(User newUser) {
-        userRep.save(newUser);
-      /*  String userId = "";
-        try {
-            User user = new User(password, username,name,age);
-            userRep.save(user);
-            userId = String.valueOf(user.getId());
+    public boolean addUser(String username, String password, String email, String name, int age) {
+        if (password != null) {
+            User account = new User(password, username, name, age);
+            userRep.save(account);
+            return true;
         }
-        catch (Exception ex) {
-            return "Error creating the user: " + ex.toString();
-        }
-        return "User succesfully created with id = " + userId;*/
+        return false;
     }
 
 
@@ -75,32 +70,31 @@ public class UserServiceImp implements UserService{
     }
     @Override
     @ResponseBody
-    public String delete(int id){
+    public Boolean delete(int id){
         try {
             User user = new User(id);
             userRep.delete(user);
         }
         catch (Exception ex) {
-            return "Error deleting the user:" + ex.toString();
+            return false;
         }
-        return "User succesfully deleted!";
+        return true;
     }
     @Override
     @ResponseBody
-    public String getUserByName(String name){
-        String userId = "";
+    public User getUserByName(String name){
+        User user = new User();
         try {
-            User user = userRep.findByName(name);
-            userId = String.valueOf(user.getId());
+            user = userRep.findByName(name);
         }
         catch (Exception ex) {
-            return "User not found";
+            return null;
         }
-        return "The user id is: " + userId;
+        return user;
     }
     @Override
     @ResponseBody
-    public  String updateUser(Long id,int age, String userName, String name,String password){
+    public boolean updateUser(Long id, int age, String userName, String name, String password){
         try {
             User user = userRep.findOne(id);
             user.setName(name);
@@ -110,8 +104,8 @@ public class UserServiceImp implements UserService{
             userRep.save(user);
         }
         catch (Exception ex) {
-            return "Error updating the user: " + ex.toString();
+            return false;
         }
-        return "User succesfully updated!";
+        return true;
     }
 }
