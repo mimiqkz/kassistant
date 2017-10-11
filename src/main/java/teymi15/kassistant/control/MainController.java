@@ -26,7 +26,7 @@ import teymi15.kassistant.service.RecipeServiceImp;
  */
 
 @Controller
-public class PageController {
+public class MainController {
     
     @Autowired
     RecipeServiceImp recipeService;

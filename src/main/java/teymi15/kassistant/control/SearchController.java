@@ -22,7 +22,6 @@ import teymi15.kassistant.model.Recipe;
  */
 public class SearchController {
 
-
     @Autowired
     RecipeServiceImp RecipeService;
 
