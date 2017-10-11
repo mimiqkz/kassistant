@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
+<head lang="en"></head>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
-</head>
-<body>
 
-<!--Nav Bar-->
-<nav class = "navbar-default">
+<body>
+    <!--Nav Bar-->
+    <nav class = "navbar-default">
     <div class ="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" th:href="@{/}">Kitchen Assistant</a>
@@ -26,33 +25,19 @@
                 <span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
         </ul>
     </div>
-</nav>
+    </nav>
 
-
-<form method="post" th:action="@{/search}">
+    <div class="container">
+        <div class="page-header">
+        <h1>Kitchen Assistant </h1>
+        </div>
+<div class="jumbotron">
+    <h2>What do you want to cook?</h2>
+    <form method="post" th:action="@{/search}">
         <input type="text" name="search" size="50" placeholder="Hummus, Indian, gluten-free..." />
-       <input type="submit" value="Search!" />
+        <input type="submit" value="Search!"/>
     </form>
-
-    <table>
-        <tr>
-            <th>NAME</th>
-            <th>Instructions</th>
-
-        </tr>
-        <tr th:each="res : ${recipeList}">
-
-            <td> <a href="#" th:text="${res.name}"></a></td>
-            <td th:text="${res.instruction}">Dummy</td>
-        </tr>
-    </table>
-
-
-
+</div>
+    </div>
 </body>
 </html>
-
-
-
-
-

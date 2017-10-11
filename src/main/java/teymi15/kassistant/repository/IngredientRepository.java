@@ -1,13 +1,21 @@
 package teymi15.kassistant.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import teymi15.kassistant.model.Ingredient;
+
+
+import javax.transaction.Transactional;
 
 import java.util.List;
 
-public interface IngredientRepository extends JpaRepository<Ingredient,Long> {
+
+@Transactional
+public interface IngredientRepository extends CrudRepository<Ingredient, Integer> {
 
     List<Ingredient> findAll();
+
+    List<Ingredient> findAllByNameLikeIgnoreCase(String name);
 
     Ingredient save(Ingredient ingredient);
 }

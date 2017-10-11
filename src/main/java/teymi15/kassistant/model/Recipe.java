@@ -18,38 +18,43 @@ import javax.persistence.*;
 
 /**
  * The object class of recipe
+ * is a entity in the data base
  */
 @Entity
 @Table (name = "Recipe")
 public class Recipe {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "recipeId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
-    private String instruction;
-   /* @ManyToMany(mappedBy = "recipe",fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
-    private Set<Ingredient> ingredients = new HashSet<Ingredient>();*/
+    private Integer id; // the primary key in the recipe table
+    private String name; // string for the name of the recipe
+    private String instruction; // instruction string
+    
+    /**
+    * connecting the to tables recipe and user with a many to many
+     * relacion makes a table that conects the ingredients and recipes
+    * */
+    
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
-    public Recipe() {
-        /*this.ingredients = new HashSet<Ingredient>();*/
-    }
-    public Recipe(String name,String instruction){
-        //this.ingredients = new HashSet<Ingredient>();
+    public Recipe() {}
+    public Recipe(String name, String instruction, Set ingredients, Integer id){
+        this.ingredients = ingredients;
         this.name = name;
         this.instruction= instruction;
+        this.id = id;
     }
+    
     public int getId() {
-        return id;
+        return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -58,7 +63,6 @@ public class Recipe {
         this.name = name;
     }
 
-    @Column(name = "instruction")
     public String getInstruction() {
         return instruction;
     }
@@ -66,25 +70,24 @@ public class Recipe {
     public void setInstruction(String instruction) {
         this.instruction = instruction;
     }
-/*
-    @Column(name = "ingredients")
+
+
     public Set<Ingredient> getIngredients() {
-        ///return ingredients;
+        return ingredients;
     }
 
     public void setIngredients(Set<Ingredient> ingredients) {
-        //this.ingredients = ingredients;
+        this.ingredients = ingredients;
     }
-*/
+
+    public void addIngredients(Ingredient i){
+        ingredients.add(i);
+    }
+
     @Override
     public String toString() {
         return String.format(
                 "Recipe[id=%d, name='%s', ingredients = '%s', instruction='%s']",
-                id, name /*ingredients*/, instruction);
+                id, name, ingredients, instruction);
     }
-    /*
-    public void addIngredient(Ingredient i){
-        i.setRecipe((Set) this);
-        ingredients.add(i);
-    }*/
 }

@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import teymi15.kassistant.control.SearchController;
 
 /**
  * The main class extends the Spring Boot Servlet requires to run the project
@@ -18,7 +17,7 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	private static final Logger log = LoggerFactory.getLogger(KassistantApplication.class);
 	/**
 	 * This is the protected function which configurate the Spring Application
-	 * @param applicationBuilder
+	 * @param applicationBuilder application builder
 	 */
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder){
@@ -26,13 +25,9 @@ public class KassistantApplication extends SpringBootServletInitializer{
 	}
 	/**
 	 * This is the main method which makes use of the Spring Application
-	 * @param args
+	 * @param args command-line argument
 	 */
 	public static void main(String[] args) {
-		SearchController search = new SearchController();
-
-		System.out.println(search.searchRecipeByName("hummus"));
-		//launch the Spring Application
 		SpringApplication.run(KassistantApplication.class, args);
 	}
 

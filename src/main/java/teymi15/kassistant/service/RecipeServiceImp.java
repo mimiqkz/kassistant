@@ -12,22 +12,20 @@ package teymi15.kassistant.service;
  */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.repository.RecipeRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class RecipeServiceImp implements RecipeService{
-
-
+public class RecipeServiceImp implements RecipeService {
 
     // Connection to the recipe repository
     @Autowired
     RecipeRepository recipeRep;
 
-    // Add Recipe to the service
+
     @Override
     public void addRecipe(Recipe k) {
         recipeRep.save(k);
@@ -35,31 +33,15 @@ public class RecipeServiceImp implements RecipeService{
 
     //search for matching recipe by name
     @Override
-    public List<Recipe> matchingRecipe(String k) {
-        List found = new ArrayList();
-      /*  recipeRep = new RecipeRepository();
-        recipeRep.addAll();
-        List<Recipe> everything = recipeRep.getAll();
-        for(int i = 0;i<everything.size();i++){
-            if(everything.get(i).getName().equals(k)){
-                found.add(everything.get(i));
-            }
-        }
-*/
-        return found;
+    @ResponseBody
+    public List<Recipe> getMatchingRecipe(String name) {
+        return recipeRep.findAllByNameLikeIgnoreCase("%" +name+ "%");
     }
 
+    //find recipe by its id
     @Override
+    @ResponseBody
     public Recipe getRecipeById(int id) {
-        System.out.println("here " + id);
-        List<Recipe> everything = recipeRep.getAll();
-        for (int i = 0; i < everything.size(); i++) {
-            if (everything.get(i).getID() == id) {
-                return everything.get(i);
-            }
-        }
         return null;
     }
-
-
 }

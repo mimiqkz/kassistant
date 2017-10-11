@@ -1,4 +1,5 @@
 package teymi15.kassistant.service;
+
 /**
  * The program allows user to search for recipe with the matching name.
  * For example, "Apple pie", "Brocoli soup", "Chocolate Cake" , etc.
@@ -9,32 +10,33 @@ package teymi15.kassistant.service;
  * @version 1.0
  * @since   2017-09-20
  */
+
 import org.springframework.stereotype.Service;
-import teymi15.kassistant.model.Recipe;
+import teymi15.kassistant.model.Ingredient;
 import java.util.List;
 
-/**
- * The service class for the recipe, getting data from the repository
- */
 @Service
-public interface RecipeService {
-
+public interface IngredientService {
 
     /**
      * Add the recipe
      *
-     * @param k Recipe
+     * @param k Ingredient
      */
-    void addRecipe(Recipe k);
+    void addRecipe(Ingredient k);
 
     /**
-     * Return all of the matching recipe
+     * Return all of the matching ingredient
      *
-     * @param name the name of the recipe
-     * @return list of matching recipe
+     * @param name the name of the ingredient
+     * @return list
      */
-    List<Recipe> getMatchingRecipe(String name);
+    List<Ingredient> getMatchingIngredient(String name);
 
-    Recipe getRecipeById(int id);
+    Ingredient getIngredientById(int id);
+
+    void addAllData();
+
+    List<Ingredient> getAllIngredient();
 
 }

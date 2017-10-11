@@ -10,14 +10,18 @@ package teymi15.kassistant.repository;
  * @since   2017-09-20
  */
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import teymi15.kassistant.model.Recipe;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * The repository for recipe
  */
-public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+@Transactional
+public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     /**
      * get the list of all recipe
@@ -30,6 +34,9 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
      * @param recipe recipe
      */
     Recipe save (Recipe recipe);
+
+
+    List<Recipe> findAllByNameLikeIgnoreCase(String name);
 
 
 }
