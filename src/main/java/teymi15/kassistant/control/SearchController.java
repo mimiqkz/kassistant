@@ -36,6 +36,7 @@ public class SearchController {
     public Recipe getRecipebyID(int id){
         return RecipeService.getRecipeById(id);
     }
+
     public List searchIngredientByName(String name){
         return IngredientService.getMatchingIngredient(name);
     }

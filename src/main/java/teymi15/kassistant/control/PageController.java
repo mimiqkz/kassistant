@@ -12,14 +12,11 @@ package teymi15.kassistant.control;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import teymi15.kassistant.service.RecipeServiceImp;
 
@@ -35,7 +32,6 @@ public class PageController {
     RecipeServiceImp recipeService;
 
     List<Recipe> results;
-
     SearchController searchController = new SearchController();
     UserController userController = new UserController();
 
@@ -70,16 +66,21 @@ public class PageController {
         String search = request.getParameter("search");
         
         results = recipeService.getMatchingRecipe(search);
- 
-        for (Recipe recipe: results) {
-            //System.out.println(recipe.getId());
-        }
+
 
         model.addAttribute("recipeList", results);
         return "resultpage";
     }
 
-    //Select recipe
+
+    /**
+     * The function returns a string with the route which should be rendered. This
+     *  is initiated when the user selects a link that represents a Recipe. This Recipe
+     *  should then be displayed on the recipe page.
+     * @param id int
+     * @param model model
+     * @return String
+     */
     @RequestMapping(value="recipe/{id}/details", method = RequestMethod.GET)
     public String selectRecipe (@PathVariable int id, Model model) {
         //1. use id to get recipe object
@@ -88,10 +89,20 @@ public class PageController {
         return "recipe";
     }
 
-    //Load log-in
-    @RequestMapping(value="login", method = RequestMethod.GET)
+    /**
+     *  The function tells the login page to be displayed at path returned
+     *  by the string
+     * @return String
+     */    @RequestMapping(value="login", method = RequestMethod.GET)
     public String displayLoginPage () {return "login";}
 
+    /**
+     * The function returns a string with the route which should be rendered depending
+     * on user input.
+     * @param request getting request from the page
+     * @param model model
+     * @return String
+     */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, Model model) {
         String username = request.getParameter("username");
@@ -115,21 +126,30 @@ public class PageController {
         return "login";
     }
 
+    /**
+     * The function tells the signup page to be displayed at route defined
+     * by string. Adds object attribute to page that will be submitted later.
+     *
+     * @return String
+     */
     @GetMapping("register")
     public String registrationForm(Model model){
         model.addAttribute("user", new User());
         return "signup";
     }
 
+    /**
+     * The function returns a string with the route which should be rendered. This
+     *  is initiated when the user submits his/her input. The input from the user
+     *  should then be displayed on the result page.
+     * @param user User
+     * @return String
+     */
     @PostMapping("register")
     public String registrationSubmit(@ModelAttribute User user){
-       // userController.registerUser(user);
+        System.out.println("USER ID " + user.getId());
+        userController.registerUser(user);
         return "signup";
     }
-    @RequestMapping("test")
-    public void testStuff(String name){
-
-    }
-
-
+    
 }

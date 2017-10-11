@@ -22,17 +22,22 @@ import teymi15.kassistant.service.UserServiceImp;
  */
 
 public class UserController {
-/*
+
     @Autowired
-    private UserService userService;
+    UserServiceImp userService;
+
     private User currentUser;
     private Boolean loggedIn = false;
+
+
     public void registerUser(User newUser){ userService.addUser(newUser);}
+
     //Returns true if login exists, else, false
     public Boolean isLoginCorrect(String username, String password){
         if(userService.isUserInDatabase(username, password)){return true;}
         return false;
     }
+
     //sets current user
     public void setCurrentUser(String username, String password){
         currentUser = userService.getUser(username, password);
@@ -49,5 +54,5 @@ public class UserController {
     public Boolean isUserLoggedIn(){
         return loggedIn;
     }
-*/
+
 }

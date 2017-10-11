@@ -28,8 +28,9 @@ public class UserServiceImp implements UserService{
 
     @Override
     @ResponseBody
-    public String addUser(String password,String username, String name, int age) {
-        String userId = "";
+    public void addUser(User newUser) {
+        userRep.save(newUser);
+      /*  String userId = "";
         try {
             User user = new User(password, username,name,age);
             userRep.save(user);
@@ -38,7 +39,7 @@ public class UserServiceImp implements UserService{
         catch (Exception ex) {
             return "Error creating the user: " + ex.toString();
         }
-        return "User succesfully created with id = " + userId;
+        return "User succesfully created with id = " + userId;*/
     }
 
 
