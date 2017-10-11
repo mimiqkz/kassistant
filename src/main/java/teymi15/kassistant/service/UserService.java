@@ -25,14 +25,10 @@ public interface UserService {
 
     /**
      * add user
-     * @param  password
-     * @param username
-     * @param email
-     * @param name
-     * @param age
+     * @param  user
      * @return void
      */
-    boolean addUser(String username, String password, String email, String name, int age);
+    boolean addUser(User user);
 
     /**
      * Returns true if user is in repository, false if not

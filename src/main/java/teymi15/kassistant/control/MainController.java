@@ -148,11 +148,11 @@ public class MainController {
      * @return String
      */
 
-    //@PostMapping("register")
-    //public String registrationSubmit(@ModelAttribute User user){
-    //   System.out.println("USER ID " + user.getId());
-    //   userController.registerUser(user);
-    //    return "signup";
-    //}
+    @PostMapping("register")
+    public String registrationSubmit(@ModelAttribute User user){
+       System.out.println("USER ID " + user.getId());
+       userController.registerUser(user);
+       return "signup";
+    }
     
 }

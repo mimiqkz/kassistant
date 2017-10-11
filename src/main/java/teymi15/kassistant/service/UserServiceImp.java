@@ -28,10 +28,15 @@ public class UserServiceImp implements UserService{
 
     @Override
     @ResponseBody
-    public boolean addUser(String username, String password, String email, String name, int age) {
-        if (password != null) {
-            User account = new User(password, username, name, age);
-            userRep.save(account);
+    public boolean addUser(User user) {
+        // public User(String password, String username, String name, int age){
+        if (user.getPassword() != null) {
+            try{
+                userRep.save(user);
+            }catch (Exception e){
+                System.out.println("hér " + e.toString());
+            }
+
             return true;
         }
         return false;
