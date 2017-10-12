@@ -29,7 +29,6 @@ public class UserServiceImp implements UserService{
     @Override
     @ResponseBody
     public boolean addUser(User user) {
-        // public User(String password, String username, String name, int age){
         if (user.getPassword() != null) {
             try{
                 userRep.save(user);

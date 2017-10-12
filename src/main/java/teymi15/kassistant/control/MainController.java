@@ -31,6 +31,8 @@ public class MainController {
     @Autowired
     RecipeServiceImp recipeService;
 
+
+
     List<Recipe> results;
     SearchController searchController = new SearchController();
     UserController userController = new UserController();
@@ -134,25 +136,5 @@ public class MainController {
      *
      * @return String
      */
-    @GetMapping("register")
-    public String registrationForm(Model model){
-        model.addAttribute("user", new User());
-        return "signup";
-    }
 
-    /**
-     * The function returns a string with the route which should be rendered. This
-     *  is initiated when the user submits his/her input. The input from the user
-     *  should then be displayed on the result page.
-     * @param user User
-     * @return String
-     */
-
-    @PostMapping("register")
-    public String registrationSubmit(@ModelAttribute User user){
-       System.out.println("USER ID " + user.getId());
-       userController.registerUser(user);
-       return "signup";
-    }
-    
 }

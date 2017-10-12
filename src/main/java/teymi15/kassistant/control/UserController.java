@@ -12,6 +12,11 @@ package teymi15.kassistant.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.service.UserService;
@@ -20,7 +25,7 @@ import teymi15.kassistant.service.UserServiceImp;
 /**
  * The class manages user data
  */
-
+@Controller
 public class UserController {
 
     @Autowired
@@ -29,8 +34,33 @@ public class UserController {
     private User currentUser;
     private Boolean loggedIn = false;
 
+    @GetMapping("register")
+    public String registrationForm(Model model){
+        model.addAttribute("user", new User());
+        return "signup";
+    }
+
+    /**
+     * The function returns a string with the route which should be rendered. This
+     *  is initiated when the user submits his/her input. The input from the user
+     *  should then be displayed on the result page.
+     * @param user User
+     * @return String
+     */
+
+    @PostMapping("register")
+    public String registrationSubmit(@ModelAttribute User user){
+        System.out.println("USER ID " + user.getId());
+        registerUser(user);
+        return "signup";
+    }
+
+
 
     public void registerUser(User user){
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        System.out.println(user.getAge());
         userService.addUser(user);
     }
 
