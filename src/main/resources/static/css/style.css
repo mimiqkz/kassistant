@@ -1,12 +1,15 @@
 body {
   font-family: 'Poiret One', cursive;
-  background-color: salmon;
 }
 
 h1 {
   color: darkcyan;
-  margin-left: 20px;
+  margin-left: 30px;
 
+}
+
+.navbar-default {
+  background-color: darkcyan;
 }
 
 .container--header {
@@ -18,4 +21,8 @@ h1 {
   background-position: calc(100%) calc(100% - 80px);
   overflow: hidden;
   margin-bottom: 20px;
+}
+
+.jumbotron {
+  background-color: #00bebe;
 }
