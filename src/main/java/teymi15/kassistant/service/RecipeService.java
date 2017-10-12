@@ -35,6 +35,11 @@ public interface RecipeService {
      */
     List<Recipe> getMatchingRecipe(String name);
 
+    /**
+     * Get recipe by the id
+     * @param id recipe id
+     * @return the recipe
+     */
     Recipe getRecipeById(int id);
 
 }

@@ -29,9 +29,9 @@ public class Ingredient {
     private String name; //Name of the ingredient e.g cherry tomato, apple etc.
     private String location; //Location of the store e.g Granda, Kringlan etc
     private String store; //The name of the store
+
     //many to many connection between the recipes and ingredients
     //mapeped by the Set ingerdients in the Recipe controler
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Recipe> recipes = new HashSet<>();
 
