@@ -12,6 +12,10 @@ package teymi15.kassistant.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.RecipeServiceImp;
 
@@ -27,6 +31,24 @@ public class SearchController {
 
     @Autowired
     IngredientServiceImp IngredientService;
+
+    /**
+     * The function returns a string with the route which should be rendered. This
+     *  is initiated when the user selects a link that represents a Recipe. This Recipe
+     *  should then be displayed on the recipe page.
+     * @param id int
+     * @param model model
+     * @return String
+     */
+    @RequestMapping(value="recipe/{id}/details", method = RequestMethod.GET)
+    public String selectRecipe (@PathVariable int id, Model model) {
+        //1. use id to get recipe object
+        Recipe selected = getRecipebyID(id);
+        model.addAttribute("recipe", selected);
+        return "recipe";
+    }
+
+
 
     public List searchRecipeByName(String name){
         return RecipeService.getMatchingRecipe(name);
