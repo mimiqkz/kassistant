@@ -35,8 +35,6 @@ public class MainController {
 
     List<Recipe> results;
     SearchController searchController = new SearchController();
-    UserController userController = new UserController();
-
 
     /**
      * The function tells the search page to be displayed at route predefined
@@ -100,35 +98,7 @@ public class MainController {
     @RequestMapping(value="login", method = RequestMethod.GET)
     public String displayLoginPage () {return "login";}
 
-    /**
-     * The function returns a string with the route which should be rendered depending
-     * on user input.
-     * @param request getting request from the page
-     * @param model model
-     * @return String
-     */
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(HttpServletRequest request, Model model) {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        System.out.println(username);
-        System.out.println(password);
-/*
-        if (userController.isLoginCorrect(username, password)) {
-           //If login successful set the current user
-            userController.setCurrentUser(username, password);
-            //Have to do this twice at the moment until i can
-            //think of something more clever
-            model.addAttribute("user", userController.getCurrentUser());
-            model.addAttribute("loggedIn", true);
-            return "homepage";
 
-        } else {
-            model.addAttribute("loginError", true);
-
-        }*/
-        return "login";
-    }
 
     /**
      * The function tells the signup page to be displayed at route defined

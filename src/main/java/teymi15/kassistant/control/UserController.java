@@ -14,13 +14,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.service.UserService;
 import teymi15.kassistant.service.UserServiceImp;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * The class manages user data
@@ -55,13 +55,42 @@ public class UserController {
         return "signup";
     }
 
+    /**
+     * The function returns a string with the route which should be rendered depending
+     * on user input.
+     * @param request getting request from the page
+     * @param model model
+     * @return String
+     */
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String login(HttpServletRequest request, Model model) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        System.out.println(username);
+        System.out.println(password);
 
+        if (isLoginCorrect(username, password)) {
+           //If login successful set the current user
+            setCurrentUser(username, password);
+            //Have to do this twice at the moment until i can
+            //think of something more clever
+            model.addAttribute("user", getCurrentUser());
+            model.addAttribute("loggedIn", true);
+            return "homepage";
+
+        } else {
+            model.addAttribute("loginError", true);
+
+        }
+        return "login";
+    }
 
     public void registerUser(User user){
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        System.out.println(user.getAge());
-        userService.addUser(user);
+        if(userService.addUser(user)){
+            setCurrentUser(user.getUsername(),user.getPassword());
+        }else{
+            System.out.println("error somthing whent wrong");
+        }
     }
 
     /**
