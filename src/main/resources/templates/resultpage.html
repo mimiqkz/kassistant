@@ -3,18 +3,31 @@
 <head lang="en">
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet"/>
+    <link  rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
 
-<!--Nav Bar-->
+<!--Navbar-->
 <nav class = "navbar-default">
     <div class ="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" th:href="@{/}">Kitchen Assistant</a>
         </div>
+
         <ul class="nav navbar-nav">
             <li class="active"><a th:href="@{/}">Home</a></li>
         </ul>
+        <!--Search-bar-->
+        <form class="navbar-form navbar-left" method="post" th:action="@{/search}">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search for a recipe"/>
+            </div>
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </form>
+
         <ul class="nav navbar-nav navbar-right">
             <li><a th:if="${loggedIn}" th:href="@{/}" class="user" th:text="'User: ' + ${user.username}">
                 <span class="glyphicon glyphicon-user"></span> Logged in</a></li>
@@ -27,6 +40,7 @@
         </ul>
     </div>
 </nav>
+<!--Navbar ends-->
 
 
 <form method="post" th:action="@{/search}">
