@@ -30,7 +30,7 @@ public class MainController {
     
     @Autowired
     RecipeServiceImp recipeService;
-
+    UserController userController = new UserController();
 
 
     List<Recipe> results;
@@ -44,11 +44,8 @@ public class MainController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayHomePage(Model model) {
-       /* if(userController.isUserLoggedIn()){
-             model.addAttribute("user", userController.getCurrentUser());
-             model.addAttribute("loggedIn", true);
-        }
-*/
+        userController.displayLoggedInUser(model);
+
         return "homepage";
     }
 
@@ -100,11 +97,6 @@ public class MainController {
 
 
 
-    /**
-     * The function tells the signup page to be displayed at route defined
-     * by string. Adds object attribute to page that will be submitted later.
-     *
-     * @return String
-     */
 
 }
+

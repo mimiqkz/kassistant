@@ -49,9 +49,16 @@ public class UserController {
      */
 
     @PostMapping("register")
-    public String registrationSubmit(@ModelAttribute User user){
-        System.out.println("USER ID " + user.getId());
-        registerUser(user);
+    public String registrationSubmit(@ModelAttribute User user, Model model){
+
+        if(userService.addUser(user)){
+            setCurrentUser(user.getUsername(), user.getPassword());
+            displayLoggedInUser(model);
+            return "homepage";
+
+        }else{
+            System.out.println("Error on registration");
+        }
         return "signup";
     }
 
@@ -85,12 +92,16 @@ public class UserController {
         return "login";
     }
 
-    public void registerUser(User user){
-        if(userService.addUser(user)){
-            setCurrentUser(user.getUsername(),user.getPassword());
-        }else{
-            System.out.println("error somthing whent wrong");
-        }
+    /**
+     * logs the user out
+     * by clearing the loggedIn
+     * and currentuser variables
+     */
+    @RequestMapping(value = "signout")
+    public String signoutUser(){
+        loggedIn = false;
+        currentUser = null;
+        return "homepage";
     }
 
     /**
@@ -124,15 +135,7 @@ public class UserController {
         return currentUser;
     }
 
-    /**
-     * logs the user out
-     * by clering the loggedIn
-     * and currentuser variables
-     */
-    public void signoutUser(){
-        loggedIn = false;
-        currentUser = null;
-    }
+
 
     /**
      * @return loggedIn
@@ -141,4 +144,11 @@ public class UserController {
         return loggedIn;
     }
 
+
+    public void displayLoggedInUser(Model model) {
+        if(isUserLoggedIn()){
+            model.addAttribute("user", getCurrentUser());
+            model.addAttribute("loggedIn", true);
+        }
+    }
 }
