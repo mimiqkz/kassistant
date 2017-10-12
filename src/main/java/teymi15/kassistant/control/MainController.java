@@ -61,15 +61,35 @@ public class MainController {
     @RequestMapping(value = "search", method = RequestMethod.POST)
     public String submitSearch(HttpServletRequest request, Model model) {
         String search = request.getParameter("search");
-
+        System.out.println("Það sem ég var að searcha " + search);
         results = recipeService.getMatchingRecipe(search);
-
+        int i = 0;
+        while (i < results.size()) {
+            System.out.println(results.get(i).getName() + " " + results.get(i).getId());
+            i++;
+        }
         model.addAttribute("recipeList", results);
         return "resultpage";
     }
 
 
-
+    /**
+     * The function returns a string with the route which should be rendered. This
+     *  is initiated when the user selects a link that represents a Recipe. This Recipe
+     *  should then be displayed on the recipe page.
+     * @param id int
+     * @param model model
+     * @return String
+     */
+    @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
+    public String selectRecipe (@PathVariable int id, Model model) {
+        //1. use id to get recipe object
+        System.out.println("ID given by view to controller " + id);
+        Recipe selected = searchController.getRecipebyID(id);
+        System.out.println("Recipe received " + selected.getName());
+        model.addAttribute("recipe", selected);
+        return "homepage";
+    }
 
     /**
      *  The function tells the login page to be displayed at path returned

@@ -8,8 +8,19 @@ h1 {
 
 }
 
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
 .navbar-default {
   background-color: darkcyan;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: white;
+  background-color: #00cccc;
 }
 
 .container--header {
@@ -20,7 +31,7 @@ h1 {
   background-attachment: fixed;
   background-position: calc(100%) calc(100% - 80px);
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .jumbotron {

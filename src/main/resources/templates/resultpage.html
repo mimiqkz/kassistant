@@ -9,6 +9,7 @@
 <body>
 
 <!--Navbar-->
+<!--Nav Bar-->
 <nav class = "navbar-default">
     <div class ="container-fluid">
         <div class="navbar-header">
@@ -16,12 +17,12 @@
         </div>
 
         <ul class="nav navbar-nav">
-            <li class="active"><a th:href="@{/}">Home</a></li>
+            <li class="active"><a th:href="@{/}" class="home">Home</a></li>
         </ul>
         <!--Search-bar-->
         <form class="navbar-form navbar-left" method="post" th:action="@{/search}">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search for a recipe"/>
+                <input type="text" name="search" class="form-control" placeholder="Search for a recipe"/>
             </div>
             <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
@@ -29,8 +30,12 @@
         </form>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a th:if="${loggedIn}" th:href="@{/}" class="user" th:text="'User: ' + ${user.username}">
-                <span class="glyphicon glyphicon-user"></span> Logged in</a></li>
+            <!--/*@thymesVar id="loggedIn" type="java"*/-->
+            <li>
+                <!--/*@thymesVar id="user" type="java"*/-->
+                <!--/*@thymesVar id="user.username" type="java"*/-->
+                <a th:if="${loggedIn}" th:href="@{/}" class="user">
+                    <span class="glyphicon glyphicon-user"></span> <span th:text="${user.username}"></span></a></li>
             <li><a th:if="${loggedIn}" th:href="@{/signout}">
                 <span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
             <li> <a th:unless="${loggedIn}" th:href="@{/register}">
@@ -40,28 +45,26 @@
         </ul>
     </div>
 </nav>
+
 <!--Navbar ends-->
 
+<div class="page-header">
+    <h1>Results</h1>
+</div>
+<div class="container">
+<table class="table table-condensed">
+    <tr>
+        <th>NAME</th>
+        <th>Instructions</th>
 
-<form method="post" th:action="@{/search}">
-        <input type="text" name="search" size="50" placeholder="Hummus, Indian, gluten-free..." />
-       <input type="submit" value="Search!" />
-    </form>
+    </tr>
+    <tr th:each="res : ${recipeList}">
 
-    <table>
-        <tr>
-            <th>NAME</th>
-            <th>Instructions</th>
-
-        </tr>
-        <tr th:each="res : ${recipeList}">
-
-            <td> <a href="#" th:text="${res.name}"></a></td>
-            <td th:text="${res.instruction}">Dummy</td>
-        </tr>
-    </table>
-
-
+        <td> <a th:href="@{/recipe/{id}(id=${res.id})}" th:text="${res.name}"></a></td>
+        <td th:text="${res.instruction}">Dummy</td>
+    </tr>
+</table>
+</div>
 
 </body>
 </html>

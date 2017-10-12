@@ -32,22 +32,6 @@ public class SearchController {
     @Autowired
     IngredientServiceImp IngredientService;
 
-    /**
-     * The function returns a string with the route which should be rendered. This
-     *  is initiated when the user selects a link that represents a Recipe. This Recipe
-     *  should then be displayed on the recipe page.
-     * @param id int
-     * @param model model
-     * @return String
-     */
-    @RequestMapping(value="recipe/{id}/details", method = RequestMethod.GET)
-    public String selectRecipe (@PathVariable int id, Model model) {
-        //1. use id to get recipe object
-        Recipe selected = getRecipebyID(id);
-        model.addAttribute("recipe", selected);
-        return "recipe";
-    }
-
 
 
     public List searchRecipeByName(String name){
