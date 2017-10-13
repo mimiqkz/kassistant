@@ -11,6 +11,8 @@ package teymi15.kassistant.model;
  */
 
 
+import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -28,8 +30,8 @@ public class Recipe {
     @Column(name = "recipeId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; // the primary key in the recipe table
-    private String name; // string for the name of the recipe
-    private String instruction; // instruction string
+    private @SQLInjectionSafe String name; // string for the name of the recipe
+    private @SQLInjectionSafe String instruction; // instruction string
     
     /**
     * connecting the to tables recipe and user with a many to many

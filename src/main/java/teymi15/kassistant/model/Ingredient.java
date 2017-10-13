@@ -1,5 +1,7 @@
 package teymi15.kassistant.model;
 
+import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,9 +28,9 @@ public class Ingredient {
     @Column(name = "ingredientId")
     private Integer id;
     private double price; //Using different currency
-    private String name; //Name of the ingredient e.g cherry tomato, apple etc.
-    private String location; //Location of the store e.g Granda, Kringlan etc
-    private String store; //The name of the store
+    private @SQLInjectionSafe String name; //Name of the ingredient e.g cherry tomato, apple etc.
+    private @SQLInjectionSafe String location; //Location of the store e.g Granda, Kringlan etc
+    private @SQLInjectionSafe String store; //The name of the store
 
     //many to many connection between the recipes and ingredients
     //mapeped by the Set ingerdients in the Recipe controler

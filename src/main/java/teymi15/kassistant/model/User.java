@@ -1,5 +1,7 @@
 package teymi15.kassistant.model;
 
+import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
+
 import javax.persistence.*;
 /**
  * user model class
@@ -15,9 +17,9 @@ public class User {
     @Column(name = "userId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String password; // user password string that holds the password
-    private String username; // user name e.g. peat12
-    private String name; // name of the user e.g. pétur pétursson
+    private @SQLInjectionSafe String password; // user password string that holds the password
+    private @SQLInjectionSafe String username; // user name e.g. peat12
+    private @SQLInjectionSafe String name; // name of the user e.g. pétur pétursson
     private int age; //age of the user
 
     public User(){}
