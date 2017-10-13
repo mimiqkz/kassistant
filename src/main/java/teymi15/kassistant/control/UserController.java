@@ -62,6 +62,13 @@ public class UserController {
         return "signup";
     }
 
+    @RequestMapping(value = "signout", method = RequestMethod.GET)
+    public String SingnOut(Model model){
+        setCurrentUser(null,null);
+        model.addAttribute("user", null);
+        model.addAttribute("loggedIn", false);
+        return "homepage";
+    }
     /**
      * The function returns a string with the route which should be rendered depending
      * on user input.
