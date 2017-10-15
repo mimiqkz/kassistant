@@ -1,53 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Sign up</title>
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet"/>
-    <link  rel="stylesheet" th:href="@{/css/style.css}"/>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
 <body>
-
-<!--Nav Bar-->
-<!--Nav Bar-->
-<nav class = "navbar-default">
-    <div class ="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" th:href="@{/}">Kitchen Assistant</a>
-        </div>
-
-        <ul class="nav navbar-nav">
-            <li class="active"><a th:href="@{/}" class="home">Home</a></li>
-        </ul>
-        <!--Search-bar-->
-        <form class="navbar-form navbar-left" method="post" th:action="@{/search}">
-            <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="Search for a recipe"/>
-            </div>
-            <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </form>
-
-        <ul class="nav navbar-nav navbar-right">
-            <!--/*@thymesVar id="loggedIn" type="java"*/-->
-            <li>
-                <!--/*@thymesVar id="user" type="java"*/-->
-                <!--/*@thymesVar id="user.username" type="java"*/-->
-                <a th:if="${loggedIn}" th:href="@{/}" class="user">
-                    <span class="glyphicon glyphicon-user"></span> <span th:text="${user.username}"></span></a></li>
-            <li><a th:if="${loggedIn}" th:href="@{/signout}">
-                <span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
-            <li> <a th:unless="${loggedIn}" th:href="@{/register}">
-                <span class="glyphicon glyphicon-user"></span> Sign up</a></li>
-            <li><a th:unless="${loggedIn}" th:href="@{/login}">
-                <span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
-        </ul>
-    </div>
-</nav>
-
-<!--Navbar ends-->
+<div th:replace="layout :: navigation-top-bar"></div>
 
 <div class="page-header">
     <h1>Create new account</h1>
