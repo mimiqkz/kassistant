@@ -16,18 +16,17 @@ public class BcryptHashing {
         DB.put(username, hashedPassword);
     }
 
-    public static Boolean login(String password) {
+    public static Boolean mach(String password) {
         Boolean isAuthenticated;
 
-        // remember to use the same SALT value use used while storing password
-        // for the first time.
-        String saltedPassword = SALT + password;
-        String hashedPassword = generateHash(saltedPassword);
+        String hashedPassword = generateHash(password);
 
         if(hashedPassword.equals(password)){
             isAuthenticated = true;
+            System.out.print("satt");
         }else{
             isAuthenticated = false;
+            System.out.print("false");
         }
         return isAuthenticated;
     }
