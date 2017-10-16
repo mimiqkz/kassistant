@@ -13,6 +13,7 @@ package teymi15.kassistant.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
+import teymi15.kassistant.Hashing.BcryptHashing;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.repository.UserRepository;
 
@@ -31,6 +32,7 @@ public class UserServiceImp implements UserService{
     public boolean addUser(User user) {
         if (user.getPassword() != null) {
             try{
+                user.setPassword(BcryptHashing.generateHash(user.getPassword()));
                 userRep.save(user);
             }catch (Exception e){
                 System.out.println("hér " + e.toString());
@@ -46,11 +48,13 @@ public class UserServiceImp implements UserService{
     @ResponseBody
     public boolean isUserInDatabase(String username, String password) {
         List<User> users = userRep.findAll();
-
+        System.out.print("her");
         for (int i = 0; i < users.size(); i++) {
 
             if (username.equals(users.get(i).getUsername()) &&
-                    password.equals(users.get(i).getPassword())){ return true; }
+                    BcryptHashing.generateHash(password).equals(users.get(i).getPassword())){
+                System.out.print("satt");
+                return true; }
         }
 
         return false;
@@ -64,7 +68,7 @@ public class UserServiceImp implements UserService{
         for (int i = 0; i < users.size(); i++) {
 
             if (username.equals(users.get(i).getUsername()) &&
-                    password.equals(users.get(i).getPassword())){
+                    BcryptHashing.generateHash(password).equals(users.get(i).getPassword())){
                 return users.get(i);
 
                  }
