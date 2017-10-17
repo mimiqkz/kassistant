@@ -32,7 +32,8 @@ public class UserServiceImp implements UserService{
     public boolean addUser(User user) {
         if (user.getPassword() != null) {
             try{
-                user.setPassword(BcryptHashing.generateHash(user.getPassword()));
+                String hashedPassword = BcryptHashing.signup(user.getPassword());
+                user.setPassword(hashedPassword);
                 userRep.save(user);
             }catch (Exception e){
                 System.out.println("hér " + e.toString());
@@ -52,7 +53,7 @@ public class UserServiceImp implements UserService{
         for (int i = 0; i < users.size(); i++) {
 
             if (username.equals(users.get(i).getUsername()) &&
-                    BcryptHashing.generateHash(password).equals(users.get(i).getPassword())){
+                    BcryptHashing.mach(password,users.get(i).getPassword())){
                 System.out.print("satt");
                 return true; }
         }
@@ -68,7 +69,7 @@ public class UserServiceImp implements UserService{
         for (int i = 0; i < users.size(); i++) {
 
             if (username.equals(users.get(i).getUsername()) &&
-                    BcryptHashing.generateHash(password).equals(users.get(i).getPassword())){
+                    BcryptHashing.mach(password,users.get(i).getPassword())){
                 return users.get(i);
 
                  }

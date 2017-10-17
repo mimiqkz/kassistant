@@ -32,7 +32,13 @@ public class Recipe {
     private Integer id; // the primary key in the recipe table
     private @SQLInjectionSafe String name; // string for the name of the recipe
     private @SQLInjectionSafe String instruction; // instruction string
-    
+
+    @ManyToOne
+    @JoinColumn(name="userCheater")
+    private User userCheater;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<User> userLiked;
     /**
     * connecting the to tables recipe and user with a many to many
      * relacion makes a table that conects the ingredients and recipes
@@ -91,5 +97,23 @@ public class Recipe {
         return String.format(
                 "Recipe[id=%d, name='%s', ingredients = '%s', instruction='%s']",
                 id, name, ingredients, instruction);
+    }
+
+
+    public User getUserCheater() {
+        return userCheater;
+    }
+
+    public void setUserCheater(User userCheater) {
+        this.userCheater = userCheater;
+    }
+
+
+    public Set<User> getUserLiked() {
+        return userLiked;
+    }
+
+    public void setUserLiked(Set<User> userLiked) {
+        this.userLiked = userLiked;
     }
 }

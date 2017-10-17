@@ -7,21 +7,20 @@ import java.util.Map;
 
 public class BcryptHashing {
 
-    static Map<String, String> DB = new HashMap<String, String>();
-    public static final String SALT = "my-salt-text";
+    public static final String SALT = "abasdfasdvs";
 
-    public static void signup(String username, String password) {
+    public static String signup(String password) {
         String saltedPassword = SALT + password;
         String hashedPassword = generateHash(saltedPassword);
-        DB.put(username, hashedPassword);
+        return hashedPassword;
     }
 
-    public static Boolean mach(String password) {
+    public static Boolean mach(String password,String dbPassword) {
         Boolean isAuthenticated;
 
-        String hashedPassword = generateHash(password);
+        String hashedPassword = generateHash(SALT + password);
 
-        if(hashedPassword.equals(password)){
+        if(hashedPassword.equals(dbPassword)){
             isAuthenticated = true;
             System.out.print("satt");
         }else{
