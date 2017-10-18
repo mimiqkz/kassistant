@@ -39,4 +39,6 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     List<Recipe> findAllByNameLikeIgnoreCase(String name);
 
+    Recipe findById(int id);
+
 }

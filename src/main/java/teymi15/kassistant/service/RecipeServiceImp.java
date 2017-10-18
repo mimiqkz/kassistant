@@ -43,6 +43,6 @@ public class RecipeServiceImp implements RecipeService {
     @Override
     @ResponseBody
     public Recipe getRecipeById(int id) {
-        return null;
+        return recipeRep.findById(id);
     }
 }
