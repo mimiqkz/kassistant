@@ -54,7 +54,7 @@ public class UserServiceImp implements UserService{
         for (int i = 0; i < users.size(); i++) {
 
             if (username.equals(users.get(i).getUsername()) &&
-                    BcryptHashing.mach(password,users.get(i).getPassword())){
+                    BcryptHashing.match(password,users.get(i).getPassword())){
                 Set<Recipe> myRecipe = users.get(i).getMyRecipes();
                 for (Recipe r: myRecipe
                      ) {
@@ -75,7 +75,7 @@ public class UserServiceImp implements UserService{
         for (int i = 0; i < users.size(); i++) {
 
             if (username.equals(users.get(i).getUsername()) &&
-                    BcryptHashing.mach(password,users.get(i).getPassword())){
+                    BcryptHashing.match(password,users.get(i).getPassword())){
                 return users.get(i);
 
                  }

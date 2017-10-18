@@ -2,20 +2,32 @@ package teymi15.kassistant.Hashing;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * Class that handle password hashing
+ */
 public class BcryptHashing {
 
     public static final String SALT = "abasdfasdvs";
 
+    /**
+     * Hashing password upon sign up
+     * @param password password
+     * @return hashed string
+     */
     public static String signup(String password) {
         String saltedPassword = SALT + password;
         String hashedPassword = generateHash(saltedPassword);
         return hashedPassword;
     }
 
-    public static Boolean mach(String password,String dbPassword) {
+    /**
+     * Check whether the password is matched
+     * @param password password
+     * @param dbPassword password stores in the database
+     * @return true if matched
+     */
+    public static Boolean match(String password, String dbPassword) {
         Boolean isAuthenticated;
 
         String hashedPassword = generateHash(SALT + password);
@@ -31,7 +43,7 @@ public class BcryptHashing {
     }
 
     /**
-     * This function
+     * This function generate the hashing
      * @param input input
      * @return hashed string
      */
