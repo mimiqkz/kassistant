@@ -33,19 +33,23 @@ public class SearchController {
     IngredientServiceImp IngredientService;
 
 
-
+    /**
+     * Get the matching recipe that contains the searched name
+     * @param name name of the recipe
+     * @return List of the recipe
+     */
     public List searchRecipeByName(String name){
         return RecipeService.getMatchingRecipe(name);
     }
 
-    public Recipe getRecipebyID(int id){
-        return RecipeService.getRecipeById(id);
-    }
-
+    /**
+     * Get the matching ingredient that contains the searched name
+     * @param name name of the ingredient
+     * @return List of the ingredient
+     */
     public List searchIngredientByName(String name){
         return IngredientService.getMatchingIngredient(name);
     }
 
-    public List getAllIngredients(){return  IngredientService.getAllIngredient();}
 
 }

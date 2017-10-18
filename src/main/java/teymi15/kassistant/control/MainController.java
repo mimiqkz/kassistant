@@ -33,7 +33,7 @@ public class MainController {
 
     SearchController searchController = new SearchController();
 
-    List<Recipe> mostPopular;
+    List<Recipe> mostPopular; //the most popular recipe
 
     List<Recipe> results;
 
@@ -100,9 +100,6 @@ public class MainController {
      */
     @RequestMapping(value="login", method = RequestMethod.GET)
     public String displayLoginPage () {return "login";}
-
-
-
 
 }
 

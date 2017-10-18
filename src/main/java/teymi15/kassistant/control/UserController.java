@@ -151,7 +151,10 @@ public class UserController {
         return loggedIn;
     }
 
-
+    /**
+     * Display the user once logged in
+     * @param model model
+     */
     public void displayLoggedInUser(Model model) {
         if(isUserLoggedIn()){
             model.addAttribute("user", getCurrentUser());

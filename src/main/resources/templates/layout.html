@@ -33,7 +33,6 @@
                     <!--/*@thymesVar id="loggedIn" type="java"*/-->
                     <li>
                         <!--/*@thymesVar id="user" type="java"*/-->
-                        <!--/*@thymesVar id="user.username" type="java"*/-->
                         <a th:if="${loggedIn}" th:href="@{/}" class="user">
                             <span class="glyphicon glyphicon-user"></span> <span th:text="${user.username}"></span></a></li>
                     <li><a th:if="${loggedIn}" th:href="@{/signout}">
@@ -48,6 +47,7 @@
     </div>
     <div th:fragment="script">
         <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+        <script src="/lib/bootstrap/bootstrap.css"></script>
     </div>
 </body>
 </html>

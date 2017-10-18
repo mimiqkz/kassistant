@@ -30,6 +30,11 @@ public class BcryptHashing {
         return isAuthenticated;
     }
 
+    /**
+     * This function
+     * @param input input
+     * @return hashed string
+     */
     public static String generateHash(String input) {
         StringBuilder hash = new StringBuilder();
 
