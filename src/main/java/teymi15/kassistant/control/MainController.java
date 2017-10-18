@@ -85,7 +85,7 @@ public class MainController {
      */
     @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
     public String selectRecipe (@PathVariable int id, Model model) {
-        //1. use id to get recipe object
+
         Recipe selected = RecipeService.getRecipeById(id);
 
         model.addAttribute("recipe", selected);

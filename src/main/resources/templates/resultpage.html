@@ -8,20 +8,47 @@
     <h1>Results</h1>
 </div>
 <div class="container">
-<table class="table table-condensed">
-    <tr>
-        <th>NAME</th>
-        <th>Instructions</th>
 
-    </tr>
     <!--/*@thymesVar id="recipeList" type="java"*/-->
-    <tr th:each="res : ${recipeList}">
+    <div class="result-table" th:each="res : ${recipeList}">
+        <div class="row row-margin-bottom">
+                <div class="col-md-5 no-padding lib-item" data-category="view">
+                    <div class="lib-panel">
+                        <div class="row box-shadow">
+                            <div class="col-md-6">
+                                <img class="lib-img-show" th:src="@{images/soup.jpg}"/>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="lib-row lib-header" th:href="@{/recipe/{id}(id=${res.id})}" th:text="${res.name}">
 
-        <td> <a th:href="@{/recipe/{id}(id=${res.id})}" th:text="${res.name}"></a></td>
-        <td th:text="${res.instruction}">Dummy</td>
-    </tr>
-</table>
+                                    <div class="lib-header-seperator"></div>
+                                </a>
+                                <div class="lib-row lib-desc" th:text="${res.instruction}">
+                                    Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="card" style="width: 20rem;" >
+                <img class="card-img-left" th:src="@{images/soup.jpg}" alt="default" />
+                <div class="card-block">
+                    <h4 class="card-title"><a th:href="@{/recipe/{id}(id=${res.id})}" th:text="${res.name}"></a></h4>
+                    <p class="card-text" th:text="${res.instruction}"/>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div> -->
+       <!-- <td> <a th:href="@{/recipe/{id}(id=${res.id})}" th:text="${res.name}"></a></td>
+
+
+
+        <td th:text="${res.instruction}">Dummy</td> -->
+    </div>
 </div>
+
+
 
 </body>
 </html>
