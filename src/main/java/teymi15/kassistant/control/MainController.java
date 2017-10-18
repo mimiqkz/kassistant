@@ -12,10 +12,13 @@ package teymi15.kassistant.control;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import teymi15.kassistant.service.RecipeServiceImp;
 
@@ -29,9 +32,10 @@ public class MainController {
     
     @Autowired
     RecipeServiceImp RecipeService;
-    UserController userController = new UserController();
 
-    SearchController searchController = new SearchController();
+  //  UserController userController = new UserController();
+
+    //SearchController searchController = new SearchController();
 
     List<Recipe> mostPopular; //the most popular recipe
 
@@ -46,7 +50,7 @@ public class MainController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayHomePage(Model model) {
-        userController.displayLoggedInUser(model);
+        //userController.displayLoggedInUser(model);
 
         return "homepage";
     }

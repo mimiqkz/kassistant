@@ -40,5 +40,13 @@ h1 {
 
 .jumbotron {
   background-color: #00bebe;
+
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 300px;
 }
 

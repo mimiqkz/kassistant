@@ -36,7 +36,8 @@
                     <li>
                         <!--/*@thymesVar id="user" type="java"*/-->
                         <a th:if="${loggedIn}" th:href="@{/}" class="user">
-                            <span class="glyphicon glyphicon-user"></span> <span th:text="${user.username}"></span></a></li>
+
+                            <span class="glyphicon glyphicon-user" th:text="${user.getUsername()}"/> </a></li>
                     <li><a th:if="${loggedIn}" th:href="@{/signout}">
                         <span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
                     <li> <a th:unless="${loggedIn}" th:href="@{/register}">

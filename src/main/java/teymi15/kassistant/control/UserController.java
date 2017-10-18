@@ -52,7 +52,7 @@ public class UserController {
     public String registrationSubmit(@ModelAttribute User user, Model model){
 
         if(userService.addUser(user)){
-            setCurrentUser(user.getUsername(), user.getPassword());
+            setCurrentUser(user);
             displayLoggedInUser(model);
             return "homepage";
 
@@ -63,10 +63,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "signout", method = RequestMethod.GET)
-    public String SingnOut(Model model){
-        setCurrentUser(null,null);
-        model.addAttribute("user", null);
-        model.addAttribute("loggedIn", false);
+    public String signOut(Model model){
+        setCurrentUser(null);
+        loggedIn = false;
+        currentUser = null;
+      //  model.addAttribute("user", null);
+       // model.addAttribute("loggedIn", false);
         return "homepage";
     }
     /**
@@ -80,16 +82,16 @@ public class UserController {
     public String login(HttpServletRequest request, Model model) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        System.out.println(username);
-        System.out.println(password);
+
 
         if (isLoginCorrect(username, password)) {
-           //If login successful set the current user
-            setCurrentUser(username, password);
+            User user = userService.getUser(username, password);
+
+            //If login successful set the current user
+            setCurrentUser(user);
             //Have to do this twice at the moment until i can
             //think of something more clever
-            model.addAttribute("user", getCurrentUser());
-            model.addAttribute("loggedIn", true);
+            displayLoggedInUser(model);
             return "homepage";
 
         } else {
@@ -99,17 +101,6 @@ public class UserController {
         return "login";
     }
 
-    /**
-     * logs the user out
-     * by clearing the loggedIn
-     * and currentuser variables
-     */
-    @RequestMapping(value = "signout")
-    public String signoutUser(){
-        loggedIn = false;
-        currentUser = null;
-        return "homepage";
-    }
 
     /**
      * checks if the login is correct
@@ -125,13 +116,11 @@ public class UserController {
     /**
      * sets the current user if he is
      * int the database
-     * @param username
-     * @param password
+     * @param user User
      */
-    public void setCurrentUser(String username, String password){
-        currentUser = userService.getUser(username, password);
+    public void setCurrentUser(User user){
+        currentUser = user;
         loggedIn = true;
-        System.out.println("This should come second. User logged in: " +  loggedIn);
     }
 
     /**
