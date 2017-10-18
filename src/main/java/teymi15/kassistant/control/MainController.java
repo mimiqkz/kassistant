@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import teymi15.kassistant.model.Recipe;
-import teymi15.kassistant.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -29,12 +28,15 @@ import teymi15.kassistant.service.RecipeServiceImp;
 public class MainController {
     
     @Autowired
-    RecipeServiceImp recipeService;
+    RecipeServiceImp RecipeService;
     UserController userController = new UserController();
 
+    SearchController searchController = new SearchController();
+
+    List<Recipe> mostPopular;
 
     List<Recipe> results;
-    SearchController searchController = new SearchController();
+
 
     /**
      * The function tells the search page to be displayed at route predefined
@@ -62,7 +64,7 @@ public class MainController {
     public String submitSearch(HttpServletRequest request, Model model) {
         String search = request.getParameter("search");
         System.out.println("Það sem ég var að searcha " + search);
-        results = recipeService.getMatchingRecipe(search);
+        results = RecipeService.getMatchingRecipe(search);
         int i = 0;
         while (i < results.size()) {
             System.out.println(results.get(i).getName() + " " + results.get(i).getId());
@@ -84,11 +86,10 @@ public class MainController {
     @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
     public String selectRecipe (@PathVariable int id, Model model) {
         //1. use id to get recipe object
-        System.out.println("ID given by view to controller " + id);
-        Recipe selected = searchController.getRecipebyID(id);
-        System.out.println("Recipe received " + selected.getName());
+        Recipe selected = RecipeService.getRecipeById(id);
+
         model.addAttribute("recipe", selected);
-        return "homepage";
+        return "recipe";
     }
 
     /**

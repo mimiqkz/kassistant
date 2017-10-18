@@ -12,6 +12,10 @@ h1 {
   color: white;
 }
 
+.navbar-default .navbar-header .navbar-brand{
+  color: white;
+}
+
 .navbar-default {
   background-color: darkcyan;
 }
