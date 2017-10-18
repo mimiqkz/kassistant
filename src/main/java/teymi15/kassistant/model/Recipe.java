@@ -34,7 +34,7 @@ public class Recipe {
     private @SQLInjectionSafe String instruction; // instruction string
 
     @ManyToOne
-    @JoinColumn(name="userCheater")
+    @JoinColumn(name="userId")
     private User userCheater;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

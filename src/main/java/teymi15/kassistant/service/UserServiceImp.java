@@ -14,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 import teymi15.kassistant.Hashing.BcryptHashing;
+import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.repository.UserRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImp implements UserService{
@@ -49,13 +51,17 @@ public class UserServiceImp implements UserService{
     @ResponseBody
     public boolean isUserInDatabase(String username, String password) {
         List<User> users = userRep.findAll();
-        System.out.print("her");
         for (int i = 0; i < users.size(); i++) {
 
             if (username.equals(users.get(i).getUsername()) &&
                     BcryptHashing.mach(password,users.get(i).getPassword())){
-                System.out.print("satt");
-                return true; }
+                Set<Recipe> myRecipe = users.get(i).getMyRecipes();
+                for (Recipe r: myRecipe
+                     ) {
+                    System.out.println(r.getName());
+                }
+                return true;
+            }
         }
 
         return false;
