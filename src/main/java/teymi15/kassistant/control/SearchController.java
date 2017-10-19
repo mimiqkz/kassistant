@@ -21,6 +21,8 @@ import teymi15.kassistant.service.RecipeServiceImp;
 
 import teymi15.kassistant.model.Recipe;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * The class searches for the correct recipe
  */
@@ -51,5 +53,17 @@ public class SearchController {
         return IngredientService.getMatchingIngredient(name);
     }
 
+    @RequestMapping(value = "create-recipe", method = RequestMethod.GET)
+    public String displayRecipeForm(HttpSession session, Model model) {
+        displayLoggedInUser(session, model);
+        return "createRecipe";
+    }
+
+    public void displayLoggedInUser(HttpSession session, Model model) {
+        if(!session.isNew()) {
+            model.addAttribute("user", session.getAttribute("user"));
+            model.addAttribute("loggedIn", true);
+        }
+    }
 
 }

@@ -1,0 +1,31 @@
+
+.profile-image {
+    height: 200px;
+    width: 200px;
+    border-radius: 15px;
+    height: 100%;
+    margin-bottom: 50px;
+}
+
+.profile-info {
+    margin-bottom: 50px;
+}
+
+.profile-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.profile-buttons > a {
+    padding: 5px;
+    margin: 15px 10px;
+    font-size: 18px;
+    border: 2px solid darkslategrey;
+    border-radius: 5px;
+
+}
+
+.profile-buttons > a:hover {
+    text-decoration: none;
+    background-color: lightseagreen;
+}

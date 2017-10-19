@@ -54,7 +54,7 @@ public interface UserService {
     /**
      * gets the user by it's name
      * @param name
-     * @return User if he whas found
+     * @return User if he was found
      */
     User getUserByName(String name);
 

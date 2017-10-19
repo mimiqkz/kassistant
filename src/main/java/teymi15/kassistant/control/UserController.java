@@ -116,4 +116,17 @@ public class UserController {
         return false;
     }
 
+    @RequestMapping(value = "user-profile", method = RequestMethod.GET)
+    public String displayUserProfile(HttpSession session, Model model){
+        displayLoggedInUser(session, model);
+        return "user-profile";
+    }
+
+    public void displayLoggedInUser(HttpSession session, Model model) {
+        if(!session.isNew()) {
+            model.addAttribute("user", session.getAttribute("user"));
+            model.addAttribute("loggedIn", true);
+        }
+    }
+
 }

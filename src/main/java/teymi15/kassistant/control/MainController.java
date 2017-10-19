@@ -34,10 +34,6 @@ public class MainController {
     @Autowired
     RecipeServiceImp RecipeService;
 
-  //  UserController userController = new UserController();
-
-    //SearchController searchController = new SearchController();
-
     List<Recipe> mostPopular; //the most popular recipe
 
     List<Recipe> results;
@@ -51,11 +47,8 @@ public class MainController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayHomePage(HttpSession session, Model model) {
-        if(!session.isNew()) {
-            model.addAttribute("user", session.getAttribute("user"));
-            model.addAttribute("loggedIn", true);
-        }
-
+        displayLoggedInUser(session, model);
+        System.out.println("Here " + session.getId());
         return "homepage";
     }
 
@@ -69,15 +62,10 @@ public class MainController {
      * @return String
      */
     @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String submitSearch(HttpServletRequest request, Model model) {
+    public String submitSearch(HttpServletRequest request, HttpSession session, Model model) {
         String search = request.getParameter("search");
-        System.out.println("Það sem ég var að searcha " + search);
         results = RecipeService.getMatchingRecipe(search);
-        int i = 0;
-        while (i < results.size()) {
-            System.out.println(results.get(i).getName() + " " + results.get(i).getId());
-            i++;
-        }
+        displayLoggedInUser(session, model);
         model.addAttribute("recipeList", results);
         return "resultpage";
     }
@@ -92,10 +80,9 @@ public class MainController {
      * @return String
      */
     @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
-    public String selectRecipe (@PathVariable int id, Model model) {
-
+    public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
         Recipe selected = RecipeService.getRecipeById(id);
-
+        displayLoggedInUser(session, model);
         model.addAttribute("recipe", selected);
         return "recipe";
     }
@@ -108,6 +95,13 @@ public class MainController {
      */
     @RequestMapping(value="login", method = RequestMethod.GET)
     public String displayLoginPage () {return "login";}
+
+    public void displayLoggedInUser(HttpSession session, Model model) {
+        if(!session.isNew()) {
+            model.addAttribute("user", session.getAttribute("user"));
+            model.addAttribute("loggedIn", true);
+        }
+    }
 
 }
 
