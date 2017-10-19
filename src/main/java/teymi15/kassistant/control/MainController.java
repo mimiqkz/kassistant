@@ -16,6 +16,7 @@ import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Set;
 
@@ -49,8 +50,11 @@ public class MainController {
      * @return String
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String displayHomePage(Model model) {
-        //userController.displayLoggedInUser(model);
+    public String displayHomePage(HttpSession session, Model model) {
+        if(!session.isNew()) {
+            model.addAttribute("user", session.getAttribute("user"));
+            model.addAttribute("loggedIn", true);
+        }
 
         return "homepage";
     }

@@ -21,6 +21,7 @@ import teymi15.kassistant.service.UserService;
 import teymi15.kassistant.service.UserServiceImp;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * The class manages user data
@@ -32,7 +33,6 @@ public class UserController {
     UserServiceImp userService;
 
     private User currentUser;
-    private Boolean loggedIn = false;
 
     @GetMapping("register")
     public String registrationForm(Model model){
@@ -49,11 +49,13 @@ public class UserController {
      */
 
     @PostMapping("register")
-    public String registrationSubmit(@ModelAttribute User user, Model model){
+    public String registrationSubmit(HttpSession session,@ModelAttribute User user, Model model){
 
         if(userService.addUser(user)){
-            setCurrentUser(user);
-            displayLoggedInUser(model);
+            session.setAttribute("user",user.getUsername());
+            session.setAttribute("password",user.getPassword());
+            model.addAttribute("user", user.getUsername());
+            model.addAttribute("loggedIn", true);
             return "homepage";
 
         }else{
@@ -63,12 +65,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "signout", method = RequestMethod.GET)
-    public String signOut(Model model){
-        setCurrentUser(null);
-        loggedIn = false;
-        currentUser = null;
-      //  model.addAttribute("user", null);
-       // model.addAttribute("loggedIn", false);
+    public String signOut(HttpSession session,Model model){
+        session.setAttribute("user",null);
+        session.setAttribute("password",null);
+        model.addAttribute("user", null);
+        model.addAttribute("loggedIn", false);
         return "homepage";
     }
     /**
@@ -79,7 +80,7 @@ public class UserController {
      * @return String
      */
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(HttpServletRequest request, Model model) {
+    public String login(HttpSession session, HttpServletRequest request, Model model) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -88,10 +89,12 @@ public class UserController {
             User user = userService.getUser(username, password);
 
             //If login successful set the current user
-            setCurrentUser(user);
+            session.setAttribute("user",username);
+            session.setAttribute("password", password);
             //Have to do this twice at the moment until i can
             //think of something more clever
-            displayLoggedInUser(model);
+            model.addAttribute("user", username);
+            model.addAttribute("loggedIn", true);
             return "homepage";
 
         } else {
@@ -113,41 +116,4 @@ public class UserController {
         return false;
     }
 
-    /**
-     * sets the current user if he is
-     * int the database
-     * @param user User
-     */
-    public void setCurrentUser(User user){
-        currentUser = user;
-        loggedIn = true;
-    }
-
-    /**
-     * Gets the current user
-     * @return currentUser
-     */
-    public User getCurrentUser(){
-        return currentUser;
-    }
-
-
-
-    /**
-     * @return loggedIn
-     */
-    public Boolean isUserLoggedIn(){
-        return loggedIn;
-    }
-
-    /**
-     * Display the user once logged in
-     * @param model model
-     */
-    public void displayLoggedInUser(Model model) {
-        if(isUserLoggedIn()){
-            model.addAttribute("user", getCurrentUser());
-            model.addAttribute("loggedIn", true);
-        }
-    }
 }
