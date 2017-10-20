@@ -12,6 +12,7 @@ package teymi15.kassistant.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpSession;
 /**
  * The class searches for the correct recipe
  */
+@Controller
 public class SearchController {
 
     @Autowired
@@ -57,6 +59,11 @@ public class SearchController {
     public String displayRecipeForm(HttpSession session, Model model) {
         displayLoggedInUser(session, model);
         return "createRecipe";
+    }
+    @RequestMapping(value = "submit-recipe")
+    public String submitRecipe(HttpSession session, Model model) {
+        displayLoggedInUser(session, model);
+        return "homepage";
     }
 
     public void displayLoggedInUser(HttpSession session, Model model) {

@@ -32,8 +32,6 @@ public class UserController {
     @Autowired
     UserServiceImp userService;
 
-    private User currentUser;
-
     @GetMapping("register")
     public String registrationForm(Model model){
         model.addAttribute("user", new User());
