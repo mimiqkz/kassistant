@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import teymi15.kassistant.service.IngredientService;
+import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.RecipeServiceImp;
 
 /**
@@ -34,9 +36,11 @@ public class MainController {
     @Autowired
     RecipeServiceImp RecipeService;
 
+    @Autowired
+    IngredientServiceImp IngredientService;
+
     List<Recipe> mostPopular; //the most popular recipe
 
-    List<Recipe> results;
 
 
     /**
@@ -64,9 +68,16 @@ public class MainController {
     @RequestMapping(value = "search", method = RequestMethod.POST)
     public String submitSearch(HttpServletRequest request, HttpSession session, Model model) {
         String search = request.getParameter("search");
-        results = RecipeService.getMatchingRecipe(search);
+        String option = request.getParameter("select-option");
         displayLoggedInUser(session, model);
-        model.addAttribute("recipeList", results);
+        if(option.equals("recipe")) {
+            List<Recipe> recipes = RecipeService.getMatchingRecipe(search);
+            model.addAttribute("recipeList", recipes);
+        }else {
+            List<Ingredient> ingredients = IngredientService.getMatchingIngredient(search);
+            model.addAttribute("recipeList", ingredients);
+        }
+
         return "resultpage";
     }
 

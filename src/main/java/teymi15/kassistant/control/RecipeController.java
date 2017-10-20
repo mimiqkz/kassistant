@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
  * The class searches for the correct recipe
  */
 @Controller
-public class SearchController {
+public class RecipeController {
 
     @Autowired
     RecipeServiceImp RecipeService;
