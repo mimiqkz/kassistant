@@ -1,6 +1,10 @@
 package teymi15.kassistant.model;
 
+import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
+
 import javax.persistence.*;
+import java.util.Set;
+
 /**
  * user model class
  * makes the user table in the database
@@ -15,10 +19,16 @@ public class User {
     @Column(name = "userId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String password; // user password string that holds the password
-    private String username; // user name e.g. peat12
-    private String name; // name of the user e.g. pétur pétursson
+    private @SQLInjectionSafe String password; // user password string that holds the password
+    private @SQLInjectionSafe String username; // user name e.g. peat12
+    private @SQLInjectionSafe String name; // name of the user e.g. pétur pétursson
     private int age; //age of the user
+
+    @OneToMany(mappedBy = "userCheater")
+    private Set<Recipe> myRecipes;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Recipe> likedRecipes;
 
     public User(){}
     public User(String password, String username, String name, int age){
@@ -49,7 +59,7 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "username")
+    @Column(name = "username",unique = true)
     public String getUsername() {
         return username;
     }
@@ -74,5 +84,21 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Set<Recipe> getMyRecipes() {
+        return myRecipes;
+    }
+
+    public void setMyRecipes(Set<Recipe> myRecipes) {
+        this.myRecipes = myRecipes;
+    }
+
+    public Set<Recipe> getLikedRecipes() {
+        return likedRecipes;
+    }
+
+    public void setLikedRecipes(Set<Recipe> likedRecipes) {
+        this.likedRecipes = likedRecipes;
     }
 }

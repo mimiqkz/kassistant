@@ -13,10 +13,13 @@ package teymi15.kassistant.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
+import teymi15.kassistant.Hashing.BcryptHashing;
+import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.repository.UserRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImp implements UserService{
@@ -28,17 +31,19 @@ public class UserServiceImp implements UserService{
 
     @Override
     @ResponseBody
-    public String addUser(String password,String username, String name, int age) {
-        String userId = "";
-        try {
-            User user = new User(password, username,name,age);
-            userRep.save(user);
-            userId = String.valueOf(user.getId());
+    public boolean addUser(User user) {
+        if (user.getPassword() != null) {
+            try{
+                String hashedPassword = BcryptHashing.signup(user.getPassword());
+                user.setPassword(hashedPassword);
+                userRep.save(user);
+            }catch (Exception e){
+                System.out.println("hér " + e.toString());
+            }
+
+            return true;
         }
-        catch (Exception ex) {
-            return "Error creating the user: " + ex.toString();
-        }
-        return "User succesfully created with id = " + userId;
+        return false;
     }
 
 
@@ -46,11 +51,17 @@ public class UserServiceImp implements UserService{
     @ResponseBody
     public boolean isUserInDatabase(String username, String password) {
         List<User> users = userRep.findAll();
-
         for (int i = 0; i < users.size(); i++) {
 
             if (username.equals(users.get(i).getUsername()) &&
-                    password.equals(users.get(i).getPassword())){ return true; }
+                    BcryptHashing.match(password,users.get(i).getPassword())){
+                Set<Recipe> myRecipe = users.get(i).getMyRecipes();
+                for (Recipe r: myRecipe
+                     ) {
+                    System.out.println(r.getName());
+                }
+                return true;
+            }
         }
 
         return false;
@@ -64,7 +75,7 @@ public class UserServiceImp implements UserService{
         for (int i = 0; i < users.size(); i++) {
 
             if (username.equals(users.get(i).getUsername()) &&
-                    password.equals(users.get(i).getPassword())){
+                    BcryptHashing.match(password,users.get(i).getPassword())){
                 return users.get(i);
 
                  }
@@ -74,32 +85,31 @@ public class UserServiceImp implements UserService{
     }
     @Override
     @ResponseBody
-    public String delete(int id){
+    public Boolean delete(int id){
         try {
             User user = new User(id);
             userRep.delete(user);
         }
         catch (Exception ex) {
-            return "Error deleting the user:" + ex.toString();
+            return false;
         }
-        return "User succesfully deleted!";
+        return true;
     }
     @Override
     @ResponseBody
-    public String getUserByName(String name){
-        String userId = "";
+    public User getUserByName(String name){
+        User user = new User();
         try {
-            User user = userRep.findByName(name);
-            userId = String.valueOf(user.getId());
+            user = userRep.findByName(name);
         }
         catch (Exception ex) {
-            return "User not found";
+            return null;
         }
-        return "The user id is: " + userId;
+        return user;
     }
     @Override
     @ResponseBody
-    public  String updateUser(Long id,int age, String userName, String name,String password){
+    public boolean updateUser(Long id, int age, String userName, String name, String password){
         try {
             User user = userRep.findOne(id);
             user.setName(name);
@@ -109,8 +119,8 @@ public class UserServiceImp implements UserService{
             userRep.save(user);
         }
         catch (Exception ex) {
-            return "Error updating the user: " + ex.toString();
+            return false;
         }
-        return "User succesfully updated!";
+        return true;
     }
 }

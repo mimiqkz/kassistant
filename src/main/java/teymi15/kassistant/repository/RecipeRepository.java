@@ -13,6 +13,7 @@ package teymi15.kassistant.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import teymi15.kassistant.model.Recipe;
+import teymi15.kassistant.model.User;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
  * The repository for recipe
  */
 @Transactional
-public interface RecipeRepository extends CrudRepository<Recipe, Long> {
+public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     /**
      * get the list of all recipe
@@ -38,5 +39,6 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 
     List<Recipe> findAllByNameLikeIgnoreCase(String name);
 
+    Recipe findById(int id);
 
 }

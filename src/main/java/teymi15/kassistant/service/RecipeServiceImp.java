@@ -38,10 +38,11 @@ public class RecipeServiceImp implements RecipeService {
         return recipeRep.findAllByNameLikeIgnoreCase("%" +name+ "%");
     }
 
+
     //find recipe by its id
     @Override
     @ResponseBody
     public Recipe getRecipeById(int id) {
-        return null;
+        return recipeRep.findById(id);
     }
 }

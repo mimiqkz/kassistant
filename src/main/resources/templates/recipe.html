@@ -1,16 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head lang="en"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
 <body>
+    <div th:replace="layout :: navigation-top-bar"></div>
 
-<a th:href="@{/}">Home Page</a>
+    <div class="page-header">
+        <h1  th:text=" ${recipe.name}"></h1>
+    </div>
+    <div class="container">
+        <div class="media">
+            <div class="media-left">
+                <div class="media-object"/>
+            </div>
+            <div class="media-body">
+
+                <h4 class="media-heading" th:text=" ${recipe.name}"></h4>
+
+                <ul th:text="Ingredients">
+                    <li th:each="ingredient : ${recipe.ingredients}"/>
+                </ul>
+
+                <p th:text=" ${recipe.instruction}">Lorem ipsum...</p>
+            </div>
+        </div>
 
 
-<h1><span th:text=" ${recipe.name}"></span> </h1>
 
-<p> <span th:text=" ${recipe.name}"></span></p>
-<p> <span th:text=" ${recipe.instruction}"></span></p>
+       <!-- <div class="result-table" th:each="res : ${recipeList}"> -->
 
+    </div>
+
+
+
+
+    <img th:src="@{images/soup.jpg}"/>
 
 
 </body>

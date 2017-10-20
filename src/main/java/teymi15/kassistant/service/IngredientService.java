@@ -33,10 +33,22 @@ public interface IngredientService {
      */
     List<Ingredient> getMatchingIngredient(String name);
 
+    /**
+     * Get the ingredient by the id
+     * @param id ingredient id
+     * @return the ingredient
+     */
     Ingredient getIngredientById(int id);
 
+    /**
+     * adding all the information of the recipe
+     */
     void addAllData();
 
+    /**
+     * Getting all the ingredient
+     * @return list of ingredient
+     */
     List<Ingredient> getAllIngredient();
 
 }

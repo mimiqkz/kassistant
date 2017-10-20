@@ -12,16 +12,23 @@ package teymi15.kassistant.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.RecipeServiceImp;
 
 import teymi15.kassistant.model.Recipe;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * The class searches for the correct recipe
  */
+@Controller
 public class SearchController {
-
 
     @Autowired
     RecipeServiceImp RecipeService;
@@ -29,17 +36,41 @@ public class SearchController {
     @Autowired
     IngredientServiceImp IngredientService;
 
+
+    /**
+     * Get the matching recipe that contains the searched name
+     * @param name name of the recipe
+     * @return List of the recipe
+     */
     public List searchRecipeByName(String name){
         return RecipeService.getMatchingRecipe(name);
     }
 
-    public Recipe getRecipebyID(int id){
-        return RecipeService.getRecipeById(id);
-    }
+    /**
+     * Get the matching ingredient that contains the searched name
+     * @param name name of the ingredient
+     * @return List of the ingredient
+     */
     public List searchIngredientByName(String name){
         return IngredientService.getMatchingIngredient(name);
     }
 
-    public List getAllIngredients(){return  IngredientService.getAllIngredient();}
+    @RequestMapping(value = "create-recipe", method = RequestMethod.GET)
+    public String displayRecipeForm(HttpSession session, Model model) {
+        displayLoggedInUser(session, model);
+        return "createRecipe";
+    }
+    @RequestMapping(value = "submit-recipe")
+    public String submitRecipe(HttpSession session, Model model) {
+        displayLoggedInUser(session, model);
+        return "homepage";
+    }
+
+    public void displayLoggedInUser(HttpSession session, Model model) {
+        if(!session.isNew()) {
+            model.addAttribute("user", session.getAttribute("user"));
+            model.addAttribute("loggedIn", true);
+        }
+    }
 
 }

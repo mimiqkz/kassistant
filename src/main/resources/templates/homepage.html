@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head lang="en"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
 <body>
-    <div class ="navbar">
-    <a th:href="@{/}" class="menu-item">Home Page</a>
-    <a th:if="${loggedIn}" th:href="@{/}" class="user" th:text="'User: ' + ${user.username}">LOGGED IN</a>
-    <a th:if="${loggedIn}" th:href="@{/signout}">Sign out</a>
-    <a th:unless="${loggedIn}" th:href="@{/login}"> Log in</a>
-    <a th:unless="${loggedIn}" th:href="@{/register}">Register</a>
+
+    <div th:replace="layout :: navigation-top-bar"></div>
+
+    <div class="container--header">
+            <h1>Kitchen Assistant </h1>
     </div>
 
-    <h1>Kitchen Assistant </h1>
-    <h2>What do you want to cook?</h2>
-    <form method="post" th:action="@{/search}">
-        <input type="text" name="search" size="50" placeholder="Hummus, Indian, gluten-free..." />
-        <input type="submit" value="Search!" />
-    </form>
 
+    <div class = "container">
+        <div class="jumbotron">
+            <h2>Here we can have a bunch of recipes on a side scroller</h2>
+        </div>
+        <div class="jumbotron">
+            <h2>Here we can have a bunch of categories that open up a list of recipes</h2>
+        </div>
+
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
 </body>
 </html>

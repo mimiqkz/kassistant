@@ -1,11 +1,12 @@
 package teymi15.kassistant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.repository.IngredientRepository;
 
 import java.util.List;
-
+@Service
 public class IngredientServiceImp implements IngredientService{
 
     @Autowired

@@ -1,28 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head lang="en"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
 <body>
+<div th:replace="layout :: navigation-top-bar"></div>
 
-<a th:href="@{/}">Home Page</a>
+<div class="page-header">
+    <h1>Results</h1>
+</div>
+<div class="container">
+    <!--/*@thymesVar id="recipeList" type="java"*/-->
+    <div class="result-table" th:each="res : ${recipeList}">
+        <div class="row row-margin-bottom">
+                <div class="col-md-5 no-padding lib-item" data-category="view">
+                    <div class="lib-panel">
+                        <div class="row box-shadow">
+                            <div class="col-md-6">
+                                <img class="lib-img-show" th:src="@{images/soup.jpg}"/>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="lib-row lib-header" th:href="@{/recipe/{id}(id=${res.id})}" th:text="${res.name}">
 
+                                    <div class="lib-header-seperator"></div>
+                                </a>
+                                <div class="lib-row lib-desc" th:text="${res.instruction}">
+                                    Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    </div>
 
-<form method="post" th:action="@{/search}">
-        <input type="text" name="search" size="50" placeholder="Hummus, Indian, gluten-free..." />
-       <input type="submit" value="Search!" />
-    </form>
-
-    <table>
-        <tr>
-            <th>NAME</th>
-            <th>Instructions</th>
-
-        </tr>
-        <tr th:each="res : ${recipeList}">
-
-            <td> <a th:href="@{/recipe/{id}/details(id=${res.getID()})}" th:text="${res.name}"></a></td>
-            <td th:text="${res.instruction}">Dummy</td>
-        </tr>
-    </table>
+</div>
 
 
 

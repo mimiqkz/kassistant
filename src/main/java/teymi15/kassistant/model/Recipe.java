@@ -11,6 +11,8 @@ package teymi15.kassistant.model;
  */
 
 
+import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -27,37 +29,40 @@ public class Recipe {
     @Id
     @Column(name = "recipeId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // the primary key in the recipe table
-    private String name; // string for the name of the recipe
-    private String instruction; // instruction string
+    private Integer id; // the primary key in the recipe table
+    private @SQLInjectionSafe String name; // string for the name of the recipe
+    private @SQLInjectionSafe String instruction; // instruction string
+
+    @ManyToOne
+    @JoinColumn(name="userId")
+    private User userCheater;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<User> userLiked;
     /**
     * connecting the to tables recipe and user with a many to many
      * relacion makes a table that conects the ingredients and recipes
     * */
+    
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "ringridients",joinColumns = {
-            @JoinColumn(name = "recipeId",nullable = false,updatable = false)
-    }, inverseJoinColumns = { @JoinColumn(name = "ingredientId",
-            nullable = false, updatable = false)
-    })
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     public Recipe() {}
-    public Recipe(String name,String instruction,Set ingredients,int id){
+    public Recipe(String name, String instruction, Set ingredients, Integer id){
         this.ingredients = ingredients;
         this.name = name;
         this.instruction= instruction;
         this.id = id;
     }
+    
     public int getId() {
-        return id;
+        return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -66,7 +71,6 @@ public class Recipe {
         this.name = name;
     }
 
-    @Column(name = "instruction")
     public String getInstruction() {
         return instruction;
     }
@@ -93,5 +97,23 @@ public class Recipe {
         return String.format(
                 "Recipe[id=%d, name='%s', ingredients = '%s', instruction='%s']",
                 id, name, ingredients, instruction);
+    }
+
+
+    public User getUserCheater() {
+        return userCheater;
+    }
+
+    public void setUserCheater(User userCheater) {
+        this.userCheater = userCheater;
+    }
+
+
+    public Set<User> getUserLiked() {
+        return userLiked;
+    }
+
+    public void setUserLiked(Set<User> userLiked) {
+        this.userLiked = userLiked;
     }
 }

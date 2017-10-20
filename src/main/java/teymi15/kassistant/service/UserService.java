@@ -25,13 +25,10 @@ public interface UserService {
 
     /**
      * add user
-     * @param password password
-     * @param username username
-     * @param name name
-     * @param age age
-     * @return String
+     * @param  user
+     * @return void
      */
-    String addUser(String password,String username, String name, int age);
+    boolean addUser(User user);
 
     /**
      * Returns true if user is in repository, false if not
@@ -47,11 +44,30 @@ public interface UserService {
      */
     User getUser(String username, String password);
 
-    String delete(int id);
+    /**
+     * deletes the user
+     * @param id
+     * @return boolean on the success
+     */
+    Boolean delete(int id);
 
-    String getUserByName(String name);
+    /**
+     * gets the user by it's name
+     * @param name
+     * @return User if he was found
+     */
+    User getUserByName(String name);
 
-    String updateUser(Long id,int age, String userName, String name,String password);
+    /**
+     * updates the user
+     * @param id
+     * @param age
+     * @param userName
+     * @param name
+     * @param password
+     * @return true if success else false
+     */
+    boolean updateUser(Long id,int age, String userName, String name,String password);
 
 
 
