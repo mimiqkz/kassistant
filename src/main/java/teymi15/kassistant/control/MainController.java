@@ -52,7 +52,6 @@ public class MainController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayHomePage(HttpSession session, Model model) {
         displayLoggedInUser(session, model);
-        System.out.println("Here " + session.getId());
         return "homepage";
     }
 

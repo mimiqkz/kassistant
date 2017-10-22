@@ -14,9 +14,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import teymi15.kassistant.model.User;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.RecipeServiceImp;
 
@@ -57,12 +59,14 @@ public class RecipeController {
 
     @RequestMapping(value = "create-recipe", method = RequestMethod.GET)
     public String displayRecipeForm(HttpSession session, Model model) {
+        model.addAttribute("recipe", new Recipe());
         displayLoggedInUser(session, model);
         return "createRecipe";
     }
-    @RequestMapping(value = "submit-recipe")
-    public String submitRecipe(HttpSession session, Model model) {
+    @RequestMapping(value = "create-recipe", method = RequestMethod.POST)
+    public String submitRecipe(HttpSession session, @ModelAttribute Recipe recipe, Model model) {
         displayLoggedInUser(session, model);
+        System.out.println(recipe.getName());
         return "homepage";
     }
 

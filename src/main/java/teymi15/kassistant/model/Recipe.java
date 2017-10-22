@@ -54,6 +54,10 @@ public class Recipe {
         this.instruction= instruction;
         this.id = id;
     }
+    public Recipe(String name, String instruction){
+        this.name = name;
+        this.instruction= instruction;
+    }
     
     public int getId() {
         return this.id;
@@ -63,6 +67,7 @@ public class Recipe {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -71,6 +76,7 @@ public class Recipe {
         this.name = name;
     }
 
+    @Column(name = "instruction")
     public String getInstruction() {
         return instruction;
     }
@@ -79,7 +85,7 @@ public class Recipe {
         this.instruction = instruction;
     }
 
-
+    @Column(name = "ingredients")
     public Set<Ingredient> getIngredients() {
         return ingredients;
     }
@@ -99,7 +105,7 @@ public class Recipe {
                 id, name, ingredients, instruction);
     }
 
-
+    @Column(name = "userCreater")
     public User getUserCheater() {
         return userCheater;
     }
@@ -108,7 +114,7 @@ public class Recipe {
         this.userCheater = userCheater;
     }
 
-
+    @Column(name = "userLiked")
     public Set<User> getUserLiked() {
         return userLiked;
     }
