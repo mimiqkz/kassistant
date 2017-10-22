@@ -39,9 +39,6 @@ public class MainController {
     @Autowired
     IngredientServiceImp IngredientService;
 
-    List<Recipe> mostPopular; //the most popular recipe
-
-
 
     /**
      * The function tells the search page to be displayed at route predefined
@@ -71,10 +68,11 @@ public class MainController {
         displayLoggedInUser(session, model);
         if(option.equals("recipe")) {
             List<Recipe> recipes = RecipeService.getMatchingRecipe(search);
-            model.addAttribute("recipeList", recipes);
-        }else {
+            model.addAttribute("resultList", recipes);
+            model.addAttribute("isRecipe", true);
+        } else {
             List<Ingredient> ingredients = IngredientService.getMatchingIngredient(search);
-            model.addAttribute("recipeList", ingredients);
+            model.addAttribute("resultsList", ingredients);
         }
 
         return "resultpage";

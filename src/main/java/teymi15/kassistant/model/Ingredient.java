@@ -33,7 +33,7 @@ public class Ingredient {
     private @SQLInjectionSafe String store; //The name of the store
 
     //many to many connection between the recipes and ingredients
-    //mapeped by the Set ingerdients in the Recipe controler
+    //mapped by the Set ingredients in the Recipe controller
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Recipe> recipes = new HashSet<>();
 

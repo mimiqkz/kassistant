@@ -9,7 +9,7 @@
 </div>
 <div class="container">
     <!--/*@thymesVar id="recipeList" type="java"*/-->
-    <div class="result-table" th:each="res : ${recipeList}">
+    <div class="result-table" th:each="results : ${resultsList}">
         <div class="row row-margin-bottom">
                 <div class="col-md-5 no-padding lib-item" data-category="view">
                     <div class="lib-panel">
@@ -18,11 +18,16 @@
                                 <img class="lib-img-show" th:src="@{images/soup.jpg}"/>
                             </div>
                             <div class="col-md-6">
-                                <a class="lib-row lib-header" th:href="@{/recipe/{id}(id=${res.id})}" th:text="${res.name}">
-
+                                <!-- For Recipes -->
+                                <a th:if="${isRecipe}" class="lib-row lib-header" th:href="@{/recipe/{id}(id=${results.id})}" th:text="${results.name}">
                                     <div class="lib-header-seperator"></div>
                                 </a>
-                                <div class="lib-row lib-desc" th:text="${res.instruction}">
+                                <!-- For Ingredients -->
+                                <a th:unless="${isRecipe}" class="lib-row lib-header" th:href="@{/recipe/{id}(id=${results.getID()})}" th:text="${results.name}">
+                                    <div class="lib-header-seperator"></div>
+                                </a>
+
+                                <div th:if="${isRecipe}" class="lib-row lib-desc" th:text="${results.instruction}">
                                     Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
                                 </div>
                             </div>
