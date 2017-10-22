@@ -76,27 +76,24 @@ public class RecipeController {
     }
 
 
-    /**
-     * Get the matching ingredient that contains the searched name
-     * @param name name of the ingredient
-     * @return List of the ingredient
-     */
-    /*
-    public List searchIngredientByName(String name){
-        return IngredientService.getMatchingIngredient(name);
-    }
-*/
+
 
     @RequestMapping(value = "create-recipe", method = RequestMethod.GET)
     public String displayRecipeForm(HttpSession session, Model model) {
-        model.addAttribute("recipe", new Recipe());
+        List <Ingredient> ingredients = IngredientService.getAllIngredient();
+        model.addAttribute("ingredients",ingredients);
         displayLoggedInUser(session, model);
         return "createRecipe";
     }
     @RequestMapping(value = "create-recipe", method = RequestMethod.POST)
-    public String submitRecipe(HttpSession session, @ModelAttribute Recipe recipe, Model model) {
+    public String submitRecipe(HttpSession session,HttpServletRequest request, Model model) {
+        String name = request.getParameter("name");
+        String instruction = request.getParameter("instruction");
+        String ingredients = request.getParameter("ingredients");
+        String [] splitIngredients = ingredients.split("\\s+");
+        Recipe recipe = new Recipe(name,instruction);
         displayLoggedInUser(session, model);
-        System.out.println(recipe.getName());
+        
         return "homepage";
     }
 

@@ -18,21 +18,25 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" th:feild="*{name}" placeholder="Enter desired recipe name"/>
+                        <input type="text" name="name" class="form-control" th:feild="*{name}" placeholder="Enter desired recipe name"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">Instruction:</label>
                     <div class="col-sm-10">
-
-                        <textarea class="form-control" rows="8" th:feild="*{instruction}"></textarea>
+                        <textarea class="form-control" name="instruction" rows="8" th:feild="*{instruction}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">Incidents:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter ingredients"/>
+                        <input type="text" class="form-control" name="ingredients" placeholder="Enter ingredients"/>
                     </div>
+                </div>
+                <div th:if="${ingredients != null}">
+                    <ul>
+                        <li th:each="item : ${ingredients}" th:text="${item.getName()}"></li>
+                    </ul>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
@@ -40,8 +44,6 @@
                         <input type="reset" class="btn btn-default" value="Reset" />
                     </div>
                 </div>
-                   <!-- <a th:href="@{/submit-recipe}" class="btn btn-info"> Create Recipe</a> -->
-
             </form>
         </div>
     </div>

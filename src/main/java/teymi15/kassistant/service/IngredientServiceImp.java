@@ -34,6 +34,7 @@ public class IngredientServiceImp implements IngredientService{
 
     @Override
     public List<Ingredient> getAllIngredient() {
-        return null;
+
+        return ingredientRepository.findAll();
     }
 }
