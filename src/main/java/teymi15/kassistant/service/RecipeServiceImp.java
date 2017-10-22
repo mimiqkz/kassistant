@@ -27,8 +27,13 @@ public class RecipeServiceImp implements RecipeService {
 
 
     @Override
+    @ResponseBody
     public void addRecipe(Recipe k) {
-        recipeRep.save(k);
+        try{
+            recipeRep.save(k);
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     //search for matching recipe by name

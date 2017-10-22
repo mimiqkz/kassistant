@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Transactional
-public interface IngredientRepository extends CrudRepository<Ingredient, Integer> {
+public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
 
     List<Ingredient> findAll();
 

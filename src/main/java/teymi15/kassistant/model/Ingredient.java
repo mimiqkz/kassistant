@@ -1,5 +1,6 @@
 package teymi15.kassistant.model;
 
+import org.hibernate.annotations.GeneratorType;
 import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
 
 import javax.persistence.*;
@@ -26,7 +27,8 @@ public class Ingredient {
     //database
     @Id
     @Column(name = "ingredientId")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private double price; //Using different currency
     private @SQLInjectionSafe String name; //Name of the ingredient e.g cherry tomato, apple etc.
     private @SQLInjectionSafe String location; //Location of the store e.g Granda, Kringlan etc

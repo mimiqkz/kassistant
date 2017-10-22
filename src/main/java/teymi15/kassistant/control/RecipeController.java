@@ -10,6 +10,7 @@ package teymi15.kassistant.control;
  * @since   2017-09-20
  */
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.RecipeServiceImp;
 
 import teymi15.kassistant.model.Recipe;
+import teymi15.kassistant.service.UserServiceImp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,6 +41,9 @@ public class RecipeController {
 
     @Autowired
     IngredientServiceImp IngredientService;
+
+    @Autowired
+    UserServiceImp userServiceImp;
 
 
     /**
@@ -89,11 +94,21 @@ public class RecipeController {
     public String submitRecipe(HttpSession session,HttpServletRequest request, Model model) {
         String name = request.getParameter("name");
         String instruction = request.getParameter("instruction");
-        String ingredients = request.getParameter("ingredients");
-        String [] splitIngredients = ingredients.split("\\s+");
+        String ingredients1 = request.getParameter("ingredients");
+        String [] splitIngredients = ingredients1.split("\\s+");
         Recipe recipe = new Recipe(name,instruction);
+        List<Ingredient> ingredients = IngredientService.getAllMacingIngredients(splitIngredients);
+        for (Ingredient i: ingredients
+             ) {
+            recipe.addIngredients(i);
+            System.out.println(i.getName());
+        }
+
+        String s = session.getAttribute("user").toString();
+        recipe.setUserCheater(userServiceImp.getUserByName(s));
+        RecipeService.addRecipe(recipe);
         displayLoggedInUser(session, model);
-        
+
         return "homepage";
     }
 

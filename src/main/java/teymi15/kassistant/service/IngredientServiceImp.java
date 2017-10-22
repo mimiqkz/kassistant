@@ -1,7 +1,9 @@
 package teymi15.kassistant.service;
 
+import org.codehaus.groovy.runtime.ArrayUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.ArrayUtils;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.repository.IngredientRepository;
 
@@ -36,5 +38,21 @@ public class IngredientServiceImp implements IngredientService{
     public List<Ingredient> getAllIngredient() {
 
         return ingredientRepository.findAll();
+    }
+
+    @Override
+    public List<Ingredient> getAllMacingIngredients(String[] names) {
+        List<Ingredient> maching = getAllIngredient();
+        for(int i = 0; i<maching.size();i++){
+            Ingredient ingredient = maching.get(i);
+            for(int j = 0;j<names.length;j++){
+                if(ingredient.getName().equals(names[j])){
+
+                }else{
+                    maching.remove(ingredient);
+                }
+            }
+        }
+        return maching;
     }
 }
