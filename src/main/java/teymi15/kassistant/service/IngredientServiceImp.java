@@ -24,7 +24,7 @@ public class IngredientServiceImp implements IngredientService{
 
     @Override
     public Ingredient getIngredientById(int id) {
-        return null;
+        return ingredientRepository.findById(id);
     }
 
     @Override

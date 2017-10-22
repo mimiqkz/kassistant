@@ -23,7 +23,7 @@
                                     <div class="lib-header-seperator"></div>
                                 </a>
                                 <!-- For Ingredients -->
-                                <a th:unless="${isRecipe}" class="lib-row lib-header" th:href="@{/recipe/{id}(id=${results.getID()})}" th:text="${results.name}">
+                                <a th:unless="${isRecipe}" class="lib-row lib-header" th:href="@{/ingredient/{id}(id=${results.getID()})}" th:text="${results.name}">
                                     <div class="lib-header-seperator"></div>
                                 </a>
 

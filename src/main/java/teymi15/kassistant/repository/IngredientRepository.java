@@ -18,4 +18,7 @@ public interface IngredientRepository extends CrudRepository<Ingredient, Integer
     List<Ingredient> findAllByNameLikeIgnoreCase(String name);
 
     Ingredient save(Ingredient ingredient);
+
+    Ingredient findById(int id);
+
 }
