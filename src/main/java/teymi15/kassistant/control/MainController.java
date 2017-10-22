@@ -53,31 +53,6 @@ public class MainController {
     }
 
 
-    /**
-     * The function returns a string with the route which should be rendered. This
-     *  is initiated when the user submits his/her input. The input from the user
-     *  should then be displayed on the result page.
-     * @param request getting request from the page
-     * @param model model
-     * @return String
-     */
-    @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String submitSearch(HttpServletRequest request, HttpSession session, Model model) {
-        String search = request.getParameter("search");
-        String option = request.getParameter("select-option");
-        displayLoggedInUser(session, model);
-        if(option.equals("recipe")) {
-            List<Recipe> recipes = RecipeService.getMatchingRecipe(search);
-            model.addAttribute("resultList", recipes);
-            model.addAttribute("isRecipe", true);
-        } else {
-            List<Ingredient> ingredients = IngredientService.getMatchingIngredient(search);
-            model.addAttribute("resultsList", ingredients);
-        }
-
-        return "resultpage";
-    }
-
 
     /**
      * The function returns a string with the route which should be rendered. This
