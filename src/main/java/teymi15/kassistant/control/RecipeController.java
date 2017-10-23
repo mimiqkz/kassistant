@@ -60,7 +60,7 @@ public class RecipeController {
         displayLoggedInUser(session, model);
         if(option.equals("recipe")) {
             List<Recipe> recipes = RecipeService.getMatchingRecipe(search);
-            model.addAttribute("resultList", recipes);
+            model.addAttribute("resultsList", recipes);
             model.addAttribute("isRecipe", true);
         } else {
             List<Ingredient> ingredients = IngredientService.getMatchingIngredient(search);
