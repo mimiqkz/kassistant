@@ -14,7 +14,9 @@
     align-items: center;
 }
 
-
+.carousel-inner img {
+    width: 100%;
+}
 
 .main-header {
     font-size: 100px;
