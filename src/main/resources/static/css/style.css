@@ -3,9 +3,11 @@ body {
 }
 
 h1 {
-  color: darkcyan;
+  color: black;
+  font-family: Cormorant, serif;
+  font-weight: 900;
+  margin-top: 80px;
   margin-left: 30px;
-  text-shadow: 2px 2px 2px black;
 
 
 }
@@ -19,16 +21,15 @@ h1 {
 }
 
 .navbar-default {
-  background-color: black;
-  width: 100%;
+  background-color: #A35939;
   opacity: 0.8;
-
 }
 
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: white;
+
   background-color: transparent;
 }
 
@@ -37,7 +38,7 @@ input[type=text] {
 }
 
 .jumbotron {
-  background-color: #00bebe;
+  background-color:#c1714e;
 
 }
 
