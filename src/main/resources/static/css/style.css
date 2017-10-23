@@ -20,6 +20,11 @@ h1 {
 
 .navbar-default {
   background-color: black;
+  position: fixed;
+  width: 100%;
+  opacity: 0.8;
+  top: 0;
+  z-index: 9999;
 
 }
 
