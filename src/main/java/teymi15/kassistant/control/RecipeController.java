@@ -45,20 +45,10 @@ public class RecipeController {
     @Autowired
     UserServiceImp userServiceImp;
 
-
-    /**
-     * Get the matching recipe that contains the searched name
-     * @param name name of the recipe
-     * @return List of the recipe
-     */
-   /* public List searchRecipeByName(String name){
-        return RecipeService.getMatchingRecipe(name);
-    }*/
-
     /**
      * The function returns a string with the route which should be rendered. This
-     *  is initiated when the user submits his/her input. The input from the user
-     *  should then be displayed on the result page.
+     * is initiated when the user submits his/her input. The input from the user
+     * should then be displayed on the result page.
      * @param request getting request from the page
      * @param model model
      * @return String
@@ -81,8 +71,13 @@ public class RecipeController {
     }
 
 
-
-
+    /**
+     * The method displays the recipe form. It allows user to fill in the form
+     * in order to create a new recipe
+     * @param session session
+     * @param model model
+     * @return String
+     */
     @RequestMapping(value = "create-recipe", method = RequestMethod.GET)
     public String displayRecipeForm(HttpSession session, Model model) {
         List <Ingredient> ingredients = IngredientService.getAllIngredient();
@@ -90,6 +85,14 @@ public class RecipeController {
         displayLoggedInUser(session, model);
         return "createRecipe";
     }
+
+    /**
+     * The method allows user to submit the edited/created recipe to the database.
+     * @param session session
+     * @param request getting the request from the page
+     * @param model model
+     * @return String
+     */
     @RequestMapping(value = "create-recipe", method = RequestMethod.POST)
     public String submitRecipe(HttpSession session,HttpServletRequest request, Model model) {
         String name = request.getParameter("name");
@@ -112,6 +115,12 @@ public class RecipeController {
         return "homepage";
     }
 
+    /**
+     * The method allows to display the logged in user so the user knows that
+     * he/she is already being logged in
+     * @param session session
+     * @param model model
+     */
     public void displayLoggedInUser(HttpSession session, Model model) {
         if(!session.isNew()) {
             model.addAttribute("user", session.getAttribute("user"));

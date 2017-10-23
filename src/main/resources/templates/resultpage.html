@@ -8,7 +8,7 @@
     <h1>Results</h1>
 </div>
 <div class="container">
-    <!--/*@thymesVar id="recipeList" type="java"*/-->
+    <!--/*@thymesVar id="resultsList" type="java"*/-->
     <div class="result-table" th:each="results : ${resultsList}">
         <div class="row row-margin-bottom">
                 <div class="col-md-5 no-padding lib-item" data-category="view">
@@ -19,6 +19,9 @@
                             </div>
                             <div class="col-md-6">
                                 <!-- For Recipes -->
+                                
+                                <!--/*@thymesVar id="isRecipe" type="java"*/-->
+                                <!--/*@thymesVar id="results" type="java"*/-->
                                 <a th:if="${isRecipe}" class="lib-row lib-header" th:href="@{/recipe/{id}(id=${results.id})}" th:text="${results.name}">
                                     <div class="lib-header-seperator"></div>
                                 </a>
