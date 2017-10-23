@@ -12,35 +12,34 @@
         <!--/*@thymesVar id="resultsList" type="java"*/-->
         <!--/*@thymesVar id="isRecipe" type="java"*/-->
         <div class="result-table" th:each="results : ${resultsList}">
-            <!-- For Recipe results -->
-            <div th:if="${isRecipe}" class="row">
+            <div class="row">
                 <div class="col-md-8 col-md-offset-2" style="margin-bottom: 30px">
                     <div class="card">
                         <div class="card__image">
                             <img src="images/soup.jpg" alt="" class="card__img"/>
                         </div>
                         <div class="card__content">
-                            <a th:href="@{/recipe/{id}(id=${results.id})}"><h3 class="card__heading" th:text="${results.name}"></h3></a>
-                            <p class="card__text" th:text="${results.instruction}">Texti sem þýðir ekki neitt og er bara hérna til þess að hafa eitthvað. Hvað eigum við að fjalla um? Ég veit það ekki.  lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sodales sed mi sed porttitor. Curabitur dolor ante, aliquet id interdum auctor, luctus ac urna.</p>
+                            <!-- For Recipe results -->
+                            <div th:if="${isRecipe}">
+                                <a th:href="@{/recipe/{id}(id=${results.id})}">
+                                    <h3 class="card__heading" th:text="${results.name}"></h3>
+                                </a>
+                                <p class="card__text" th:text="${results.instruction}"></p>
+                            </div>
+                            <div th:unless="${isRecipe}" class="row">
+                                <!-- For Ingredient results -->
+                                <a th:href="@{/ingredient/{id}(id=${results.getID()})}">
+                                    <h3 class="card__heading" th:text="${results.name}"></h3>
+                                </a>
+                                <p class="card__text"> Need something here </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- For Ingredients result -->
-            <div th:unless="${isRecipe}" class="row">
-                <div class="col-md-8 col-md-offset-2" style="margin-bottom: 30px">
-                    <div class="card">
-                        <div class="card__image">
-                            <img src="images/soup.jpg" alt="" class="card__img"/>
-                        </div>
-                        <div class="card__content">
-                            <a th:href="@{/ingredient/{id}(id=${results.getID()})}"><h3 class="card__heading" th:text="${results.name}"></h3></a>
-                            <p class="card__text"> Need something here </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 
