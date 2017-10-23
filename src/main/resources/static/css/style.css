@@ -21,7 +21,7 @@ h1 {
 }
 
 .navbar-default {
-  background-color: #A35939;
+  background-color: #191919;
   opacity: 0.8;
 }
 
@@ -38,8 +38,8 @@ input[type=text] {
 }
 
 .jumbotron {
-  background-color:#c1714e;
-
+  background-color:#191919;
+  color: white;
 }
 
 .results {
