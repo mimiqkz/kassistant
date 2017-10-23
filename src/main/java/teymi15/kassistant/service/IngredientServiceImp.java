@@ -7,7 +7,10 @@ import org.thymeleaf.util.ArrayUtils;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.repository.IngredientRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 @Service
 public class IngredientServiceImp implements IngredientService{
 
@@ -42,17 +45,13 @@ public class IngredientServiceImp implements IngredientService{
 
     @Override
     public List<Ingredient> getAllMacingIngredients(String[] names) {
-        List<Ingredient> maching = getAllIngredient();
-        for(int i = 0; i<maching.size();i++){
-            Ingredient ingredient = maching.get(i);
-            for(int j = 0;j<names.length;j++){
-                if(ingredient.getName().equals(names[j])){
-
-                }else{
-                    maching.remove(ingredient);
-                }
+        List<Ingredient> macing = new ArrayList<>();
+        for(int i = 0; i<names.length;i++){
+            List<Ingredient> mach = getMatchingIngredient(names[i]);
+            for(Ingredient in : mach){
+                macing.add(in);
             }
         }
-        return maching;
+        return macing;
     }
 }

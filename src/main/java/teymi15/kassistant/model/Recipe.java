@@ -29,7 +29,7 @@ public class Recipe {
     @Id
     @Column(name = "recipeId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; // the primary key in the recipe table
+    private int id; // the primary key in the recipe table
     private @SQLInjectionSafe String name; // string for the name of the recipe
     private @SQLInjectionSafe String instruction; // instruction string
 
@@ -52,15 +52,18 @@ public class Recipe {
         this.ingredients = ingredients;
         this.name = name;
         this.instruction= instruction;
-        this.id = id;
     }
     public Recipe(String name, String instruction){
         this.name = name;
         this.instruction= instruction;
+        this.id = id;
+    }
+    public  Recipe(int id){
+        this.id =id;
     }
     
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Integer id) {
