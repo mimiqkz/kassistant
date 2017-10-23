@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poiret One', cursive;
+  font-family: 'Poiret One', sans-serif;
 }
 
 h1 {
@@ -20,11 +20,8 @@ h1 {
 
 .navbar-default {
   background-color: black;
-  position: fixed;
   width: 100%;
   opacity: 0.8;
-  top: 0;
-  z-index: 9999;
 
 }
 
@@ -32,7 +29,7 @@ h1 {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: white;
-  background-color: #a94442;
+  background-color: transparent;
 }
 
 input[type=text] {
