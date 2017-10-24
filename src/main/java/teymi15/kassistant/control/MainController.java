@@ -32,7 +32,7 @@ import teymi15.kassistant.service.RecipeServiceImp;
 
 @Controller
 public class MainController {
-    
+
     @Autowired
     RecipeServiceImp RecipeService;
 
@@ -97,8 +97,10 @@ public class MainController {
 
     public void displayLoggedInUser(HttpSession session, Model model) {
         if(!session.isNew()) {
-            model.addAttribute("user", session.getAttribute("user"));
-            model.addAttribute("loggedIn", true);
+            if(!(session.getAttribute("user") == null)) {
+                model.addAttribute("user", session.getAttribute("user"));
+                model.addAttribute("loggedIn", true);
+            }
         }
     }
 

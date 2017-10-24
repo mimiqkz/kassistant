@@ -138,8 +138,11 @@ public class RecipeController {
      */
     public void displayLoggedInUser(HttpSession session, Model model) {
         if(!session.isNew()) {
-            model.addAttribute("user", session.getAttribute("user"));
-            model.addAttribute("loggedIn", true);
+            if(!(session.getAttribute("user") == null)) {
+                model.addAttribute("user", session.getAttribute("user"));
+                model.addAttribute("loggedIn", true);
+            }
+
         }
     }
 
