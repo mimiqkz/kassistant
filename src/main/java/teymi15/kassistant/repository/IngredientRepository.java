@@ -20,5 +20,5 @@ public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
     Ingredient save(Ingredient ingredient);
 
     Ingredient findById(int id);
-
+    
 }

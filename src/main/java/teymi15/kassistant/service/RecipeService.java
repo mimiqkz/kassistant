@@ -42,4 +42,11 @@ public interface RecipeService {
      */
     Recipe getRecipeById(int id);
 
+    /**
+     * Get the photo of the recipe by the id
+     * @param id recipe id
+     * @return the string of the photo
+     */
+    String getPhotoById(int id);
+
 }

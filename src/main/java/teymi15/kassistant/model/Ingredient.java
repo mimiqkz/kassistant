@@ -95,13 +95,6 @@ public class Ingredient {
         this.store = store;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Ingredient[id=%d, name='%s']",
-                id, name);
-    }
-
     public Set<Recipe> getRecipes() {
         return recipes;
     }

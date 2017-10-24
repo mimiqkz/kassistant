@@ -36,9 +36,18 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
      */
     Recipe save (Recipe recipe);
 
-
+    /**
+     * Return the list of recipe matched the searched string
+     * @param name name of the recipe
+     * @return list of the recipe
+     */
     List<Recipe> findAllByNameLikeIgnoreCase(String name);
 
+    /**
+     * Find the id of the recipe
+     * @param id
+     * @return the recipe
+     */
     Recipe findById(int id);
 
 }

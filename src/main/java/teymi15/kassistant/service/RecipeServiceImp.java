@@ -23,9 +23,8 @@ import java.util.Map;
 @Service
 public class RecipeServiceImp implements RecipeService {
 
-    // Connection to the recipe repository
     @Autowired
-    RecipeRepository recipeRep;
+    RecipeRepository recipeRep; // Connection to the recipe repository
 
 
     @Override
@@ -40,18 +39,21 @@ public class RecipeServiceImp implements RecipeService {
         return false;
     }
 
-    //search for matching recipe by name
     @Override
     @ResponseBody
     public List<Recipe> getMatchingRecipe(String name) {
         return recipeRep.findAllByNameLikeIgnoreCase("%" +name+ "%");
     }
 
-
-    //find recipe by its id
     @Override
     @ResponseBody
     public Recipe getRecipeById(int id) {
         return recipeRep.findById(id);
+    }
+
+    @Override
+    @ResponseBody
+    public String getPhotoById(int id) {
+        return null;
     }
 }

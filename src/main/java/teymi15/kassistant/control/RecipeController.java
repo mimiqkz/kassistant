@@ -71,6 +71,7 @@ public class RecipeController {
             model.addAttribute("resultsList", ingredients);
         }
 
+
         return "resultpage";
     }
 

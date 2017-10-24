@@ -103,13 +103,6 @@ public class Recipe {
         ingredients.add(i);
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Recipe[id=%d, name='%s', ingredients = '%s', instruction='%s']",
-                id, name, ingredients, instruction);
-    }
-
     @Column(name = "userCreater")
     public User getUserCheater() {
         return userCheater;
