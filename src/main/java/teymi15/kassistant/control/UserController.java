@@ -66,8 +66,7 @@ public class UserController {
     public String signOut(HttpSession session,Model model){
         session.setAttribute("user",null);
         session.setAttribute("password",null);
-        model.addAttribute("user", null);
-        model.addAttribute("loggedIn", false);
+       
         return "homepage";
     }
     /**
@@ -89,10 +88,9 @@ public class UserController {
             //If login successful set the current user
             session.setAttribute("user",username);
             session.setAttribute("password", password);
-            //Have to do this twice at the moment until i can
-            //think of something more clever
-            model.addAttribute("user", username);
-            model.addAttribute("loggedIn", true);
+
+            displayLoggedInUser(session, model);
+
             return "homepage";
 
         } else {
@@ -122,8 +120,11 @@ public class UserController {
 
     public void displayLoggedInUser(HttpSession session, Model model) {
         if(!session.isNew()) {
-            model.addAttribute("user", session.getAttribute("user"));
-            model.addAttribute("loggedIn", true);
+            if(!(session.getAttribute("user") == null)) {
+                model.addAttribute("user", session.getAttribute("user"));
+                model.addAttribute("loggedIn", true);
+            }
+
         }
     }
 
