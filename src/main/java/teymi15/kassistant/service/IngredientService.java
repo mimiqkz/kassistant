@@ -13,17 +13,13 @@ package teymi15.kassistant.service;
 
 import org.springframework.stereotype.Service;
 import teymi15.kassistant.model.Ingredient;
+import teymi15.kassistant.model.Recipe;
+
 import java.util.List;
 
 @Service
 public interface IngredientService {
 
-    /**
-     * Add the recipe
-     *
-     * @param k Ingredient
-     */
-    void addRecipe(Ingredient k);
 
     /**
      * Return all of the matching ingredient
@@ -40,10 +36,6 @@ public interface IngredientService {
      */
     Ingredient getIngredientById(int id);
 
-    /**
-     * adding all the information of the recipe
-     */
-    void addAllData();
 
     /**
      * Getting all the ingredient
@@ -52,5 +44,12 @@ public interface IngredientService {
     List<Ingredient> getAllIngredient();
 
     List<Ingredient> getAllMacingIngredients(String [] names);
+    /**
+     * @return boolean
+     * @param k
+     *
+     * */
+    boolean addIngredient(Ingredient ingredient);
+
 
 }

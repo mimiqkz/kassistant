@@ -25,7 +25,7 @@ public interface RecipeService {
      *
      * @param k Recipe
      */
-    void addRecipe(Recipe k);
+    boolean addRecipe(Recipe k);
 
     /**
      * Return all of the matching recipe

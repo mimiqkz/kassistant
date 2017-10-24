@@ -33,6 +33,7 @@ public class Ingredient {
     private @SQLInjectionSafe String name; //Name of the ingredient e.g cherry tomato, apple etc.
     private @SQLInjectionSafe String location; //Location of the store e.g Granda, Kringlan etc
     private @SQLInjectionSafe String store; //The name of the store
+    private String photoURL;
 
     //many to many connection between the recipes and ingredients
     //mapped by the Set ingredients in the Recipe controller
@@ -112,5 +113,13 @@ public class Ingredient {
 
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
+    }
+    @Column(name = "photo")
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 }

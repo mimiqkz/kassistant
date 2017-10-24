@@ -15,8 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.repository.RecipeRepository;
-
+import com.cloudinary.*;
+import com.cloudinary.utils.ObjectUtils;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RecipeServiceImp implements RecipeService {
@@ -28,12 +30,14 @@ public class RecipeServiceImp implements RecipeService {
 
     @Override
     @ResponseBody
-    public void addRecipe(Recipe k) {
+    public boolean addRecipe(Recipe k) {
         try{
             recipeRep.save(k);
+            return true;
         }catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
+        return false;
     }
 
     //search for matching recipe by name

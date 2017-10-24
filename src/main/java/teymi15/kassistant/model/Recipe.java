@@ -32,6 +32,8 @@ public class Recipe {
     private int id; // the primary key in the recipe table
     private @SQLInjectionSafe String name; // string for the name of the recipe
     private @SQLInjectionSafe String instruction; // instruction string
+    private String photoURL;
+
 
     @ManyToOne
     @JoinColumn(name="userId")
@@ -79,7 +81,7 @@ public class Recipe {
         this.name = name;
     }
 
-    @Column(name = "instruction")
+    @Column(name = "instruction",length = Integer.MAX_VALUE)
     public String getInstruction() {
         return instruction;
     }
@@ -124,5 +126,14 @@ public class Recipe {
 
     public void setUserLiked(Set<User> userLiked) {
         this.userLiked = userLiked;
+    }
+
+    @Column(name = "photo")
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 }

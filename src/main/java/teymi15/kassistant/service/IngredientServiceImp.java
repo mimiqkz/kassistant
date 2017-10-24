@@ -1,5 +1,7 @@
 package teymi15.kassistant.service;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.codehaus.groovy.runtime.ArrayUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import teymi15.kassistant.repository.IngredientRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -17,10 +20,7 @@ public class IngredientServiceImp implements IngredientService{
     @Autowired
     IngredientRepository ingredientRepository;
 
-    @Override
-    public void addRecipe(Ingredient k) {
 
-    }
 
     @Override
     public List<Ingredient> getMatchingIngredient(String name) {
@@ -32,10 +32,7 @@ public class IngredientServiceImp implements IngredientService{
         return ingredientRepository.findById(id);
     }
 
-    @Override
-    public void addAllData() {
 
-    }
 
     @Override
     public List<Ingredient> getAllIngredient() {
@@ -54,4 +51,17 @@ public class IngredientServiceImp implements IngredientService{
         }
         return macing;
     }
+
+    @Override
+    public boolean addIngredient(Ingredient ingredient) {
+
+        try{
+            ingredientRepository.save(ingredient);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
