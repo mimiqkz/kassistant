@@ -102,7 +102,14 @@ public class RecipeController {
     public String submitRecipe(HttpSession session, HttpServletRequest request, Model model,@RequestParam("file") MultipartFile file,
                                RedirectAttributes redirectAttributes) throws IOException {
         String name = request.getParameter("name");
-        String instruction = request.getParameter("instruction");
+        String[] instructions = request.getParameterValues("addmore[]");
+        String instruction = "";
+        //will implement as seperate function
+        //Inserting numbers into string to know where to separate e.g. "1. "
+        for(int i = 0; i < instructions.length; i++) {
+            instruction += (i+1) + ". " + instructions[i] + " ";
+
+        }
         String ingredients1 = request.getParameter("ingredients");
 
         String [] splitIngredients = ingredients1.split("\\s+");
@@ -113,7 +120,6 @@ public class RecipeController {
             recipe.addIngredients(i);
             System.out.println(i.getName());
         }
-        System.out.println("fór hingað");
         byte [] bytes = null;
         if(!file.isEmpty()){
             bytes = file.getBytes();
@@ -125,7 +131,7 @@ public class RecipeController {
         String s = session.getAttribute("user").toString();
         recipe.setUserCheater(userServiceImp.getUserByName(s));
         RecipeService.addRecipe(recipe);
-        displayLoggedInUser(session, model);
+        displayLoggedInUser(session, model); 
 
         return "homepage";
     }

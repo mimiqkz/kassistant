@@ -18,17 +18,35 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control" th:feild="*{name}" placeholder="Enter desired recipe name"/>
+                        <input type="text" name="name" class="form-control"  placeholder="Enter desired recipe name"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Instruction:</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" name="instruction" rows="8" th:feild="*{instruction}"></textarea>
+                    <label class="control-label col-sm-2">Instructions:</label>
+                    <div class="input-group control-group after-add-more" style="width: 100%">
+                        <input type="text" name="addmore[]" class="form-control" placeholder="Enter instruction here"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                        </div>
                     </div>
                 </div>
+                <!--  <div class="form-group"> -->
+
+                <!-- Copy Fields -->
+
+                <div class="copy hide">
+                    <div class="control-group input-group" style="margin-top:10px">
+                        <input type="text" name="addmore[]" class="form-control" placeholder="Enter instruction here"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Incidents:</label>
+                    <label class="control-label col-sm-2">Ingredients:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="ingredients" placeholder="Enter ingredients"/>
                     </div>
@@ -51,9 +69,37 @@
                     </div>
                 </div>
 
+                <div class="form-group hide" id="optionTemplate">
+                    <div class="col-xs-offset-3 col-xs-5">
+                        <input class="form-control" type="text" name="option[]" />
+                    </div>
+                    <div class="col-xs-4">
+                        <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>
 </div>
+
+<script th:inline="javascript">
+
+    $(document).ready(function() {
+
+        $(".add-more").click(function(){
+            var html = $(".copy").html();
+            $(".after-add-more").after(html);
+        });
+
+        $("body").on("click",".remove",function(){
+            $(this).parents(".control-group").remove();
+        });
+
+    });
+
+
+
+</script>
 </body>
 </html>
