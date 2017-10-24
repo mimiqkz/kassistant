@@ -40,13 +40,12 @@ public class Ingredient {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Recipe> recipes = new HashSet<>();
 
-    public Ingredient(Integer id, double price, String name, String location, String store, Set recipes) {
+    public Ingredient(double price, String name, String location, String store, Set recipes) {
         this.price = price;
         this.name = name;
         this.location = location;
         this.store = store;
         this.recipes = recipes;
-        this.id = id;
     }
 
     public Ingredient() {
