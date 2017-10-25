@@ -36,7 +36,7 @@ public class IngredientController {
      * @return String
      */
     @RequestMapping(value = "/create-ingredient", method = RequestMethod.GET)
-    public String displayRecipeForm(HttpSession session, Model model) {
+    public String displayIngredientForm(HttpSession session, Model model) {
         displayLoggedInUser(session, model);
         return "createIngredient";
     }
@@ -49,7 +49,7 @@ public class IngredientController {
      * @return String
      */
     @RequestMapping(value = "/create-ingredient", method = RequestMethod.POST)
-    public String submitRecipe(HttpSession session, HttpServletRequest request, Model model, @RequestParam("file") MultipartFile file,
+    public String submitIngredient(HttpSession session, HttpServletRequest request, Model model, @RequestParam("file") MultipartFile file,
                                RedirectAttributes redirectAttributes) throws IOException {
         String name = request.getParameter("name");
         String location = request.getParameter("location");
@@ -73,6 +73,7 @@ public class IngredientController {
 
         return "homepage";
     }
+
     /**
      * The method allows to display the logged in user so the user knows that
      * he/she is already being logged in
@@ -85,5 +86,52 @@ public class IngredientController {
             model.addAttribute("loggedIn", true);
         }
     }
+
+    /**
+     * The method displays the recipe form. It allows user to fill in the form
+     * in order to create a new recipe
+     * @param session session
+     * @param model model
+     * @return String
+     */
+    @RequestMapping(value = "/edit-ingredient", method = RequestMethod.GET)
+    public String displayIngredientEditForm(HttpSession session, Model model) {
+        displayLoggedInUser(session, model);
+        return "editIngredient";
+    }
+
+    /**
+     * The method allows user to submit the edited/created recipe to the database.
+     * @param session session
+     * @param request getting the request from the page
+     * @param model model
+     * @return String
+     */
+    @RequestMapping(value = "/edit-ingredient", method = RequestMethod.POST)
+    public String submitIngredientEdit(HttpSession session, HttpServletRequest request, Model model, @RequestParam("file") MultipartFile file,
+                               RedirectAttributes redirectAttributes) throws IOException {
+        /*String name = request.getParameter("name");
+        String location = request.getParameter("location");
+        String store = request.getParameter("store");
+        double price = Double.parseDouble(request.getParameter("price"));
+        //    public Ingredient(double price, String name, String location, String store, Set recipes) {
+
+        Ingredient ingredient = new Ingredient(price,name,location,store,null);
+
+        byte [] bytes = null;
+        if(!file.isEmpty()){
+            bytes = file.getBytes();
+        }
+
+        String pic = photoService.addPhoto(bytes);
+        System.out.println(pic);
+        ingredient.setPhotoURL(pic);
+        String s = session.getAttribute("user").toString();
+        ingredientService.addIngredient(ingredient);
+        displayLoggedInUser(session, model);
+*/
+        return "homepage";
+    }
+
 
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body>
+<div th:replace="layout :: navigation-top-bar"></div>
+
+<div class="page-header">
+    <h1>Edit the ingredient</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-lg-offset-3">
+
+            <form action="#" class="form-horizonal" th:action="@{/edit-ingredient}" th:object="${ingredient}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Correct price:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="price" class="form-control" th:feild="*{price}" placeholder="Price"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
