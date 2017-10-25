@@ -1,16 +1,24 @@
+$(document).ready(function() {
 
-    $(document).ready(function() {
-
-        $(".add-more").click(function(){
-            var html = $(".copy").html();
-            $(".after-add-more").after(html);
-        });
-
-        $("body").on("click",".remove",function(){
-            $(this).parents(".control-group").remove();
-        });
-
+    $(".add-more-instruction").click(function(){
+        var html = $(".copy-instruction").html();
+        $(".after-add-more-instruction").after(html);
     });
 
+    $(".add-more-ingredient").click(function(){
+        var html = $(".copy-ingredient").html();
+        $(".after-add-more-ingredient").after(html);
+    });
+
+
+
+    $("body").on("click",".remove",function(){
+        $(this).parents(".control-group").remove();
+    });
+
+
+
+
+});
 
 

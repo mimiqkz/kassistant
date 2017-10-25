@@ -43,7 +43,7 @@ public interface IngredientService {
      */
     List<Ingredient> getAllIngredient();
 
-    List<Ingredient> getAllMacingIngredients(String [] names);
+    List<Ingredient> getAllMatchingIngredients(String [] names);
     /**
      * @return boolean
      * @param k

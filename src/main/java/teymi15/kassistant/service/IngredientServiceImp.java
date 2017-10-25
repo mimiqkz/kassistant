@@ -41,11 +41,12 @@ public class IngredientServiceImp implements IngredientService{
     }
 
     @Override
-    public List<Ingredient> getAllMacingIngredients(String[] names) {
+    public List<Ingredient> getAllMatchingIngredients(String[] names) {
+      
         List<Ingredient> matched = new ArrayList<>();
         for(int i = 0; i<names.length;i++){
-            List<Ingredient> mach = getMatchingIngredient(names[i]);
-            for(Ingredient in : mach){
+            List<Ingredient> match = getMatchingIngredient(names[i]);
+            for(Ingredient in : match){
                 matched.add(in);
             }
         }

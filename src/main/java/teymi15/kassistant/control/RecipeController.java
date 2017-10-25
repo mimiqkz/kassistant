@@ -11,7 +11,6 @@ package teymi15.kassistant.control;
  */
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teymi15.kassistant.model.Ingredient;
-import teymi15.kassistant.model.User;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.PhotoServiceImp;
 import teymi15.kassistant.service.RecipeServiceImp;
@@ -102,23 +100,21 @@ public class RecipeController {
     public String submitRecipe(HttpSession session, HttpServletRequest request, Model model,@RequestParam("file") MultipartFile file,
                                RedirectAttributes redirectAttributes) throws IOException {
         String name = request.getParameter("name");
-        String[] instructions = request.getParameterValues("addmore[]");
+        String[] instructions = request.getParameterValues("instruction[]");
         String instruction = "";
         //will implement as seperate function
         //Inserting numbers into string to know where to separate e.g. "1. "
         for(int i = 0; i < instructions.length; i++) {
             instruction += (i+1) + ". " + instructions[i] + " ";
-
         }
-        String ingredients1 = request.getParameter("ingredients");
 
-        String [] splitIngredients = ingredients1.split("\\s+");
+        String[] ingredientNames = request.getParameterValues("ingredient[]");
+
         Recipe recipe = new Recipe(name,instruction);
-        List<Ingredient> ingredients = IngredientService.getAllMacingIngredients(splitIngredients);
+        List<Ingredient> ingredients = IngredientService.getAllMatchingIngredients(ingredientNames);
         for (Ingredient i: ingredients
              ) {
             recipe.addIngredients(i);
-            System.out.println(i.getName());
         }
         byte [] bytes = null;
         if(!file.isEmpty()){
