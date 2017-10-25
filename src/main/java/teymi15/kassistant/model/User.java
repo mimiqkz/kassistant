@@ -24,7 +24,7 @@ public class User {
     private @SQLInjectionSafe String name; // name of the user e.g. pétur pétursson
     private int age; //age of the user
 
-    @OneToMany(mappedBy = "userCheater")
+    @OneToMany(mappedBy = "userCreator")
     private Set<Recipe> myRecipes;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

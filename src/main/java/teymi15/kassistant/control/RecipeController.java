@@ -131,7 +131,7 @@ public class RecipeController {
         System.out.println(pic);
         recipe.setPhotoURL(pic);
         String s = session.getAttribute("user").toString();
-        recipe.setUserCheater(userServiceImp.getUserByName(s));
+        recipe.setUserCreator(userServiceImp.getUserByName(s));
         RecipeService.addRecipe(recipe);
         displayLoggedInUser(session, model); 
 
@@ -151,6 +151,7 @@ public class RecipeController {
         Recipe selected = RecipeService.getRecipeById(id);
         displayLoggedInUser(session, model);
         model.addAttribute("recipe", selected);
+        model.addAttribute("author", selected.getUserCreator());
 
         //Splice instructions, delete first and last entry - not most efficient way right now
         String[] instructions = selected.getInstruction().split("[!][!]");

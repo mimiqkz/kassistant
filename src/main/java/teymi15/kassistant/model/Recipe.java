@@ -37,7 +37,7 @@ public class Recipe {
 
     @ManyToOne
     @JoinColumn(name="userId")
-    private User userCheater;
+    private User userCreator;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<User> userLiked;
@@ -104,12 +104,12 @@ public class Recipe {
     }
 
     @Column(name = "userCreater")
-    public User getUserCheater() {
-        return userCheater;
+    public User getUserCreator() {
+        return userCreator;
     }
 
-    public void setUserCheater(User userCheater) {
-        this.userCheater = userCheater;
+    public void setUserCreator(User userCreator) {
+        this.userCreator = userCreator;
     }
 
     @Column(name = "userLiked")

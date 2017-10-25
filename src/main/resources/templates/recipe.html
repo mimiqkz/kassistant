@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-6 col-sm-ls-5 recipe-header-right">
                         <h1 class="recipe-name" th:text=" ${recipe.name}"></h1>
-                        <p class="recipe-author">Created by</p>
+                        <p class="recipe-author" th:text="'Created by ' + ${author.username}"></p>
                         <div class="recipe-description">
                         &ldquo; I think it would be super cool if users could write a little description here, that would then appear here and in other places such as when you search the page or on a feature. Like when and where they found the recipe or why they like it or if it is seasonal yada yada  &rdquo;
                     </div>
