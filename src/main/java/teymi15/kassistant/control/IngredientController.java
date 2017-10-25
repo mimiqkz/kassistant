@@ -1,5 +1,6 @@
 package teymi15.kassistant.control;
 
+import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,6 +98,8 @@ public class IngredientController {
     @RequestMapping(value = "/edit-ingredient", method = RequestMethod.GET)
     public String displayIngredientEditForm(HttpSession session, Model model) {
         displayLoggedInUser(session, model);
+        Ingredient ingredient = (Ingredient) session.getAttribute("selectIngredient");
+        model.addAttribute("ingredient",ingredient);
         return "editIngredient";
     }
 
@@ -104,34 +107,13 @@ public class IngredientController {
      * The method allows user to submit the edited/created recipe to the database.
      * @param session session
      * @param request getting the request from the page
-     * @param model model
      * @return String
      */
     @RequestMapping(value = "/edit-ingredient", method = RequestMethod.POST)
-    public String submitIngredientEdit(HttpSession session, HttpServletRequest request, Model model, @RequestParam("file") MultipartFile file,
-                               RedirectAttributes redirectAttributes) throws IOException {
-        /*String name = request.getParameter("name");
-        String location = request.getParameter("location");
-        String store = request.getParameter("store");
+    public String submitIngredientEdit(HttpSession session, HttpServletRequest request) {
+
         double price = Double.parseDouble(request.getParameter("price"));
-        //    public Ingredient(double price, String name, String location, String store, Set recipes) {
-
-        Ingredient ingredient = new Ingredient(price,name,location,store,null);
-
-        byte [] bytes = null;
-        if(!file.isEmpty()){
-            bytes = file.getBytes();
-        }
-
-        String pic = photoService.addPhoto(bytes);
-        System.out.println(pic);
-        ingredient.setPhotoURL(pic);
-        String s = session.getAttribute("user").toString();
-        ingredientService.addIngredient(ingredient);
-        displayLoggedInUser(session, model);
-*/
+        System.out.println(price);
         return "homepage";
     }
-
-
 }

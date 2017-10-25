@@ -83,6 +83,7 @@ public class MainController {
         Ingredient selected = IngredientService.getIngredientById(id);
         displayLoggedInUser(session, model);
         model.addAttribute("ingredient", selected);
+        session.setAttribute("selectIngredient",selected);
         return "ingredient";
     }
 

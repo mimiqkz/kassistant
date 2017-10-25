@@ -6,7 +6,7 @@
 <div th:replace="layout :: navigation-top-bar"></div>
 
 <div class="page-header">
-    <h1>Edit the ingredient</h1>
+    <h1 th:text=" ${ingredient.name}"></h1>
 </div>
 <div class="container">
     <div class="row">
