@@ -65,4 +65,15 @@ public class IngredientServiceImp implements IngredientService{
         return false;
     }
 
+    @Override
+    public boolean updateIngredient(Ingredient ingredient) {
+        try{
+            //ingredientRepository.insert(ingredient);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

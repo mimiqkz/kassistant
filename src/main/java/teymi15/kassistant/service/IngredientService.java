@@ -46,10 +46,16 @@ public interface IngredientService {
     List<Ingredient> getAllMatchingIngredients(String [] names);
     /**
      * @return boolean
-     * @param k
+     * @param ingredient
      *
      * */
     boolean addIngredient(Ingredient ingredient);
+
+    /**
+     * @return boolean
+     * @param ingredient
+     * **/
+    boolean updateIngredient(Ingredient ingredient);
 
 
 }

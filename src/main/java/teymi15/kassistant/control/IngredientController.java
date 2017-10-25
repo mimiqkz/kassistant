@@ -113,7 +113,11 @@ public class IngredientController {
     public String submitIngredientEdit(HttpSession session, HttpServletRequest request) {
 
         double price = Double.parseDouble(request.getParameter("price"));
-        System.out.println(price);
+        Ingredient ingredient = (Ingredient) session.getAttribute("selectIngredient");
+        ingredient.setPrice(price);
+        boolean b = ingredientService.addIngredient(ingredient);
+
+        System.out.println(b);
         return "homepage";
     }
 }
