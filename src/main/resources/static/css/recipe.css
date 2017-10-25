@@ -3,6 +3,21 @@
     margin-top: 100px;
 }
 
+.recipe-edit {
+    margin: 20px 0;
+}
+
+.recipe-btn {
+    margin: auto;
+    border: 1px solid black
+}
+
+.recipe-btn:hover {
+    margin: auto;
+    border: 1px solid black;
+    text-decoration: none;
+}
+
 /* Image sizing - works well with the large picture of the chocolate cake right now */
 .recipe-header-left {
     overflow: hidden;

@@ -152,6 +152,10 @@ public class RecipeController {
         displayLoggedInUser(session, model);
         model.addAttribute("recipe", selected);
         model.addAttribute("author", selected.getUserCreator());
+        // Check if author is the same as the one logged in
+        if(session.getAttribute("user").equals(selected.getUserCreator().getUsername())) {
+            model.addAttribute("sameUser", true);
+        }
 
         //Splice instructions, delete first and last entry - not most efficient way right now
         String[] instructions = selected.getInstruction().split("[!][!]");
