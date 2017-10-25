@@ -54,21 +54,7 @@ public class MainController {
 
 
 
-    /**
-     * The function returns a string with the route which should be rendered. This
-     *  is initiated when the user selects a link that represents a Recipe. This Recipe
-     *  should then be displayed on the recipe page.
-     * @param id int
-     * @param model model
-     * @return String
-     */
-    @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
-    public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
-        Recipe selected = RecipeService.getRecipeById(id);
-        displayLoggedInUser(session, model);
-        model.addAttribute("recipe", selected);
-        return "recipe";
-    }
+
 
     /**
      * The function returns a string with the route which should be rendered. This

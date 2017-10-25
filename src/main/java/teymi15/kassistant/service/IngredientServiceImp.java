@@ -42,7 +42,7 @@ public class IngredientServiceImp implements IngredientService{
 
     @Override
     public List<Ingredient> getAllMatchingIngredients(String[] names) {
-      
+
         List<Ingredient> matched = new ArrayList<>();
         for(int i = 0; i<names.length;i++){
             List<Ingredient> match = getMatchingIngredient(names[i]);

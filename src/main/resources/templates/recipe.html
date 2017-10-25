@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head"></head>
+<head th:replace="layout :: head">
+</head>
 
 <body>
     <div th:replace="layout :: navigation-top-bar"></div>
     <!--/*@thymesVar id="recipe" type="java"*/-->
-    <div class="page-header">
-        <h1  th:text=" ${recipe.name}"></h1>
-    </div>
-    <div class="container">
-        <div class="media">
-            <div class="media-left">
-                <div class="media-object"/>
-            </div>
-            <div class="media-body">
 
-                <h4 class="media-heading" th:text=" ${recipe.name}"></h4>
+    <div class="container recipe-container">
+        <div class="row">
+            <div class="col-lg-12 col-sd-12 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-sm-ls-7 recipe-header-left">
+                        <img th:src="${recipe.photoURL}" alt="image" class="recipe_image"/>
 
-                <ul th:text="Ingredients">
-                    <li th:each="ingredient : ${recipe.ingredients}"/>
-                </ul>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-6 col-sm-ls-5 recipe-header-right">
+                        <h1 class="recipe-name" th:text=" ${recipe.name}"></h1>
+                        <p class="recipe-author">Created by</p>
+                        <div class="recipe-description">
+                        &ldquo; I think it would be super cool if users could write a little description here, that would then appear here and in other places such as when you search the page or on a feature. Like when and where they found the recipe or why they like it or if it is seasonal yada yada  &rdquo;
+                    </div>
+                        <div class="recipe-popularity">
 
-                <p th:text=" ${recipe.instruction}">Lorem ipsum...</p>
+                                <span class="detail_desc">300 users like this</span>
+
+                                <span class="star glyphicon glyphicon-star-empty">Favourite this recipe</span>
+                        </div>
+                    </div>
+                 </div>
+                <div class="row instruction-container">
+                    <!--Ingredients-->
+                    <div class="ingredients-col col-sm-5 col-md-4 col-sd-4 col-lg-4">
+                        <div class="recipe-ingredients">
+                            <h2>Ingredients</h2>
+                            <ul class="ingredientSteps"  th:each="ingredient : ${recipe.ingredients}">
+                                <li th:text="${ingredient.name}"/>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="instructions-col col-sm-7 col-md-8 col-sd-8 col-lg-8">
+                        <div class="recipe-instructions">
+                            <h2>Method</h2>
+                                <ol class="recipeSteps" th:each = "instruction: ${instructions}">
+                                    <li th:text="${instruction}"></li>
+                                </ol>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-
-       <!-- <div class="result-table" th:each="res : ${recipeList}"> -->
-
     </div>
 
-
-
-
-    <img th:src="@{images/soup.jpg}"/>
-
-
+    <div th:replace="layout :: scripts"></div>
 </body>
 </html>

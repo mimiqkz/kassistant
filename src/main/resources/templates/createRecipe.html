@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-5 col-lg-offset-3">
-
+            <div class="jumbotron">
             <form action="#" class="form-horizonal" th:action="@{/create-recipe}" method="post" enctype="multipart/form-data">
 
                 <div class="form-group">
@@ -35,7 +35,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Ingredients:</label>
                     <div class="input-group control-group after-add-more-ingredient" style="width: 100%">
-                        <input type="text" name="ingredient[]" class="form-control" placeholder="Enter instruction here"/>
+                        <input type="text" name="ingredient[]" class="form-control" placeholder="Enter ingredient here"/>
                         <div class="input-group-btn">
                             <button class="btn btn-success add-more-ingredient" type="button"><i class="glyphicon glyphicon-plus"/></button>
                         </div>
@@ -69,6 +69,7 @@
                 </div>
 
             </form>
+            </div>
         </div>
     </div>
 </div>
@@ -86,12 +87,13 @@
 
 <div class="copy-ingredient hide">
     <div class="control-group input-group" style="margin-top:10px">
-        <input type="text" name="ingredient[]" class="form-control" placeholder="Enter instruction here"/>
+        <input type="text" name="ingredient[]" class="form-control" placeholder="Enter ingredient here"/>
         <div class="input-group-btn">
             <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-minus"/></button>
         </div>
     </div>
 </div>
+<script th:src="@{/scripts/dynamic-fields.js}"></script>
 
 </body>
 </html>

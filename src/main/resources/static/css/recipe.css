@@ -1,0 +1,65 @@
+.recipe-container {
+    padding: 18px 0;
+    margin-top: 100px;
+}
+
+/* Image sizing - works well with the large picture of the chocolate cake right now */
+.recipe-header-left {
+    overflow: hidden;
+    max-width: 100%;
+    height: 400px;
+
+}
+.recipe-header-left img {
+    max-width: 100%;
+    height: auto;
+}
+/***********************************************/
+.recipe-name {
+    margin-top: -5px;
+    margin-bottom: 6px;
+    margin-left: 0;
+    font-family: 'Average', Serif; text-align: left;
+    font-size: 36px;
+    line-height: 40px;
+    font-weight:400;
+    text-transform: capitalize;
+}
+
+.recipe-author {
+    color: #1b6d85;
+    font-family: Montserrat, Georgia;
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.recipe-description {
+    margin-bottom: 6px;
+    padding: 15px 0;
+    font-family: Average,serif;
+    font-size: 18px;
+    border-top: 1px solid #c5b9a0;
+    border-bottom: 1px solid #c5b9a0;
+    line-height: 26px;
+}
+
+.recipe-popularity {
+    border-bottom: 1px solid #c5b9a0;
+    padding: 15px 0;
+    font-family: Montserrate, Georgia;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 15px;
+    color: rgb(163, 134, 91);
+    display: flex;
+    justify-content: space-around
+}
+
+.instruction-container {
+    margin: 25px 0;
+    border-top: 1px solid #c5b9a0;
+}

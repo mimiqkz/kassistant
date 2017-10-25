@@ -10,6 +10,8 @@ package teymi15.kassistant.control;
  * @since   2017-09-20
  */
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +107,11 @@ public class RecipeController {
         //will implement as seperate function
         //Inserting numbers into string to know where to separate e.g. "1. "
         for(int i = 0; i < instructions.length; i++) {
-            instruction += (i+1) + ". " + instructions[i] + " ";
+            if(i == instructions.length-1) {
+                instruction+= instructions[i];
+                break;
+            }
+            instruction += (instructions[i] + "!!");
         }
 
         String[] ingredientNames = request.getParameterValues("ingredient[]");
@@ -130,6 +136,27 @@ public class RecipeController {
         displayLoggedInUser(session, model); 
 
         return "homepage";
+    }
+
+    /**
+     * The function returns a string with the route which should be rendered. This
+     *  is initiated when the user selects a link that represents a Recipe. This Recipe
+     *  should then be displayed on the recipe page.
+     * @param id int
+     * @param model model
+     * @return String
+     */
+    @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
+    public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
+        Recipe selected = RecipeService.getRecipeById(id);
+        displayLoggedInUser(session, model);
+        model.addAttribute("recipe", selected);
+
+        //Splice instructions, delete first and last entry - not most efficient way right now
+        String[] instructions = selected.getInstruction().split("[!][!]");
+
+        model.addAttribute("instructions", instructions);
+        return "recipe";
     }
 
     /**
