@@ -9,12 +9,12 @@
 
 .recipe-btn {
     margin: auto;
-    border: 1px solid black
+    border: 1px solid  #c5b9a0;
 }
 
 .recipe-btn:hover {
     margin: auto;
-    border: 1px solid black;
+    border: 1px solid  #c5b9a0;
     text-decoration: none;
 }
 
@@ -43,7 +43,7 @@
 
 .recipe-author {
     color: #1b6d85;
-    font-family: Montserrat, Georgia;
+    font-family: Montserrat,Georgia;
     font-size: 13px;
     letter-spacing: 0;
     text-transform: uppercase;
@@ -54,7 +54,7 @@
 .recipe-description {
     margin-bottom: 6px;
     padding: 15px 0;
-    font-family: Average,serif;
+    font-family: 'Average',serif;
     font-size: 18px;
     border-top: 1px solid #c5b9a0;
     border-bottom: 1px solid #c5b9a0;
@@ -64,12 +64,11 @@
 .recipe-popularity {
     border-bottom: 1px solid #c5b9a0;
     padding: 15px 0;
-    font-family: Montserrate, Georgia;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 12px;
     line-height: 15px;
-    color: rgb(163, 134, 91);
+    color: #1b6d85;
     display: flex;
     justify-content: space-around
 }

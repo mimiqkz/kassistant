@@ -3,12 +3,14 @@
 <head th:fragment="head" lang="en">
     <meta charset="UTF-8" />
     <title>Kitchen Assistant</title>
-    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Cormorant|Average|Montserrat" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/lib/bootstrap/bootstrap.css}"/>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" th:href="@{/css/recipe.css}"/>
     <link rel="stylesheet" th:href="@{/css/profile.css}"/>
     <link rel="stylesheet" th:href="@{/css/mainpage.css}"/>
+    <link rel="stylesheet" th:href="@{/css/navbar.css}"/>
+
     <script th:src="@{/lib/jquery/jquery.min.js}"></script>
 
 </head>
@@ -50,7 +52,7 @@
                             <!--/*@thymesVar id="user" type="java"*/-->
                             <a th:if="${loggedIn}" th:href="@{/user-profile}" class="user">
 
-                                <span class="glyphicon glyphicon-user" th:text="' ' + ${user}"/> </a></li>
+                                <span class="glyphicon glyphicon-user"></span><span th:text="' ' + ${user}"/> </a></li>
                         <li><a th:if="${loggedIn}" th:href="@{/signout}">
                             <span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
                         <li> <a th:unless="${loggedIn}" th:href="@{/register}">
