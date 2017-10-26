@@ -82,3 +82,17 @@
     background-color: white;
     color: black;
 }
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+    background-color: transparent;
+    color: white;
+}
+
+.dropdown-menu {
+    padding: 17px;
+    width: 300px;
+    background-color: black;
+    opacity: 0.8;
+}
