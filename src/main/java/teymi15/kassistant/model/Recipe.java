@@ -32,6 +32,7 @@ public class Recipe {
     private int id; // the primary key in the recipe table
     private @SQLInjectionSafe String name; // string for the name of the recipe
     private @SQLInjectionSafe String instruction; // instruction string
+    private @SQLInjectionSafe String description;
     private String photoURL;
 
 
@@ -128,5 +129,13 @@ public class Recipe {
 
     public void setPhotoURL(String photoURL) {
         this.photoURL = photoURL;
+    }
+    @Column(name = "description", length = 1000)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
