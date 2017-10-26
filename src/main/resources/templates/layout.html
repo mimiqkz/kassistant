@@ -56,7 +56,7 @@
                             </a>
                         </li> -->
                         <li th:if="${loggedIn}" th:href="@{/user-profile}" class="dropdown">
-                            <a href="#" class="dropdown-toggle" th:href="@{/user-profile}" data-toggle="dropdown"><span th:text="' ' + ${user}"/> <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" th:href="@{/user-profile}" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><span th:text="' ' + ${user}"/> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a th:href="@{/create-recipe}">Create Recipe</a></li>
                                 <li><a href="#">View your recipes</a></li>
