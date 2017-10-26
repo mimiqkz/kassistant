@@ -152,7 +152,7 @@ public class RecipeController {
         displayLoggedInUser(session, model);
         model.addAttribute("recipe", selected);
         model.addAttribute("author", selected.getUserCreator());
-        System.out.println(session.getAttribute("user")!=null);
+
         // Check if author is the same as the one logged in
         if(session.getAttribute("user")!=null) {
             if(session.getAttribute("user").equals(selected.getUserCreator().getUsername())) {
@@ -160,9 +160,7 @@ public class RecipeController {
             }
         }
 
-
-
-        //Splice instructions, delete first and last entry - not most efficient way right now
+        //Split instructions into substeps
         String[] instructions = selected.getInstruction().split("[!][!]");
 
         model.addAttribute("instructions", instructions);

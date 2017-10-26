@@ -39,7 +39,7 @@
                     <div class="ingredients-col col-sm-5 col-md-4 col-sd-4 col-lg-4">
                         <div class="recipe-ingredients">
                             <h2>Ingredients</h2>
-                            <ul class="ingredientSteps"  th:each="ingredient : ${recipe.ingredients}">
+                            <ul class="ingredient-list"  th:each="ingredient : ${recipe.ingredients}">
                                 <li th:text="${ingredient.name}"/>
                             </ul>
                         </div>
@@ -47,9 +47,9 @@
                     <div class="instructions-col col-sm-7 col-md-8 col-sd-8 col-lg-8">
                         <div class="recipe-instructions">
                             <h2>Method</h2>
-                                <ol class="recipeSteps" th:each = "instruction: ${instructions}">
+                                <ul class="recipe-steps" th:each = "instruction: ${instructions}">
                                     <li th:text="${instruction}"></li>
-                                </ol>
+                                </ul>
                         </div>
                     </div>
                 </div>

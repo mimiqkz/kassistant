@@ -73,6 +73,10 @@
     justify-content: space-around
 }
 
+.ingredient-list {
+    text-transform: capitalize;
+}
+
 .instruction-container {
     margin: 25px 0;
     border-top: 1px solid #c5b9a0;
