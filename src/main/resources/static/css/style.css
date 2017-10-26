@@ -3,22 +3,16 @@ body {
   font-size: 17px;
 }
 
-
 .page-header {
   margin-top: 80px;
   padding-left: 20px;
 }
-
 .results {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-left: 300px;
 }
-
-
-
-
 
 /* Image container */
 .media-left {
@@ -27,11 +21,3 @@ body {
   object-fit: contain;
 }
 
-
-/* Recipe image - will be replaced with dynamic images*/
-.media-object {
- /* background-image: url("../images/soup.jpg");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;*/
-}

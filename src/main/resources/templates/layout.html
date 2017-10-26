@@ -48,13 +48,23 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <!--/*@thymesVar id="loggedIn" type="java"*/-->
-                        <li>
+                       <!-- <li> -->
                             <!--/*@thymesVar id="user" type="java"*/-->
-                            <a th:if="${loggedIn}" th:href="@{/user-profile}" class="user">
-
-                                <span class="glyphicon glyphicon-user"></span><span th:text="' ' + ${user}"/> </a></li>
-                        <li><a th:if="${loggedIn}" th:href="@{/signout}">
-                            <span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
+                          <!--  <a th:if="${loggedIn}" th:href="@{/user-profile}" class="user">
+                                <span class="glyphicon glyphicon-user"></span><span th:text="' ' + ${user}"/>
+                            </a>
+                        </li> -->
+                        <li th:if="${loggedIn}" th:href="@{/user-profile}" class="dropdown">
+                            <a href="#" class="dropdown-toggle" th:href="@{/user-profile}" data-toggle="dropdown"><span th:text="' ' + ${user}"/> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/create-recipe}">Create Recipe</a></li>
+                                <li><a href="#">View your recipes</a></li>
+                                <li><a th:href="@{/user-profile}">View Profile</a></li>
+                                <li><a href="#">Edit Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a th:href="@{/signout}">Sign out</a></li>
+                            </ul>
+                        </li>
                         <li> <a th:unless="${loggedIn}" th:href="@{/register}">
                             <span class="glyphicon glyphicon-user"></span> Sign up</a></li>
                         <li><a th:unless="${loggedIn}" th:href="@{/login}">
@@ -66,6 +76,7 @@
     </div>
     <div th:fragment="scripts">
         <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+        <script th:src="@{/scripts/navbar.js}"></script>
     </div>
 </body>
 </html>
