@@ -22,6 +22,7 @@ public class User {
     private @SQLInjectionSafe String password; // user password string that holds the password
     private @SQLInjectionSafe String username; // user name e.g. peat12
     private @SQLInjectionSafe String name; // name of the user e.g. pétur pétursson
+    private @SQLInjectionSafe String photo;
     private int age; //age of the user
 
     @OneToMany(mappedBy = "userCreator")
@@ -100,5 +101,13 @@ public class User {
 
     public void setLikedRecipes(Set<Recipe> likedRecipes) {
         this.likedRecipes = likedRecipes;
+    }
+    @Column(name = "photo")
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String image) {
+        this.photo = image;
     }
 }
