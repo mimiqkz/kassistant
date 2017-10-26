@@ -20,3 +20,65 @@
     color: white;
     background-color: transparent;
 }
+
+/* Search Bar and Selecter */
+.navbar-default .btn-default {
+    color: white;
+    background-color: transparent;
+}
+
+.navbar-searchbox  {
+    color: white;
+    background-color: transparent;
+    border-color: white;
+    border-right: none;
+}
+
+.dropdown-menu {
+    background-color: black;
+}
+
+.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default,
+.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default:hover{
+    color: white;
+    background-color: transparent;
+    border-color: #adadad;
+}
+
+.dropdown-menu>li>a,
+.dropdown-menu>li>a:active {
+    color: white;
+    background-color: transparent;
+    border-color: white;
+}
+
+
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:active{
+    color: white;
+    background-color: transparent;
+}
+
+.search-button,
+.search-button:hover,
+.search-button:active
+{
+    background-color: transparent;
+    color: white;
+    border-left: none;
+    border-color: white;
+    outline: 0;
+}
+
+.dropdown-menu>li>a:focus {
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+}
+.dropdown-menu>li>a:hover
+
+{
+    background-color: white;
+    color: black;
+}
