@@ -51,9 +51,4 @@ public class RecipeServiceImp implements RecipeService {
         return recipeRep.findById(id);
     }
 
-    @Override
-    @ResponseBody
-    public String getPhotoById(int id) {
-        return null;
-    }
 }
