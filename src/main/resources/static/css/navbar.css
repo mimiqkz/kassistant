@@ -1,6 +1,7 @@
 .navbar-default {
     font-size: 14px;
-    background-color: #191919;
+    background: linear-gradient(to top left, black, #202020); /* Standard syntax */
+
     opacity: 1;
 }
 
@@ -90,6 +91,7 @@
 
 
 .dropdown-menu {
+    background-color: black;
     border-color: black;
 }
 

@@ -6,6 +6,7 @@ body {
 .page-header {
   margin-top: 80px;
   padding-left: 20px;
+  border-color: #c5b9a0;
 }
 .results {
   display: flex;
@@ -18,6 +19,6 @@ body {
   color: red;
 }
 
-.navbar-default .btn-default:hover {
+.navbar-default .btn-default-post:hover {
   border-color: lightseagreen;
 }

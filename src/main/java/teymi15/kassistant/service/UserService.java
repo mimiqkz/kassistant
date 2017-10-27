@@ -26,12 +26,12 @@ public interface UserService {
     /**
      * add user
      * @param  username
-     * @param email
+     * @param name
      * @param password
      * @param confirm
-     * @return void
+     * @return User
      */
-    void addUser(String name, String username, String password, String confirm) throws Exception;
+    User addUser(String name, String username, String password, String confirm) throws Exception;
 
     /**
      * Returns true if user is in repository, false if not

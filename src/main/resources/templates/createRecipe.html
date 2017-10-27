@@ -6,22 +6,68 @@
 <div th:replace="layout :: navigation-top-bar"></div>
 
 <div class="page-header">
-    <h1>Create A new recipe</h1>
+    <h1>Create a new recipe</h1>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-5 col-lg-offset-3">
-            <div class="jumbotron">
-            <form action="#" class="form-horizonal" th:action="@{/create-recipe}" method="post" enctype="multipart/form-data">
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Name:</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control"  placeholder="Enter desired recipe name"/>
-                    </div>
+<div class="container">
+          <!--  <form action="#" class="form-horizonal" th:action="@{/create-recipe}" method="post" enctype="multipart/form-data"> -->
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="jumbotron">
+
+                    <form>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control" id="title" placeholder="The name of your recipe"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Author</label>
+                            <input type="text" th:value="${user}" class="form-control" readonly="readonly" text="poop"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea  class="form-control" id="description" placeholder="Give your recipe an interesting description" style=" resize: vertical; max-height: 100px;"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Ingredients</label>
+                            <div class="input-group control-group after-add-more-ingredient" style="width: 100%">
+                                <input type="text" name="ingredient[]" class="form-control" placeholder="Enter ingredient here"/>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default add-more-ingredient" type="button"><i class="glyphicon glyphicon-plus"/></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Instructions</label>
+                            <div class="input-group control-group after-add-more-instruction" style="width: 100%">
+                                <input type="text" name="instruction[]" class="form-control" placeholder="Enter instruction here"/>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default add-more-instruction" type="button"><i class="glyphicon glyphicon-plus"/></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <div class="input-group">
+                                <label class="input-group-btn">
+                                    <span class="btn btn-primary">Browse&hellip; <input type="file" style="display:none"/></span>
+                                </label>
+                                <input type="text" class="form-control" readonly="readonly" />
+                            </div>
+                        </div>
+                            <!--
+                            <div class="col-sm-10">
+                                <input type="file" name="file" class="input-file"  th:feild="*{file}" required="required"> </input>
+                            </div> -->
+
+
+                </form>
                 </div>
 
+            </div>
+</div>
+
+<!--
                 <div class="form-group">
                     <label class="control-label col-sm-2">Instructions:</label>
                     <div class="input-group control-group after-add-more-instruction" style="width: 100%">
@@ -67,12 +113,8 @@
                         <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
                     </div>
                 </div>
+ -->
 
-            </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Dynamic field template -->
 
@@ -80,7 +122,7 @@
     <div class="control-group input-group" style="margin-top:10px">
         <input type="text" name="instruction[]" class="form-control" placeholder="Enter instruction here"/>
         <div class="input-group-btn">
-            <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-minus"/></button>
+            <button class="btn btn-default remove" type="button"><i class="glyphicon glyphicon-minus"/></button>
         </div>
     </div>
 </div>
@@ -89,15 +131,12 @@
     <div class="control-group input-group" style="margin-top:10px">
         <input type="text" name="ingredient[]" class="form-control" placeholder="Enter ingredient here"/>
         <div class="input-group-btn">
-            <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-minus"/></button>
+            <button class="btn btn-default remove" type="button"><i class="glyphicon glyphicon-minus"/></button>
         </div>
     </div>
 </div>
 
-<select class = "selectpicker"  data-width="fit">
-    <option >Recipe</option>
-    <option >Ingredient</option>
-</select>
+
 <div th:replace="layout :: scripts"></div>
 <script th:src="@{/scripts/dynamic-fields.js}"></script>
 </body>

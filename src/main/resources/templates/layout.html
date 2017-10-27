@@ -12,6 +12,8 @@
     <link rel="stylesheet" th:href="@{/css/profile.css}"/>
     <link rel="stylesheet" th:href="@{/css/mainpage.css}"/>
     <link rel="stylesheet" th:href="@{/css/navbar.css}"/>
+    <link rel="stylesheet" th:href="@{/css/createrecipe.css}"/>
+
 
 
     <script th:src="@{/lib/jquery/jquery.min.js}"></script>
@@ -61,7 +63,7 @@
                         <li th:if="${loggedIn}" th:href="@{/user-profile}" class="dropdown">
                             <a href="#" th:href="@{/user-profile}" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-user"/>
-                                <span th:text="' ' + ${user}"/> <b class="caret"></b></a>
+                                <span th:text="' ' + ${user.username}"/> <b class="caret"></b></a>
                             <ul class="dropdown-menu dropdown-menu-user">
                                 <li><a th:href="@{/create-recipe}">Create Recipe</a></li>
                                 <li><a href="#">View your recipes</a></li>
@@ -132,7 +134,7 @@
                                         </div>
                                     </div>
 
-                                    <input type="button" onClick="sendData()" class="btn btn-default btn-lg btn-block signup-btn" id="post" value="Register" />
+                                    <input type="button" onClick="sendData()" class="btn btn-default btn-default-post btn-lg btn-block signup-btn" id="post" value="Register" />
 
                                 </form>
                             </div>
@@ -161,7 +163,7 @@
                                             <input type="password" class="form-control" placeholder="password" id="password" name="password" />
                                         </div>
                                     </div>
-                                    <input type="submit" class="btn btn-default btn-lg btn-block" value="Log in" />
+                                    <input type="submit" class="btn btn-default btn-default-post btn-lg btn-block" value="Log in" />
                                 </form>
                             </div>
                         </li>

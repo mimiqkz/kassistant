@@ -38,27 +38,9 @@ public class UserController {
     @Autowired
     UserServiceImp userService;
 
-/*
-    @PostMapping("register")
-    public String registrationSubmit(HttpSession session,@ModelAttribute User user, Model model){
-
-        if(userService.addUser(user)){
-            session.setAttribute("user",user.getUsername());
-            session.setAttribute("password",user.getPassword());
-            model.addAttribute("user", user.getUsername());
-            model.addAttribute("loggedIn", true);
-            return "homepage";
-
-        }else{
-            System.out.println("Error on registration");
-        }
-        return "signup";
-    } */
-
     @RequestMapping(value = "signout", method = RequestMethod.GET)
     public String signOut(HttpSession session,Model model){
         session.setAttribute("user",null);
-        session.setAttribute("password",null);
 
         return "homepage";
     }
@@ -76,8 +58,7 @@ public class UserController {
 
         if (isLoginCorrect(username, password)) {
             User user = userService.getUser(username, password);
-            session.setAttribute("user",username);
-            session.setAttribute("password", password);
+            session.setAttribute("user", user);
 
             //If login successful set the current user
             displayLoggedInUser(session, model);
@@ -100,12 +81,8 @@ public class UserController {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         String confirm = request.getParameter("confirm");
-
-        System.out.println("HERE now " + name);
         try {
-            userService.addUser(name, username, password, confirm);
-            session.setAttribute("user", username);
-            session.setAttribute("password", password);
+            session.setAttribute("user", userService.addUser(name, username, password, confirm));
 
         } catch (Exception e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -113,26 +90,6 @@ public class UserController {
         displayLoggedInUser(session, model);
         return null;
     }
-
-
-        /*
-        if(!what) {
-
-        }
-        else {
-            model.addAttribute("error-message", "Username already exists");
-            throw new java.lang.Error("this is very bad");
-        } */
-
-        /*
-        if (!userService.isUsernameFree(username)) {
-            model.addAttribute("error", true);
-            model.addAttribute("displayErrorMessage", "Username already exists");
-        }
-        */
-
-
-
 
     /**
      * checks if the login is correct
@@ -164,7 +121,7 @@ public class UserController {
             if(!(session.getAttribute("user") == null)) {
                 model.addAttribute("user", session.getAttribute("user"));
                 model.addAttribute("loggedIn", true);
-
+                System.out.println("user is  " + session.getAttribute("user"));
             }
 
         }

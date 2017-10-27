@@ -32,32 +32,27 @@ public class UserServiceImp implements UserService{
 
     @Override
     @ResponseBody
-    public void addUser(String name, String username, String password, String confirm) throws Exception {
+    public User addUser(String name, String username, String password, String confirm) throws Exception {
         //Check first if any fields are empty
+        User user = new User();
         if(!(username.isEmpty() || name.isEmpty() || password.isEmpty() || confirm.isEmpty())) {
                 if(!password.equals(confirm)) {
                     throw new Exception("Passwords do not match");
                 } else if(!isUsernameFree(username)){
                     throw new Exception("Username is already in use");
                 } try{
-                    User user = new User(password, username, name);
+                    user.setName(name);
+                    user.setUsername(username);
                     String hashedPassword = BcryptHashing.signup(user.getPassword());
                     user.setPassword(hashedPassword);
                     userRep.save(user);
+                    return user;
                 }catch (Exception e){
                     System.out.println("hér " + e.toString());
-                }
-
-
-            } else {
+                } } else {
                 throw new Exception("Please fill out all of the fields");
             }
-
-
-            //Need email verification
-
-
-
+            return user;
     }
 
 
