@@ -52,24 +52,22 @@ public class UserController {
      * @return String
      */
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(HttpSession session, HttpServletRequest request, Model model) {
+    public String login(HttpSession session, HttpServletRequest request, Model model) throws Exception {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
+        System.out.println(isLoginCorrect(username, password));
         if (isLoginCorrect(username, password)) {
             User user = userService.getUser(username, password);
-            session.setAttribute("user", user);
 
             //If login successful set the current user
+            session.setAttribute("user", user);
             displayLoggedInUser(session, model);
 
             return "homepage";
-
         } else {
-            model.addAttribute("loginError", true);
+            throw new Exception("Login incorrect");
 
         }
-        return "login";
     }
 
 
@@ -83,11 +81,12 @@ public class UserController {
         String confirm = request.getParameter("confirm");
         try {
             session.setAttribute("user", userService.addUser(name, username, password, confirm));
+            displayLoggedInUser(session, model);
 
         } catch (Exception e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        displayLoggedInUser(session, model);
+
         return null;
     }
 
@@ -121,7 +120,6 @@ public class UserController {
             if(!(session.getAttribute("user") == null)) {
                 model.addAttribute("user", session.getAttribute("user"));
                 model.addAttribute("loggedIn", true);
-                System.out.println("user is  " + session.getAttribute("user"));
             }
 
         }

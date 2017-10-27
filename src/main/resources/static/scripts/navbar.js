@@ -22,14 +22,38 @@ function sendData()
             url: "/sign-up",
             success: function(data, textStatus, jqXHR)
             {
-                $(".alert-danger").hide();
+                $(".alert-danger-signup").hide();
                 window.location.reload();
             },
             error: function(jqXHR)
             {
-                $(".alert-danger").show();
-                $(".error-message").text(jqXHR.responseText);
+                $(".alert-danger-signup").show();
+                $(".error-message-signup").text(jqXHR.responseText);
             }
 
         });
+}
+
+function sendLogin()
+{
+    $.ajax(
+        {
+            type: "POST",
+            data: $("#login-form").serialize(),
+            cache: false,
+            url: "/login",
+            success: function(data, textStatus, jqXHR)
+            {
+                $(".alert-danger-login").hide();
+                window.location.reload();
+            },
+            error: function(jqXHR)
+            {
+                $(".alert-danger-login").show();
+                $(".error-message-login").text("Username or password incorrect");
+            }
+
+        });
+
+
 }

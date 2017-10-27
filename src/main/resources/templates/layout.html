@@ -79,8 +79,8 @@
                             <a href="#" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-log-in"></span> Sign up</a>
                             <div class="dropdown-menu dropdown-menu-signup">
-                                <div class="alert alert-danger fade in" >
-                                    <span class="error-message"/>
+                                <div class="alert alert-danger alert-danger-signup" >
+                                    <span class="error-message-signup"/>
                                 </div>
 
                                 <form  id="registration-form" method="POST" th:action="@{sign-up}">
@@ -144,7 +144,10 @@
                             <a href="#" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-log-in"></span> Log in</a>
                             <div class="dropdown-menu dropdown-menu-login">
-                                <form th:action="@{/login}" method="post">
+                                <div class="alert alert-danger alert-danger-login" >
+                                    <span class="error-message-login"/>
+                                </div>
+                                <form th:action="@{/login}" id="login-form" method="post">
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon">
@@ -163,7 +166,7 @@
                                             <input type="password" class="form-control" placeholder="password" id="password" name="password" />
                                         </div>
                                     </div>
-                                    <input type="submit" class="btn btn-default btn-default-post btn-lg btn-block" value="Log in" />
+                                    <input type="button" onClick="sendLogin()" class="btn btn-default btn-default-post btn-lg btn-block" id="post" value="Log in" />
                                 </form>
                             </div>
                         </li>
