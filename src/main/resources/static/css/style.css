@@ -17,3 +17,7 @@ body {
 .error-message {
   color: red;
 }
+
+.navbar-default .btn-default:hover {
+  border-color: lightseagreen;
+}
