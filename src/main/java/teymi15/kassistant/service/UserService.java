@@ -25,10 +25,13 @@ public interface UserService {
 
     /**
      * add user
-     * @param  user
+     * @param  username
+     * @param email
+     * @param password
+     * @param confirm
      * @return void
      */
-    boolean addUser(User user);
+    void addUser(String name, String username, String password, String confirm) throws Exception;
 
     /**
      * Returns true if user is in repository, false if not
@@ -69,6 +72,11 @@ public interface UserService {
      */
     boolean updateUser(Long id,int age, String userName, String name,String password);
 
-
+    /**
+     * checks if username already exists, returns true or false
+     * @param username
+     * @return true if username exists, else false
+     */
+    boolean isUsernameFree(String username);
 
 }

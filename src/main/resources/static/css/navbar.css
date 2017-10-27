@@ -1,7 +1,7 @@
 .navbar-default {
     font-size: 14px;
     background-color: #191919;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 .navbar-default .navbar-header .navbar-brand{
@@ -76,9 +76,7 @@
     text-decoration: none;
     background-color: transparent;
 }
-.dropdown-menu>li>a:hover
-
-{
+.dropdown-menu>li>a:hover {
     background-color: white;
     color: black;
 }
@@ -90,9 +88,19 @@
     color: white;
 }
 
+
 .dropdown-menu {
+    border-color: black;
+}
+
+.dropdown-menu-login {
     padding: 17px;
     width: 300px;
-    background-color: black;
-    opacity: 0.8;
 }
+
+.dropdown-menu-signup {
+    padding: 17px;
+    width: 400px;
+    color: white;
+}
+

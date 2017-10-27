@@ -10,6 +10,7 @@ package teymi15.kassistant.service;
  * @version 1.0
  * @since   2017-09-20
  */
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,19 +32,32 @@ public class UserServiceImp implements UserService{
 
     @Override
     @ResponseBody
-    public boolean addUser(User user) {
-        if (user.getPassword() != null) {
-            try{
-                String hashedPassword = BcryptHashing.signup(user.getPassword());
-                user.setPassword(hashedPassword);
-                userRep.save(user);
-            }catch (Exception e){
-                System.out.println("hér " + e.toString());
+    public void addUser(String name, String username, String password, String confirm) throws Exception {
+        //Check first if any fields are empty
+        if(!(username.isEmpty() || name.isEmpty() || password.isEmpty() || confirm.isEmpty())) {
+                if(!password.equals(confirm)) {
+                    throw new Exception("Passwords do not match");
+                } else if(!isUsernameFree(username)){
+                    throw new Exception("Username is already in use");
+                } try{
+                    User user = new User(password, username, name);
+                    String hashedPassword = BcryptHashing.signup(user.getPassword());
+                    user.setPassword(hashedPassword);
+                    userRep.save(user);
+                }catch (Exception e){
+                    System.out.println("hér " + e.toString());
+                }
+
+
+            } else {
+                throw new Exception("Please fill out all of the fields");
             }
 
-            return true;
-        }
-        return false;
+
+            //Need email verification
+
+
+
     }
 
 
@@ -114,7 +128,6 @@ public class UserServiceImp implements UserService{
             User user = userRep.findOne(id);
             user.setName(name);
             user.setUsername(userName);
-            user.setAge(age);
             user.setPassword(password);
             userRep.save(user);
         }
@@ -123,4 +136,12 @@ public class UserServiceImp implements UserService{
         }
         return true;
     }
+
+    @Override
+    @ResponseBody
+    public boolean isUsernameFree(String username){
+        return (userRep.findByUsername(username).isEmpty());
+    }
+
+
 }

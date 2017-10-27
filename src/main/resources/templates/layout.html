@@ -14,7 +14,6 @@
     <link rel="stylesheet" th:href="@{/css/navbar.css}"/>
 
     <script th:src="@{/lib/jquery/jquery.min.js}"></script>
-
 </head>
 <body>
     <div th:fragment="navigation-top-bar">
@@ -57,9 +56,14 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!--/*@thymesVar id="loggedIn" type="java"*/-->
                         <!--/*@thymesVar id="user" type="java"*/-->
+                        <!-- User dropdown menu-->
                         <li th:if="${loggedIn}" th:href="@{/user-profile}" class="dropdown">
-                            <a href="#" class="dropdown-toggle" th:href="@{/user-profile}" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><span th:text="' ' + ${user}"/> <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
+                            <a href="#" th:href="@{/user-profile}" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user">
+
+                                </span>
+                                <span th:text="' ' + ${user}"/> <b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdown-menu-user">
                                 <li><a th:href="@{/create-recipe}">Create Recipe</a></li>
                                 <li><a href="#">View your recipes</a></li>
                                 <li><a th:href="@{/user-profile}">View Profile</a></li>
@@ -69,13 +73,72 @@
                             </ul>
                         </li>
 
-                        <li> <a th:unless="${loggedIn}" th:href="@{/register}">
-                            <span class="glyphicon glyphicon-user"></span> Sign up</a></li>
-                        <!-- Log in menu -->
-                        <li th:unless="${loggedIn}" class="dropdown-login" id="menuLogin">
-                            <a th:unless="${loggedIn}" href="#" class="dropdown-toggle" data-toggle="dropdown" id="navLogin">
+                        <!-- Sign up Dropdown -->
+                        <li th:unless="${loggedIn}">
+                            <a href="#" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-log-in"></span> Sign up</a>
+                            <div class="dropdown-menu dropdown-menu-signup">
+                                <h6 class="error-message"/>
+                                <form  id="registration-form" method="POST" th:action="@{sign-up}">
+                                    <div class="form-group">
+                                        <label for="name" class="cols-sm-2 control-label">Your Name</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="username" class="cols-sm-2 control-label">Username</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" onClick="sendData()" class="btn btn-primary btn-lg btn-block signup-btn" id="post" value="Register" />
+
+                                </form>
+                            </div>
+                        </li>
+                        <!-- Login dropdown menu-->
+                        <li th:unless="${loggedIn}">
+                            <a href="#" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-log-in"></span> Log in</a>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu dropdown-menu-login">
                                 <form th:action="@{/login}" method="post">
                                     <div class="form-group">
                                         <div class="input-group">
@@ -92,7 +155,7 @@
                                                 <span class="glyphicon glyphicon-lock"/>
                                             </span>
                                             <label for="password"></label>
-                                            <input type="password" class="form-control" id="password" placeholder="password" name="password" />
+                                            <input type="password" class="form-control" placeholder="password" id="password" name="password" />
                                         </div>
                                     </div>
                                     <input type="submit" class="btn btn-default" value="Log in" />
@@ -108,8 +171,8 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
                 crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-
         <script th:src="@{/scripts/navbar.js}"></script>
     </div>
+
 </body>
 </html>

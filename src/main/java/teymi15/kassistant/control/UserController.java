@@ -9,19 +9,25 @@ package teymi15.kassistant.control;
  * @version 1.0
  * @since   2017-09-20
  */
-import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
-import teymi15.kassistant.service.UserService;
 import teymi15.kassistant.service.UserServiceImp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import javax.xml.ws.Response;
 
 /**
  * The class manages user data
@@ -32,20 +38,7 @@ public class UserController {
     @Autowired
     UserServiceImp userService;
 
-    @GetMapping("register")
-    public String registrationForm(Model model){
-        model.addAttribute("user", new User());
-        return "signup";
-    }
-
-    /**
-     * The function returns a string with the route which should be rendered. This
-     *  is initiated when the user submits his/her input. The input from the user
-     *  should then be displayed on the result page.
-     * @param user User
-     * @return String
-     */
-
+/*
     @PostMapping("register")
     public String registrationSubmit(HttpSession session,@ModelAttribute User user, Model model){
 
@@ -60,13 +53,13 @@ public class UserController {
             System.out.println("Error on registration");
         }
         return "signup";
-    }
+    } */
 
     @RequestMapping(value = "signout", method = RequestMethod.GET)
     public String signOut(HttpSession session,Model model){
         session.setAttribute("user",null);
         session.setAttribute("password",null);
-       
+
         return "homepage";
     }
     /**
@@ -81,14 +74,12 @@ public class UserController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-
         if (isLoginCorrect(username, password)) {
             User user = userService.getUser(username, password);
-
-            //If login successful set the current user
             session.setAttribute("user",username);
             session.setAttribute("password", password);
 
+            //If login successful set the current user
             displayLoggedInUser(session, model);
 
             return "homepage";
@@ -99,6 +90,48 @@ public class UserController {
         }
         return "login";
     }
+
+
+
+    @RequestMapping(value = "sign-up", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity signup(HttpSession session, HttpServletRequest request, Model model) {
+        String username = request.getParameter("username");
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        String confirm = request.getParameter("confirm");
+
+        System.out.println("HERE now " + name);
+        try {
+            userService.addUser(name, username, password, confirm);
+            session.setAttribute("user", username);
+            session.setAttribute("password", password);
+
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        displayLoggedInUser(session, model);
+        return null;
+    }
+
+
+        /*
+        if(!what) {
+
+        }
+        else {
+            model.addAttribute("error-message", "Username already exists");
+            throw new java.lang.Error("this is very bad");
+        } */
+
+        /*
+        if (!userService.isUsernameFree(username)) {
+            model.addAttribute("error", true);
+            model.addAttribute("displayErrorMessage", "Username already exists");
+        }
+        */
+
+
 
 
     /**
@@ -118,11 +151,20 @@ public class UserController {
         return "user-profile";
     }
 
+
+    /**
+     * The function returns a gets the user in the current section and adds the
+     * User attribute to the current page
+     * @param session httpSession
+     * @param model model
+     * @return void
+     */
     public void displayLoggedInUser(HttpSession session, Model model) {
         if(!session.isNew()) {
             if(!(session.getAttribute("user") == null)) {
                 model.addAttribute("user", session.getAttribute("user"));
                 model.addAttribute("loggedIn", true);
+
             }
 
         }

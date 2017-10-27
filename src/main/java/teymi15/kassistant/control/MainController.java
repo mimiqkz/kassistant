@@ -52,10 +52,6 @@ public class MainController {
         return "homepage";
     }
 
-
-
-
-
     /**
      * The function returns a string with the route which should be rendered. This
      *  is initiated when the user selects a link that represents a Recipe. This Recipe
@@ -74,14 +70,12 @@ public class MainController {
     }
 
     /**
-     *  The function tells the login page to be displayed at path returned
-     *  by the string
-     * @return String
-     *
+     * The function returns a gets the user in the current section and adds the
+     * User attribute to the current page
+     * @param session httpSession
+     * @param model model
+     * @return void
      */
-    @RequestMapping(value="login", method = RequestMethod.GET)
-    public String displayLoginPage () {return "login";}
-
     public void displayLoggedInUser(HttpSession session, Model model) {
         if(!session.isNew()) {
             if(!(session.getAttribute("user") == null)) {

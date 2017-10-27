@@ -23,7 +23,6 @@ public class User {
     private @SQLInjectionSafe String username; // user name e.g. peat12
     private @SQLInjectionSafe String name; // name of the user e.g. pétur pétursson
     private @SQLInjectionSafe String photo;
-    private int age; //age of the user
 
     @OneToMany(mappedBy = "userCreator")
     private Set<Recipe> myRecipes;
@@ -32,11 +31,10 @@ public class User {
     private Set<Recipe> likedRecipes;
 
     public User(){}
-    public User(String password, String username, String name, int age){
+    public User(String password, String username, String name){
         this.password = password;
         this.username = username;
         this.name = name;
-        this.age = age;
     }
     public User(int id){
         this.id = id;
@@ -77,7 +75,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
+/*
     @Column(name = "age")
     public int getAge() {
         return age;
@@ -85,7 +83,7 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
-    }
+    } */
 
     public Set<Recipe> getMyRecipes() {
         return myRecipes;
