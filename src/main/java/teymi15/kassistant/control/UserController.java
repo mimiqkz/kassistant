@@ -41,7 +41,6 @@ public class UserController {
     @RequestMapping(value = "signout", method = RequestMethod.GET)
     public String signOut(HttpSession session,Model model){
         session.setAttribute("user",null);
-
         return "homepage";
     }
     /**
@@ -80,7 +79,8 @@ public class UserController {
         String password = request.getParameter("password");
         String confirm = request.getParameter("confirm");
         try {
-            session.setAttribute("user", userService.addUser(name, username, password, confirm));
+            User user = userService.addUser(name, username, password, confirm);
+            session.setAttribute("user", user);
             displayLoggedInUser(session, model);
 
         } catch (Exception e) {
@@ -107,7 +107,6 @@ public class UserController {
         return "user-profile";
     }
 
-
     /**
      * The function returns a gets the user in the current section and adds the
      * User attribute to the current page
@@ -121,7 +120,6 @@ public class UserController {
                 model.addAttribute("user", session.getAttribute("user"));
                 model.addAttribute("loggedIn", true);
             }
-
         }
     }
 
