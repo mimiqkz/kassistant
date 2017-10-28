@@ -71,8 +71,9 @@ public class RecipeController {
             List<Ingredient> ingredients = IngredientService.getMatchingIngredient(search);
             model.addAttribute("resultsList", ingredients);
         }
-        //Allow user to see their search in the searchbar
-        model.addAttribute("search", search);
+        //Display user search - if nothing then display all - will do this from front-end later
+        if(search=="") model.addAttribute("searchvalue", "All");
+        else model.addAttribute("searchvalue", search);
 
         return "resultpage";
     }

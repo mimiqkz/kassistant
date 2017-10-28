@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('.alert-danger').hide();
 
+
 });
 
 

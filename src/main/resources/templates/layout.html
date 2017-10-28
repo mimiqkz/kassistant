@@ -38,7 +38,7 @@
                     </ul>
 
                     <!--Search-bar-->
-                    <form class="navbar-form navbar-left" method="post" th:action="@{/search}">
+                    <form class="navbar-form navbar-left" id="search" method="post" th:action="@{/search}">
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-btn">
@@ -47,7 +47,7 @@
                                         <option value="ingredient">Ingredient</option>
                                     </select>
                                 </div> <!-- input-group btn -->
-                                <input type="text" name="search" class="form-control navbar-searchbox" placeholder="Search for a recipe"  th:value="${search}" />
+                                <input type="text" name="search" id="search-input" class="form-control navbar-searchbox" placeholder="Search for a recipe" />
                                 <div class="input-group-btn">
                                     <button class="btn btn-default search-button" type="submit">
                                         <span class="glyphicon glyphicon-search" />
@@ -182,6 +182,8 @@
                 crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
         <script th:src="@{/scripts/navbar.js}"></script>
+        <script th:src="@{/scripts/main.js}"></script>
+
 
     </div>
 
