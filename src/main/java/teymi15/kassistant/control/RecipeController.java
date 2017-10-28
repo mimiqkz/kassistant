@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teymi15.kassistant.model.Ingredient;
+import teymi15.kassistant.model.User;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.PhotoServiceImp;
 import teymi15.kassistant.service.RecipeServiceImp;
@@ -70,7 +71,8 @@ public class RecipeController {
             List<Ingredient> ingredients = IngredientService.getMatchingIngredient(search);
             model.addAttribute("resultsList", ingredients);
         }
-
+        //Allow user to see their search in the searchbar
+        model.addAttribute("search", search);
 
         return "resultpage";
     }
@@ -128,14 +130,13 @@ public class RecipeController {
         }
 
         String pic = photoService.addPhoto(bytes);
-        System.out.println(pic);
         recipe.setPhotoURL(pic);
-        String s = session.getAttribute("user").toString();
-        recipe.setUserCreator(userServiceImp.getUserByName(s));
+        recipe.setUserCreator((User)session.getAttribute("user"));
         RecipeService.addRecipe(recipe);
+        displayRecipe(session, model, recipe);
         displayLoggedInUser(session, model); 
 
-        return "homepage";
+        return "recipe";
     }
 
     /**
@@ -149,22 +150,28 @@ public class RecipeController {
     @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
     public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
         Recipe selected = RecipeService.getRecipeById(id);
+        displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
-        model.addAttribute("recipe", selected);
-        model.addAttribute("author", selected.getUserCreator());
 
-        // Check if author is the same as the one logged in
-        if(session.getAttribute("user")!=null) {
-            if(session.getAttribute("user").equals(selected.getUserCreator().getUsername())) {
-                model.addAttribute("sameUser", true);
-            }
-        }
+
+
 
         //Split instructions into substeps
         String[] instructions = selected.getInstruction().split("[!][!]");
 
         model.addAttribute("instructions", instructions);
         return "recipe";
+    }
+
+    public void displayRecipe(HttpSession session, Model model, Recipe recipe) {
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("author", recipe.getUserCreator());
+        // Check if author is the same as the one logged in
+        if(session.getAttribute("user")!=null) {
+            if(session.getAttribute("user").equals(recipe.getUserCreator().getUsername())) {
+                model.addAttribute("sameUser", true);
+            }
+        }
     }
 
     /**

@@ -36,6 +36,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a th:href="@{/}" class="home">Home<span class="sr-only">(current)</span></a></li>
                     </ul>
+
                     <!--Search-bar-->
                     <form class="navbar-form navbar-left" method="post" th:action="@{/search}">
                         <div class="form-group">
@@ -46,7 +47,7 @@
                                         <option value="ingredient">Ingredient</option>
                                     </select>
                                 </div> <!-- input-group btn -->
-                                <input type="text" name="search" class="form-control navbar-searchbox" placeholder="Search for a recipe"/>
+                                <input type="text" name="search" class="form-control navbar-searchbox" placeholder="Search for a recipe"  th:value="${search}" />
                                 <div class="input-group-btn">
                                     <button class="btn btn-default search-button" type="submit">
                                         <span class="glyphicon glyphicon-search" />
@@ -56,9 +57,11 @@
                         </div>
                     </form>
 
+                    <!-- Dropdown menus: User, Sign up, Login-->
                     <ul class="nav navbar-nav navbar-right">
                         <!--/*@thymesVar id="loggedIn" type="java"*/-->
                         <!--/*@thymesVar id="user" type="java"*/-->
+
                         <!-- User dropdown menu-->
                         <li th:if="${loggedIn}" th:href="@{/user-profile}" class="dropdown">
                             <a href="#" th:href="@{/user-profile}" data-toggle="dropdown">
@@ -73,7 +76,6 @@
                                 <li><a th:href="@{/signout}">Sign out</a></li>
                             </ul>
                         </li>
-
                         <!-- Sign up Dropdown -->
                         <li th:unless="${loggedIn}">
                             <a href="#" data-toggle="dropdown">
@@ -89,7 +91,7 @@
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+                                                <input type="text" required="required" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +101,7 @@
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                                                <input type="text" required="required" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
                                             </div>
                                         </div>
                                     </div>
@@ -109,7 +111,7 @@
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+                                                <input type="text" required="required" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +121,7 @@
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                                                <input type="password" required="required" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
                                             </div>
                                         </div>
                                     </div>
@@ -129,7 +131,7 @@
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                                                <input type="password" required="required" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +156,7 @@
                                                 <span class="glyphicon glyphicon-user"/>
                                             </span>
                                             <label for="username"></label>
-                                            <input type="text" class="form-control" id="username" name="username" placeholder="username" autofocus="autofocus" />
+                                            <input type="text" required="required" class="form-control" id="username" name="username" placeholder="username" autofocus="autofocus" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -163,7 +165,7 @@
                                                 <span class="glyphicon glyphicon-lock"/>
                                             </span>
                                             <label for="password"></label>
-                                            <input type="password" class="form-control" placeholder="password" id="password" name="password" />
+                                            <input type="password" required="required" class="form-control" placeholder="password" id="password" name="password" />
                                         </div>
                                     </div>
                                     <input type="button" onClick="sendLogin()" class="btn btn-default btn-default-post btn-lg btn-block" id="post" value="Log in" />
