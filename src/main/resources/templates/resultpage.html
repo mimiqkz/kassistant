@@ -5,12 +5,14 @@
 <div th:replace="layout :: navigation-top-bar"></div>
 
     <div class="page-header">
-        <h1>Results</h1>
+        <h1>Your search: <span id="searchresult" th:text="${searchvalue}"></span></h1>
     </div>
 
     <div class="container">
         <!--/*@thymesVar id="resultsList" type="java"*/-->
         <!--/*@thymesVar id="isRecipe" type="java"*/-->
+
+
         <div class="result-table" th:each="results : ${resultsList}">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2" style="margin-bottom: 30px">
