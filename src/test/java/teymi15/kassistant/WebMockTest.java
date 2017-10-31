@@ -3,7 +3,6 @@ package teymi15.kassistant;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -16,12 +15,19 @@ import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.when;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import static org.assertj.core.api.Assertions.assertThat;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
 import teymi15.kassistant.control.RecipeController;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.service.RecipeService;
+
+/**
+ *
+ * @author Nu Phan Quynh Do
+ * @date október 2017 HBV501G Hugbúnaðarverkefni 1 Háskóli Íslands
+ *
+ * Prófunarklasi sem framkvæmir prófanir á webmocktest og notar WebMvcTest og
+ * Mockito til að prófa service klasa
+ */
+
 
 @RunWith(SpringRunner.class)
 
