@@ -75,15 +75,6 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-/*
-    @Column(name = "age")
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    } */
 
     public Set<Recipe> getMyRecipes() {
         return myRecipes;

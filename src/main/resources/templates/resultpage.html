@@ -1,36 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head"></head>
+<head th:replace="layout :: head">
+</head>
 <body>
 <div th:replace="layout :: navigation-top-bar"></div>
 
     <div class="page-header">
-        <h1>Your search: <span id="searchresult" th:text="${searchvalue}"></span></h1>
+        <h2>Your search: <span id="searchresult" th:text="${searchvalue}"></span> <span th:text="'(' + ${numOfResults} + ' results)' "></span></h2>
     </div>
 
-    <div class="container">
         <!--/*@thymesVar id="resultsList" type="java"*/-->
         <!--/*@thymesVar id="isRecipe" type="java"*/-->
+<div class="container fluid">
+        <div class="row results" th:each="results : ${resultsList}">
 
+                <div class="col-md-8 col-md-offset-2 col-sm-12 results-card">
+                   <div class="card-image">
+                        <img th:src="${results.photoURL}"/>
+                    </div>
+                    <!-- For Recipe Results -->
+                    <div class="card-content" th:if="${isRecipe}">
+                        <a class="card-link" th:href="@{/recipe/{id}(id=${results.id})}">
+                            <h2 class="card-header" th:text="${results.name}"></h2>
+                        </a>
+                        <span class="card-likes">200 likes</span>
+                        <p>Long description of recipe that should fit here who knows what could happens sounds like  a treat and a half</p>
+                    </div>
+                    <!-- For Ingredients Results -->
+                    <div class="card-content" th:unless="${isRecipe}">
+                        <a class="card-link" th:href="@{/ingredient/{id}(id=${results.getID()})}">
+                            <h2 class="card-header" th:text="${results.name}"></h2>
+                        </a>
 
-        <div class="result-table" th:each="results : ${resultsList}">
-            <div class="row">
+"
+                            <p>Long description of recipe that should fit here who knows what could happens sounds like  a treat and a half</p>
+                    </div>
+
+                </div>
+        </div>
+</div>
+
+    <!--  <div th:unless="${isRecipe}" class="row"> -->
+          <!-- For Ingredient results -->
+                        <!--        <a th:href="@{/ingredient/{id}(id=${results.getID()})}">
+                                    <h3 class="card__heading" th:text="${results.name}"></h3>
+                                </a>
+                                <p class="card__text"> Need something here </p>
+                            </div>
+-->
+
+<!--  <div class="row">
                 <div class="col-md-8 col-md-offset-2" style="margin-bottom: 30px">
                     <div class="card">
                         <div class="card__image">
                             <img th:src="${results.photoURL}" alt="image" class="card__img" style="width:400px"/>
                         </div>
-                        <div class="card__content">
+                        <div class="card__content"> -->
                             <!-- For Recipe results -->
-                            <div th:if="${isRecipe}">
+                    <!--        <div th:if="${isRecipe}">
                                 <a th:href="@{/recipe/{id}(id=${results.id})}">
                                     <h3 class="card__heading" th:text="${results.name}"></h3>
                                 </a>
                                 <p class="card__text" th:text="${results.instruction}"></p>
                             </div>
-                            <div th:unless="${isRecipe}" class="row">
+                            <div th:unless="${isRecipe}" class="row"> -->
                                 <!-- For Ingredient results -->
-                                <a th:href="@{/ingredient/{id}(id=${results.getID()})}">
+                        <!--        <a th:href="@{/ingredient/{id}(id=${results.getID()})}">
                                     <h3 class="card__heading" th:text="${results.name}"></h3>
                                 </a>
                                 <p class="card__text"> Need something here </p>
@@ -39,11 +74,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> -->
+
 
 
 <div th:replace="layout :: scripts"></div>
+<script th:src="@{/scripts/createrecipe.js}"></script>
+
 </body>
 </html>
 

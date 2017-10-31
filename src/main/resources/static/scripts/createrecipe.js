@@ -1,6 +1,8 @@
-$(document).on('change', ':file', function() {
-        var input = $(this),
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-        input.trigger('fileselect', label);
-        $('#file-output').val(label);
+$(document).ready(function() {
+        //Display 'All' if search is empty
+    var input = $('#searchresult').text();
+        if(input == ''){
+            $('#searchresult').text("All");
+
+        }
 });

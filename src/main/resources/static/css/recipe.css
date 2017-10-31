@@ -8,15 +8,15 @@
 }
 
 .recipe-btn {
-    margin: auto;
+    margin: 0 20px;
     border: 1px solid  #c5b9a0;
 }
 
-.recipe-btn:hover {
-    margin: auto;
-    border: 1px solid  #c5b9a0;
-    text-decoration: none;
+.recipe-favourite {
+    outline: 0;
+    color: #a94442;
 }
+
 
 /* Image sizing - works well with the large picture of the chocolate cake right now */
 .recipe-header-left {

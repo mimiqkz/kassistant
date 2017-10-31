@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,13 +68,15 @@ public class RecipeController {
             List<Recipe> recipes = RecipeService.getMatchingRecipe(search);
             model.addAttribute("resultsList", recipes);
             model.addAttribute("isRecipe", true);
+            model.addAttribute("numOfResults", recipes.size()+1);
         } else {
             List<Ingredient> ingredients = IngredientService.getMatchingIngredient(search);
             model.addAttribute("resultsList", ingredients);
+            model.addAttribute("numOfResults", ingredients.size()+1);
+
         }
-        //Display user search - if nothing then display all - will do this from front-end later
-        if(search=="") model.addAttribute("searchvalue", "All");
-        else model.addAttribute("searchvalue", search);
+
+        model.addAttribute("searchvalue", search);
 
         return "resultpage";
     }
@@ -102,7 +105,7 @@ public class RecipeController {
      * @return String
      */
     @RequestMapping(value = "/create-recipe", method = RequestMethod.POST)
-    public String submitRecipe(HttpSession session, HttpServletRequest request, Model model,@RequestParam("file") MultipartFile file,
+    public String createRecipe(HttpSession session, HttpServletRequest request, Model model,@RequestParam("file") MultipartFile file,
                                RedirectAttributes redirectAttributes) throws IOException {
         String name = request.getParameter("name");
         String[] instructions = request.getParameterValues("instruction[]");
@@ -154,9 +157,6 @@ public class RecipeController {
         displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
 
-
-
-
         //Split instructions into substeps
         String[] instructions = selected.getInstruction().split("[!][!]");
 
@@ -167,13 +167,28 @@ public class RecipeController {
     public void displayRecipe(HttpSession session, Model model, Recipe recipe) {
         model.addAttribute("recipe", recipe);
         model.addAttribute("author", recipe.getUserCreator());
-        // Check if author is the same as the one logged in
-        if(session.getAttribute("user")!=null) {
-            if(session.getAttribute("user").equals(recipe.getUserCreator().getUsername())) {
+        model.addAttribute("liked", false);
+
+        if(!session.isNew() && session.getAttribute("user")!=null) {
+            // Check if author is the same as the one logged in
+            User currentUser = (User)session.getAttribute("user");
+
+            // Need to do this by id, but id's are all over the place right now
+            if(currentUser.getUsername().equals(recipe.getUserCreator().getUsername())) {
                 model.addAttribute("sameUser", true);
+            }
+            Set<Recipe> likedRecips = currentUser.getLikedRecipes();
+
+            for (Recipe liked  :likedRecips) {
+                if(recipe.getId() == liked.getId()) {
+                    model.addAttribute("liked", true);
+                    break;
+                }
             }
         }
     }
+
+
 
     /**
      * The method allows to display the logged in user so the user knows that
@@ -190,5 +205,4 @@ public class RecipeController {
 
         }
     }
-
 }

@@ -54,10 +54,8 @@ public class UserController {
     public String login(HttpSession session, HttpServletRequest request, Model model) throws Exception {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        System.out.println(isLoginCorrect(username, password));
         if (isLoginCorrect(username, password)) {
             User user = userService.getUser(username, password);
-
             //If login successful set the current user
             session.setAttribute("user", user);
             displayLoggedInUser(session, model);

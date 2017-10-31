@@ -8,11 +8,12 @@
     <!--/*@thymesVar id="recipe" type="java"*/-->
     <!--/*@thymesVar id="user" type="java"*/-->
 
-    <div th:if="sameUser" class="page-header" style="top: 0; display: flex; align-items: center; justify-content: center;">
-        <a href="#" class="btn-default btn-lg recipe-btn">Edit Recipe</a>
-        <a href="#" class="btn-default btn-lg recipe-btn">Delete Recipe</a>
+    <div th:if="${sameUser}">
+        <div class="page-header" style="top: 0; display: flex;  justify-content: center;">
+            <div><a href="#" class="btn btn-default btn-lg recipe-btn">Edit Recipe</a></div>
+            <div><a href="#" class="btn btn-default btn-lg recipe-btn">Delete Recipe</a></div>
+        </div>
     </div>
-
 
     <div class="container recipe-container">
         <div class="row">
@@ -26,16 +27,19 @@
                         <h1 class="recipe-name" th:text=" ${recipe.name}"></h1>
                         <p class="recipe-author" th:text="'Created by ' + ${author.username}"></p>
                         <div class="recipe-description">
-                        &ldquo; I think it would be super cool if users could write a little description here, that would then appear here and in other places such as when you search the page or on a feature. Like when and where they found the recipe or why they like it or if it is seasonal yada yada  &rdquo;
+                        &ldquo;I think it would be super cool if users could write a little description here, that would then appear here and in other places such as when you search the page or on a feature. Like when and where they found the recipe or why they like it or if it is seasonal yada yada  &rdquo;
                     </div>
-                        <div class="recipe-popularity">
+                        <div class="recipe-popularity" style="font-size: 14px">
+                             <div th:if="${liked}">
+                                 <button class="glyphicon glyphicon-heart recipe-favourite" style="border: none; background-color: transparent"/>
 
-                                <span class="detail_desc">300 users like this</span>
-
-                                <span class="star glyphicon glyphicon-star-empty">Favourite this recipe</span>
+                                 <span class="recipe-saved-text"/>
+                             </div>
+                            <div th:unless="${liked}">
+                                <button class="glyphicon glyphicon-heart-empty recipe-favourite" onclick="like()" style="border: none; background-color: transparent"/>
+                                <span class="recipe-saved-text"/>
+                            </div>
                         </div>
-
-
                     </div>
                  </div>
                 <div class="row instruction-container">
@@ -62,5 +66,7 @@
     </div>
 
     <div th:replace="layout :: scripts"></div>
+    <script th:src="@{/scripts/recipe.js}"></script>
+
 </body>
 </html>

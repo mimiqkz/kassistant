@@ -13,14 +13,7 @@ body {
   background-color: #90b1a6;
   border: none;
 }
- body { margin-top: 200px;}
-
-.results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-left: 300px;
-}
+ body { margin-top: 160px;}
 
 .error-message {
   color: red;
