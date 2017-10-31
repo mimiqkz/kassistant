@@ -8,7 +8,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import teymi15.kassistant.control.IngredientController;
-import teymi15.kassistant.service.IngredientService;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.PhotoServiceImp;
 import teymi15.kassistant.service.UserServiceImp;
@@ -44,6 +43,7 @@ public class WebLayerTest {
     PhotoServiceImp photoService;
     @MockBean
     UserServiceImp userService;
+
     /**
      * class that teks to run HttpRequest on /create-ingredient
      * and get back the CreateIngredient.html page
