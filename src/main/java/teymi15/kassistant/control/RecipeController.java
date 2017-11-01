@@ -10,6 +10,8 @@ package teymi15.kassistant.control;
  * @since   2017-09-20
  */
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -38,13 +40,13 @@ import javax.servlet.http.HttpSession;
 public class RecipeController {
 
     @Autowired
-    RecipeServiceImp recipeService;
+    RecipeServiceImp RecipeService;
 
     @Autowired
-    IngredientServiceImp ingredientService;
+    IngredientServiceImp IngredientService;
 
     @Autowired
-    UserServiceImp userService;
+    UserServiceImp userServiceImp;
 
     @Autowired
     PhotoServiceImp photoService;
@@ -61,18 +63,17 @@ public class RecipeController {
     public String submitSearch(HttpServletRequest request, HttpSession session, Model model) {
         String search = request.getParameter("search");
         String option = request.getParameter("select-option");
-        displayLoggedInUser(session, model);
         if(option.equals("recipe")) {
-            List<Recipe> recipes = recipeService.getMatchingRecipe(search);
+            List<Recipe> recipes = RecipeService.getMatchingRecipe(search);
             model.addAttribute("resultsList", recipes);
             model.addAttribute("isRecipe", true);
-            model.addAttribute("numOfResults", recipes.size()+1);
         } else {
-            List<Ingredient> ingredients = ingredientService.getMatchingIngredient(search);
+            List<Ingredient> ingredients = IngredientService.getMatchingIngredient(search);
             model.addAttribute("resultsList", ingredients);
-            model.addAttribute("numOfResults", ingredients.size()+1);
+            model.addAttribute("numOfResults", ingredients.size());
 
         }
+        displayLoggedInUser(session, model);
 
         model.addAttribute("searchvalue", search);
 
@@ -89,8 +90,8 @@ public class RecipeController {
      */
     @RequestMapping(value = "/create-recipe", method = RequestMethod.GET)
     public String displayRecipeForm(HttpSession session, Model model) {
-        List <Ingredient> ingredients = ingredientService.getAllIngredient();
-        model.addAttribute("ingredients",ingredients);
+        List <Ingredient> ingredients = IngredientService.getAllIngredient();
+        model.addAttribute("ingredients", ingredients);
         displayLoggedInUser(session, model);
         return "createRecipe";
     }
@@ -106,40 +107,22 @@ public class RecipeController {
     public String createRecipe(HttpSession session, HttpServletRequest request, Model model,@RequestParam("file") MultipartFile file,
                                RedirectAttributes redirectAttributes) throws IOException {
         String name = request.getParameter("name");
+        String description = request.getParameter("description");
         String[] instructions = request.getParameterValues("instruction[]");
-        String instruction = "";
-        //will implement as seperate function
-        //Inserting numbers into string to know where to separate e.g. "1. "
-        for(int i = 0; i < instructions.length; i++) {
-            if(i == instructions.length-1) {
-                instruction+= instructions[i];
-                break;
-            }
-            instruction += (instructions[i] + "!!");
-        }
-
-        String[] ingredientNames = request.getParameterValues("ingredient[]");
-
-        Recipe recipe = new Recipe(name,instruction);
-        List<Ingredient> ingredients = ingredientService.getAllMatchingIngredients(ingredientNames);
-        for (Ingredient i: ingredients
-             ) {
-            recipe.addIngredients(i);
-        }
-        byte [] bytes = null;
+        String[] ingredients = request.getParameterValues("ingredient[]");
+        User user = (User)session.getAttribute("user");
+        byte [] pic = null;
         if(!file.isEmpty()){
-            bytes = file.getBytes();
+            pic = file.getBytes();
         }
+        Recipe recipe = RecipeService.createRecipe(name, description, instructions, ingredients, pic, user);
 
-        String pic = photoService.addPhoto(bytes);
-        recipe.setPhotoURL(pic);
-        recipe.setUserCreator((User)session.getAttribute("user"));
-        recipeService.addRecipe(recipe);
         displayRecipe(session, model, recipe);
-        displayLoggedInUser(session, model); 
-
+        displayLoggedInUser(session, model);
         return "recipe";
     }
+
+
 
     /**
      * The function returns a string with the route which should be rendered. This
@@ -151,37 +134,66 @@ public class RecipeController {
      */
     @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
     public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
-        Recipe selected = recipeService.getRecipeById(id);
+        Recipe selected = RecipeService.getRecipeById(id);
         displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
 
-        //Split instructions into substeps
-        String[] instructions = selected.getInstruction().split("[!][!]");
 
-        model.addAttribute("instructions", instructions);
         return "recipe";
     }
 
+    @RequestMapping(value="delete-recipe", method = RequestMethod.GET)
+    public String deleteRecipe (HttpSession session, Model model) {
+        Recipe recipe = (Recipe)session.getAttribute("recipe");
+        RecipeService.deleteRecipe(recipe);
+        return "homepage";
+    }
+
+    @RequestMapping(value="edit-recipe", method = RequestMethod.GET)
+    public String displayEditForm (HttpSession session, Model model) {
+        displayRecipe(session, model, (Recipe)session.getAttribute("recipe"));
+        displayLoggedInUser(session, model);
+        return "edit-recipe";
+    }
+
+    @RequestMapping(value="edit-recipe", method = RequestMethod.POST)
+    public String editRecipe (HttpSession session, Model model, HttpServletRequest request) {
+        String name = request.getParameter("name");
+        System.out.println("Edited name " + name);
+        String description = request.getParameter("description");
+        String[] instructions = request.getParameterValues("instruction[]");
+        String[] ingredients = request.getParameterValues("ingredient[]");
+        User user = (User)session.getAttribute("user");
+        Recipe recipe = RecipeService.editRecipe((Recipe)session.getAttribute("recipe"), name, description, instructions, ingredients);
+
+        displayRecipe(session, model, recipe);
+        displayLoggedInUser(session, model);
+        return "recipe";
+    }
+
+
     public void displayRecipe(HttpSession session, Model model, Recipe recipe) {
+        session.setAttribute("recipe", recipe);
         model.addAttribute("recipe", recipe);
         model.addAttribute("author", recipe.getUserCreator());
-        model.addAttribute("liked", false);
+
+        //Split instructions into substeps
+        String[] instructions = recipe.getInstruction().split("[!][!]");
+        for(int i = 0 ; i <instructions.length; i ++ ) System.out.println(instructions[i]);
+
+        model.addAttribute("instructions", instructions);
+        //model.addAttribute("liked", false);
 
         if(!session.isNew() && session.getAttribute("user")!=null) {
             // Check if author is the same as the one logged in
             User currentUser = (User)session.getAttribute("user");
 
             // Need to do this by id, but id's are all over the place right now
+            System.out.println("1. " + currentUser.getUsername());
+            System.out.println("2. " + recipe.getName());
+            System.out.println("3. " + recipe.getUserCreator().getUsername());
             if(currentUser.getUsername().equals(recipe.getUserCreator().getUsername())) {
                 model.addAttribute("sameUser", true);
-            }
-            Set<Recipe> likedRecips = currentUser.getLikedRecipes();
-
-            for (Recipe liked  :likedRecips) {
-                if(recipe.getId() == liked.getId()) {
-                    model.addAttribute("liked", true);
-                    break;
-                }
             }
         }
     }
@@ -201,11 +213,12 @@ public class RecipeController {
 
         }
     }
+
     @RequestMapping(value = "/alive", method = RequestMethod.GET)
     public String alive(Model model) {
         Recipe a = new Recipe();
         model.addAttribute("recipe", a);
-        if(recipeService.isAlive())
+        if(RecipeService.isAlive())
             return "homepage";
         else
             return "errorpage";

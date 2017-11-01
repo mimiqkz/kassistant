@@ -10,7 +10,6 @@ var url;
 function like(){
     //check if original state was liked or not
   //  var status = isLiked();
-
     //Toggle glyphicons to display opposite
     $('.recipe-favourite').toggleClass('glyphicon-heart-empty');
     $('.recipe-favourite').toggleClass('glyphicon-heart');

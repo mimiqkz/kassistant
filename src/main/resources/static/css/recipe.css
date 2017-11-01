@@ -60,6 +60,9 @@
     border-bottom: 1px solid #c5b9a0;
     line-height: 26px;
 }
+/*
+.recipe-description:before { content: open-quote; }
+.recipe-description:after  { content: close-quote; } */
 
 .recipe-popularity {
     border-bottom: 1px solid #c5b9a0;
