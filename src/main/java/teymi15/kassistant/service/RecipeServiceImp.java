@@ -51,4 +51,9 @@ public class RecipeServiceImp implements RecipeService {
         return recipeRep.findById(id);
     }
 
+    @Override
+    public boolean isAlive() {
+        return true;
+    }
+
 }

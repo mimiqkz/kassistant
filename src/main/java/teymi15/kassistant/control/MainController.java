@@ -13,15 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import teymi15.kassistant.model.Ingredient;
-import teymi15.kassistant.model.Recipe;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import teymi15.kassistant.service.IngredientService;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.RecipeServiceImp;
 

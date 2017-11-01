@@ -188,8 +188,6 @@ public class RecipeController {
         }
     }
 
-
-
     /**
      * The method allows to display the logged in user so the user knows that
      * he/she is already being logged in
@@ -204,5 +202,14 @@ public class RecipeController {
             }
 
         }
+    }
+    @RequestMapping(value = "/alive", method = RequestMethod.GET)
+    public String alive(Model model) {
+        Recipe a = new Recipe();
+        model.addAttribute("recipe", a);
+        if(RecipeService.isAlive())
+            return "homepage";
+        else
+            return "resultpage";
     }
 }

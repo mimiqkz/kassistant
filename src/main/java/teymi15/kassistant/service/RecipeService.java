@@ -42,5 +42,9 @@ public interface RecipeService {
      */
     Recipe getRecipeById(int id);
 
-
+    /**
+     * To test if the service is alive
+     * @return true if the service is alive
+     */
+    boolean isAlive();
 }
