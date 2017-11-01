@@ -11,6 +11,8 @@ package teymi15.kassistant.service;
  */
 import org.springframework.stereotype.Service;
 import teymi15.kassistant.model.Recipe;
+import teymi15.kassistant.model.User;
+
 import java.util.List;
 
 /**
@@ -47,4 +49,15 @@ public interface RecipeService {
      * @return true if the service is alive
      */
     boolean isAlive();
+
+    Recipe createRecipe(String name, String description, String[] instructions, String[] ingredients, byte[] pic, User user);
+
+    Recipe editRecipe(Recipe recipe, String name, String description, String[] instructions, String[] ingredients);
+
+    void deleteRecipe(Recipe recipe);
+
+    String mergeInstructions(String[] instructions);
+
+    String[] splitInstructions(String instruction);
+
 }
