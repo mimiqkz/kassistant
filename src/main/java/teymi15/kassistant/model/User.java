@@ -4,6 +4,8 @@ import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
 
 import javax.persistence.*;
 import java.util.Set;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * user model class
@@ -17,11 +19,24 @@ public class User {
      * */
     @Id
     @Column(name = "userId")
+    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
+    @Size(min = 6, message = "The password must be at least {min} characters or numbers.")
     private @SQLInjectionSafe String password; // user password string that holds the password
+
+    @NotNull
+    @Column(unique = true)
+    @Size(min = 1, message = "Username cannot be empty")
     private @SQLInjectionSafe String username; // user name e.g. peat12
+
+    @NotNull
+    @Size(min = 1, message = "Name cannot be empty")
     private @SQLInjectionSafe String name; // name of the user e.g. pétur pétursson
+
+    @NotNull
     private @SQLInjectionSafe String photo;
 
     @OneToMany(mappedBy = "userCreator")
