@@ -10,8 +10,6 @@ package teymi15.kassistant.control;
  * @since   2017-09-20
  */
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -40,13 +38,13 @@ import javax.servlet.http.HttpSession;
 public class RecipeController {
 
     @Autowired
-    RecipeServiceImp RecipeService;
+    RecipeServiceImp recipeService;
 
     @Autowired
-    IngredientServiceImp IngredientService;
+    IngredientServiceImp ingredientService;
 
     @Autowired
-    UserServiceImp userServiceImp;
+    UserServiceImp userService;
 
     @Autowired
     PhotoServiceImp photoService;
@@ -65,12 +63,12 @@ public class RecipeController {
         String option = request.getParameter("select-option");
         displayLoggedInUser(session, model);
         if(option.equals("recipe")) {
-            List<Recipe> recipes = RecipeService.getMatchingRecipe(search);
+            List<Recipe> recipes = recipeService.getMatchingRecipe(search);
             model.addAttribute("resultsList", recipes);
             model.addAttribute("isRecipe", true);
             model.addAttribute("numOfResults", recipes.size()+1);
         } else {
-            List<Ingredient> ingredients = IngredientService.getMatchingIngredient(search);
+            List<Ingredient> ingredients = ingredientService.getMatchingIngredient(search);
             model.addAttribute("resultsList", ingredients);
             model.addAttribute("numOfResults", ingredients.size()+1);
 
@@ -91,7 +89,7 @@ public class RecipeController {
      */
     @RequestMapping(value = "/create-recipe", method = RequestMethod.GET)
     public String displayRecipeForm(HttpSession session, Model model) {
-        List <Ingredient> ingredients = IngredientService.getAllIngredient();
+        List <Ingredient> ingredients = ingredientService.getAllIngredient();
         model.addAttribute("ingredients",ingredients);
         displayLoggedInUser(session, model);
         return "createRecipe";
@@ -123,7 +121,7 @@ public class RecipeController {
         String[] ingredientNames = request.getParameterValues("ingredient[]");
 
         Recipe recipe = new Recipe(name,instruction);
-        List<Ingredient> ingredients = IngredientService.getAllMatchingIngredients(ingredientNames);
+        List<Ingredient> ingredients = ingredientService.getAllMatchingIngredients(ingredientNames);
         for (Ingredient i: ingredients
              ) {
             recipe.addIngredients(i);
@@ -136,7 +134,7 @@ public class RecipeController {
         String pic = photoService.addPhoto(bytes);
         recipe.setPhotoURL(pic);
         recipe.setUserCreator((User)session.getAttribute("user"));
-        RecipeService.addRecipe(recipe);
+        recipeService.addRecipe(recipe);
         displayRecipe(session, model, recipe);
         displayLoggedInUser(session, model); 
 
@@ -153,7 +151,7 @@ public class RecipeController {
      */
     @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
     public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
-        Recipe selected = RecipeService.getRecipeById(id);
+        Recipe selected = recipeService.getRecipeById(id);
         displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
 
@@ -207,7 +205,7 @@ public class RecipeController {
     public String alive(Model model) {
         Recipe a = new Recipe();
         model.addAttribute("recipe", a);
-        if(RecipeService.isAlive())
+        if(recipeService.isAlive())
             return "homepage";
         else
             return "resultpage";

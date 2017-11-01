@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -102,7 +103,13 @@ public class UserController {
     @RequestMapping(value = "user-profile", method = RequestMethod.GET)
     public String displayUserProfile(HttpSession session, Model model){
         displayLoggedInUser(session, model);
-        return "user-profile";
+        User u = (User) session.getAttribute("user");
+        if(userService.isUserInDatabase(u.getUsername(),u.getPassword())){
+            return "user-profile";
+        }else {
+            return "homepage";
+        }
+
     }
 
     /**
