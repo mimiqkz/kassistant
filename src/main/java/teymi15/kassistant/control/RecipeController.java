@@ -208,6 +208,6 @@ public class RecipeController {
         if(recipeService.isAlive())
             return "homepage";
         else
-            return "resultpage";
+            return "errorpage";
     }
 }

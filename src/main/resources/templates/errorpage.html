@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+</head>
+
+<html lang="en">
+<head>
+    <title>Error on page</title>
+</head>
+<body>
+
+<h1>There is an error that occurs</h1>
+<div>
+    <!--/*@thymesVar id="attrs" type="java"*/-->
+    <h3 th:text="|HTTP ${attrs.status} ${attrs.error}|"></h3>
+    <p th:text="${attrs.message}"></p>
+</div>
+
+</body>
+
+</html>

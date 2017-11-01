@@ -21,7 +21,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 
-
 /**
  *
  * @author Nu Phan Quynh Do
@@ -48,6 +47,13 @@ public class WebMockTest {
     @MockBean
     UserServiceImp userService;
 
+    /**
+     * To test whether the service is alive or not.
+     * If the service is alive, then the page should have something
+     * displayed as "Kitchen Assistant" as it should direct to the
+     * homepage.
+     * @throws Exception e
+     */
     @Test
     public void testAlive() throws Exception {
         when(recipeService.isAlive()).thenReturn(true);
