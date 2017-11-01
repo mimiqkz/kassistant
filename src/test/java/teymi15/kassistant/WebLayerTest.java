@@ -34,6 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  *  only the specified class is run not the hole context
  *  we aske to only runn the IngredientController class
+ *  and UserController class
  */
 @WebMvcTest(controllers = {IngredientController.class,UserController.class})
 
@@ -65,13 +66,13 @@ public class WebLayerTest {
                 .andExpect(content().string(containsString("name")));
     }
     /**
-     * class that checks to run HttpRequest on /create-recipe
+     * class that checks to run HttpRequest on /signout
      * and get back the CreateRecipe.html page
      */
     @Test
     public void newRecipeReturnsName() throws Exception {
         this.mockMvc.perform(get("/signout"))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString(" ")));
+                .andExpect(content().string(containsString("search")));
     }
 }
