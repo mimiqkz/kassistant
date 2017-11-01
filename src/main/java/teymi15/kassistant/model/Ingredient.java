@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 /**
  * The program allows user to search for recipe with the matching name. For

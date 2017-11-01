@@ -16,6 +16,8 @@ import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 /**
@@ -28,12 +30,24 @@ public class Recipe {
 
     @Id
     @Column(name = "recipeId")
+    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; // the primary key in the recipe table
+
+    @NotNull
+    @Size(min = 1, message = "The name of the recipe must be at least {min} letter.")
     private @SQLInjectionSafe String name; // string for the name of the recipe
+
+    @NotNull
+    @Size(min = 1, message = "The instruction must be at least {min} letter.")
     private @SQLInjectionSafe String instruction; // instruction string
+
+    @NotNull
+    @Size(min = 1, message = "The description must be at least {min} letter.")
     private @SQLInjectionSafe String description;
-    private String photoURL;
+
+    @NotNull
+    private String photoURL; //The URL of the photo, for now user must upload in image
 
 
     @ManyToOne
@@ -51,6 +65,14 @@ public class Recipe {
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     public Recipe() {}
+
+    /**
+     * The constructor
+     * @param name name of the recipe
+     * @param instruction the instruction of the recipe
+     * @param ingredients the ingredients in the recipe
+     * @param id the id
+     */
     public Recipe(String name, String instruction, Set ingredients, Integer id){
         this.ingredients = ingredients;
         this.name = name;
