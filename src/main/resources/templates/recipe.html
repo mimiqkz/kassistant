@@ -11,8 +11,8 @@
     <!--/*@thymesVar id="sameUser" type="java"*/-->
     <div th:if="${sameUser}">
         <div class="page-header" style="top: 0; display: flex;  justify-content: center;">
-            <div><a href="#" class="btn btn-default btn-lg recipe-btn">Edit Recipe</a></div>
-            <div><a href="#" class="btn btn-default btn-lg recipe-btn">Delete Recipe</a></div>
+            <div><a th:href="@{/edit-recipe}" class="btn btn-default btn-lg recipe-btn">Edit Recipe</a></div>
+            <div><a th:href="@{/delete-recipe}" class="btn btn-default btn-lg recipe-btn">Delete Recipe</a></div>
         </div>
     </div>
 
@@ -26,10 +26,8 @@
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-6 col-sm-ls-5 recipe-header-right">
                         <h1 class="recipe-name" th:text=" ${recipe.name}"></h1>
-                        <p class="recipe-author" th:text="'Created by ' + ${author.username}"></p>
-                        <div class="recipe-description">
-                        &ldquo;I think it would be super cool if users could write a little description here, that would then appear here and in other places such as when you search the page or on a feature. Like when and where they found the recipe or why they like it or if it is seasonal yada yada  &rdquo;
-                    </div>
+                        <p class="recipe-author" th:text="'Created by ' + ${recipe.userCreator.username}"></p>
+                        <p class="recipe-description" th:text="${recipe.description}"/>
                         <div class="recipe-popularity" style="font-size: 14px">
                              <div th:if="${liked}">
                                  <button class="glyphicon glyphicon-heart recipe-favourite" style="border: none; background-color: transparent"/>
@@ -37,7 +35,7 @@
                                  <span class="recipe-saved-text"/>
                              </div>
                             <div th:unless="${liked}">
-                                <button class="glyphicon glyphicon-heart-empty recipe-favourite" onclick="like()" style="border: none; background-color: transparent"/>
+                                <button  onclick="location.href='/saverecipe'" class="glyphicon glyphicon-heart-empty recipe-favourite" style="border: none; background-color: transparent"/>
                                 <span class="recipe-saved-text"/>
                             </div>
                         </div>

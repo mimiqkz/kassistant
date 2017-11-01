@@ -6,7 +6,7 @@
 <div th:replace="layout :: navigation-top-bar"></div>
 
     <div class="page-header">
-        <h2>Your search: <span id="searchresult" th:text="${searchvalue}"></span> <span th:text="'(' + ${numOfResults} + ' results)' "></span></h2>
+        <h2>Your search: <span id="searchresult" th:text="${searchvalue}"></span> <span th:text="'(' + ${resultsList.size()} + ' results)' "></span></h2>
     </div>
 
         <!--/*@thymesVar id="resultsList" type="java"*/-->
@@ -24,7 +24,7 @@
                             <h2 class="card-header" th:text="${results.name}"></h2>
                         </a>
                         <span class="card-likes">200 likes</span>
-                        <p>Long description of recipe that should fit here who knows what could happens sounds like  a treat and a half</p>
+                        <p th:text="${results.description}"/>
                     </div>
                     <!-- For Ingredients Results -->
                     <div class="card-content" th:unless="${isRecipe}">
