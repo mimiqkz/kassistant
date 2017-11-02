@@ -46,6 +46,13 @@ public class User {
     private Set<Recipe> likedRecipes;
 
     public User(){}
+
+    /**
+     * The contructor
+     * @param password password
+     * @param username username
+     * @param name name of the user
+     */
     public User(String password, String username, String name){
         this.password = password;
         this.username = username;
