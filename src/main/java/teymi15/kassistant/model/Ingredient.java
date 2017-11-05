@@ -29,7 +29,6 @@ public class Ingredient {
     @Column(name = "ingredientId")
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private int id;
 
     @NotNull

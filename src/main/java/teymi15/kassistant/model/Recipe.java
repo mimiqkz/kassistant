@@ -55,17 +55,16 @@ public class Recipe {
 
     @ManyToOne
     @JoinColumn(name="userId")
-    @Cascade({org.hibernate.annotations.CascadeType.ALL})
     private User userCreator;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<User> userLiked;
     /**
     * connecting the to tables recipe and user with a many to many
      * relacion makes a table that conects the ingredients and recipes
     * */
     
-    @ManyToMany(mappedBy = "recipes", cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     public Recipe() {}

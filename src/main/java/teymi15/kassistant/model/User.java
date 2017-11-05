@@ -39,7 +39,7 @@ public class User {
 
     private String photo;
 
-    @OneToMany(mappedBy = "userCreator")
+    @OneToMany(mappedBy = "userCreator", cascade = CascadeType.ALL)
     private Set<Recipe> myRecipes;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -64,25 +64,29 @@ public class RecipeServiceImp implements RecipeService {
     }
 
     public Recipe createRecipe(String name, String description, String[] instructions, String[] ingredients, byte[] bytes, User user) {
-        //Create object, merge instruction array into string
         Recipe recipe = new Recipe(name, mergeInstructions(instructions));
-        //Add ingredients if they match those in the database
-        List<Ingredient> ingredientList = ingredientService.getAllMatchingIngredients(ingredients);
-        for (Ingredient i: ingredientList) {
-            recipe.addIngredients(i);
-        }
-        recipe.setDescription(description);
-        String pic = "";
         try {
-            pic = photoService.addPhoto(bytes);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+            //Create object, merge instruction array into string
+            //Add ingredients if they match those in the database
+            List<Ingredient> ingredientList = ingredientService.getAllMatchingIngredients(ingredients);
+            for (Ingredient i: ingredientList) {
+                recipe.addIngredients(i);
+            }
+            recipe.setDescription(description);
+            String pic = "";
+            try {
+                pic = photoService.addPhoto(bytes);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
-        recipe.setPhotoURL(pic);
-        recipe.setUserCreator(user);
-        try {
-            recipeRep.save(recipe);
+            recipe.setPhotoURL(pic);
+            recipe.setUserCreator(user);
+            try {
+                recipeRep.save(recipe);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
