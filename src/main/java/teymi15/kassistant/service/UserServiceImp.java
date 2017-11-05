@@ -43,7 +43,7 @@ public class UserServiceImp implements UserService{
                 } try{
                     user.setName(name);
                     user.setUsername(username);
-                    String hashedPassword = BcryptHashing.signup(user.getPassword());
+                    String hashedPassword = BcryptHashing.signup(password);
                     user.setPassword(hashedPassword);
                     userRep.save(user);
                     return user;
@@ -61,7 +61,7 @@ public class UserServiceImp implements UserService{
     public boolean isUserInDatabase(String username, String password) {
         List<User> users = userRep.findAll();
         for (int i = 0; i < users.size(); i++) {
-
+            System.out.println(users.get(i).getUsername());
             if (username.equals(users.get(i).getUsername()) &&
                     BcryptHashing.match(password,users.get(i).getPassword())){
                 Set<Recipe> myRecipe = users.get(i).getMyRecipes();

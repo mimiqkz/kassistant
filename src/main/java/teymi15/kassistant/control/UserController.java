@@ -55,7 +55,7 @@ public class UserController {
     public String login(HttpSession session, HttpServletRequest request, Model model) throws Exception {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if (isLoginCorrect(username, password)) {
+        if (userService.isUserInDatabase(username, password)) {
             User user = userService.getUser(username, password);
             //If login successful set the current user
             session.setAttribute("user", user);

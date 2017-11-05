@@ -50,4 +50,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
      */
     Recipe findById(int id);
 
+    Recipe findByName(String name);
+    boolean deleteRecipeById(int id);
+
 }

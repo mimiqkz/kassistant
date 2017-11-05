@@ -1,5 +1,6 @@
 package teymi15.kassistant.model;
 
+import org.hibernate.annotations.Cascade;
 import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Ingredient {
     @Column(name = "ingredientId")
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private int id;
 
     @NotNull
@@ -123,6 +125,8 @@ public class Ingredient {
     public void addRecipe(Recipe r) {
         recipes.add(r);
     }
+
+    public void removeRecipe(Recipe r){recipes.remove(r);}
 
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;

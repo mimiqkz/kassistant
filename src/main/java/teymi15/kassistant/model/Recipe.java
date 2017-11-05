@@ -11,9 +11,11 @@ package teymi15.kassistant.model;
  */
 
 
+import org.hibernate.annotations.Cascade;
 import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -32,6 +34,7 @@ public class Recipe {
     @Column(name = "recipeId")
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private int id; // the primary key in the recipe table
 
     @NotNull
@@ -52,16 +55,17 @@ public class Recipe {
 
     @ManyToOne
     @JoinColumn(name="userId")
+    @Cascade({org.hibernate.annotations.CascadeType.ALL})
     private User userCreator;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<User> userLiked;
     /**
     * connecting the to tables recipe and user with a many to many
      * relacion makes a table that conects the ingredients and recipes
     * */
     
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "recipes", cascade = CascadeType.REMOVE)
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     public Recipe() {}
@@ -78,6 +82,7 @@ public class Recipe {
         this.name = name;
         this.instruction= instruction;
     }
+
     public Recipe(String name, String instruction){
         this.name = name;
         this.instruction= instruction;
@@ -159,5 +164,11 @@ public class Recipe {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    @PreRemove
+    private void removeRecipe(){
+        for(Ingredient ingredient: ingredients){
+            ingredient.getRecipes().remove(this);
+        }
     }
 }

@@ -17,12 +17,9 @@ import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.repository.RecipeRepository;
-import com.cloudinary.*;
-import com.cloudinary.utils.ObjectUtils;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -75,10 +72,21 @@ public class RecipeServiceImp implements RecipeService {
             recipe.addIngredients(i);
         }
         recipe.setDescription(description);
-        String pic = photoService.addPhoto(bytes);
+        String pic = "";
+        try {
+            pic = photoService.addPhoto(bytes);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         recipe.setPhotoURL(pic);
         recipe.setUserCreator(user);
-        addRecipe(recipe);
+        try {
+            recipeRep.save(recipe);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return recipe;
     }
 
@@ -96,7 +104,38 @@ public class RecipeServiceImp implements RecipeService {
 
     @Override
     public void deleteRecipe(Recipe recipe) {
-        recipeRep.delete(recipe);
+        /**int id = recipe.getId();
+        System.out.println("_________Delete test __________");
+        Set<Ingredient> ingredients = recipe.getIngredients();
+        for (Ingredient in: ingredients) {
+            System.out.println(in.getName());
+            List<Ingredient> thisIngredient =  ingredientService.getMatchingIngredient(in.getName());
+            for (Ingredient tin: thisIngredient) {
+                tin.removeRecipe(recipe);
+                ingredientService.addIngredient(tin);
+            }
+        }
+
+        /**List<Ingredient> ingredients = ingredientService.getMatchingIngredient("");
+        for (Ingredient in:ingredients) {
+            System.out.println(in.getName());
+            Set<Recipe> recipes = in.getRecipes();
+            for (Recipe re:recipes) {
+                System.out.println(re.getName());
+            }
+        }**/
+        try{
+            recipeRep.deleteRecipeById(recipe.getId());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+            int id = recipe.getId();
+            Recipe managedRecipe;
+       /** if (!(recipeRep.findByName(recipe.getName()).getName().isEmpty())) managedRecipe = recipe;
+        else managedRecipe = recipeRep.save(recipe);
+        managedRecipe.getIngredients().remove(managedRecipe);
+**/
+
     }
 
     public String mergeInstructions(String[] instructions){

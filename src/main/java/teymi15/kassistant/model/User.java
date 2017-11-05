@@ -36,8 +36,8 @@ public class User {
     @Size(min = 1, message = "Name cannot be empty")
     private @SQLInjectionSafe String name; // name of the user e.g. pétur pétursson
 
-    @NotNull
-    private @SQLInjectionSafe String photo;
+
+    private String photo;
 
     @OneToMany(mappedBy = "userCreator")
     private Set<Recipe> myRecipes;
