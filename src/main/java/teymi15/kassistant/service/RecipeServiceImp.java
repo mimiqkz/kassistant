@@ -72,7 +72,7 @@ public class RecipeServiceImp implements RecipeService {
             recipe.setDescription(description);
             String pic = "";
             try {
-                //pic = photoService.addPhoto(bytes);
+                pic = photoService.addPhoto(bytes);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -86,8 +86,6 @@ public class RecipeServiceImp implements RecipeService {
             }
             for (Ingredient i: ingredientList) {
                 i.addRecipe(recipe);
-                System.out.println("_______________________________");
-                System.out.println(recipe.getId());
                 ingredientService.addIngredient(i);
             }
         }catch (Exception e){
