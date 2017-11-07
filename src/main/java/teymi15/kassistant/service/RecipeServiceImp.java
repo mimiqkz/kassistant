@@ -69,13 +69,10 @@ public class RecipeServiceImp implements RecipeService {
             //Create object, merge instruction array into string
             //Add ingredients if they match those in the database
             List<Ingredient> ingredientList = ingredientService.getAllMatchingIngredients(ingredients);
-            for (Ingredient i: ingredientList) {
-                recipe.addIngredients(i);
-            }
             recipe.setDescription(description);
             String pic = "";
             try {
-                pic = photoService.addPhoto(bytes);
+                //pic = photoService.addPhoto(bytes);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -83,9 +80,15 @@ public class RecipeServiceImp implements RecipeService {
             recipe.setPhotoURL(pic);
             recipe.setUserCreator(user);
             try {
-                recipeRep.save(recipe);
+                recipe = recipeRep.save(recipe);
             }catch (Exception e){
                 e.printStackTrace();
+            }
+            for (Ingredient i: ingredientList) {
+                i.addRecipe(recipe);
+                System.out.println("_______________________________");
+                System.out.println(recipe.getId());
+                ingredientService.addIngredient(i);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -133,8 +136,6 @@ public class RecipeServiceImp implements RecipeService {
         }catch (Exception e){
             e.printStackTrace();
         }
-            int id = recipe.getId();
-            Recipe managedRecipe;
        /** if (!(recipeRep.findByName(recipe.getName()).getName().isEmpty())) managedRecipe = recipe;
         else managedRecipe = recipeRep.save(recipe);
         managedRecipe.getIngredients().remove(managedRecipe);

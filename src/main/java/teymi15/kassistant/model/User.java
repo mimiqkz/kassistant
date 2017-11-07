@@ -19,7 +19,6 @@ public class User {
      * */
     @Id
     @Column(name = "userId")
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

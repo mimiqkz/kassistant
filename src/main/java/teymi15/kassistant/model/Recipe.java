@@ -32,7 +32,6 @@ public class Recipe {
 
     @Id
     @Column(name = "recipeId")
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private int id; // the primary key in the recipe table
