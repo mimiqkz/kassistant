@@ -56,7 +56,7 @@ public class Recipe {
     @JoinColumn(name="userId")
     private User userCreator;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "likedRecipes", cascade = CascadeType.ALL)
     private Set<User> userLiked;
     /**
     * connecting the to tables recipe and user with a many to many
@@ -167,6 +167,9 @@ public class Recipe {
     private void removeRecipe(){
         for(Ingredient ingredient: ingredients){
             ingredient.getRecipes().remove(this);
+        }
+        for(User user: userLiked){
+            user.getLikedRecipes().remove(this);
         }
     }
 }

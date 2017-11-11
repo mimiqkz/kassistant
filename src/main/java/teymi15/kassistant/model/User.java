@@ -112,6 +112,8 @@ public class User {
     public void setLikedRecipes(Set<Recipe> likedRecipes) {
         this.likedRecipes = likedRecipes;
     }
+
+    public void addLikedRecipes(Recipe recipe){this.likedRecipes.add(recipe);}
     @Column(name = "photo")
     public String getPhoto() {
         return photo;

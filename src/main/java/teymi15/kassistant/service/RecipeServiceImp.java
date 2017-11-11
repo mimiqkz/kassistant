@@ -34,6 +34,9 @@ public class RecipeServiceImp implements RecipeService {
     @Autowired
     PhotoServiceImp photoService;
 
+    @Autowired
+    UserServiceImp userServiceImp;
+
     @Override
     @ResponseBody
     public boolean addRecipe(Recipe k) {
@@ -156,5 +159,12 @@ public class RecipeServiceImp implements RecipeService {
     @Override
     public String[] splitInstructions(String instruction) {
         return new String[0];
+    }
+
+    @Override
+    public boolean likeRecipe(User user, Recipe recipe) {
+        user.addLikedRecipes(recipe);
+        if(userServiceImp.updateUser(user)) return  true;
+        return false;
     }
 }

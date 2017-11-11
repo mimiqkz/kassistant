@@ -63,14 +63,10 @@ public interface UserService {
 
     /**
      * updates the user
-     * @param id
-     * @param age
-     * @param userName
-     * @param name
-     * @param password
+     * @param user
      * @return true if success else false
      */
-    boolean updateUser(Long id,int age, String userName, String name,String password);
+    boolean updateUser(User user);
 
     /**
      * checks if username already exists, returns true or false

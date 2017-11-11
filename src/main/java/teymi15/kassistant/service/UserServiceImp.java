@@ -118,12 +118,8 @@ public class UserServiceImp implements UserService{
     }
     @Override
     @ResponseBody
-    public boolean updateUser(Long id, int age, String userName, String name, String password){
+    public boolean updateUser(User user){
         try {
-            User user = userRep.findOne(id);
-            user.setName(name);
-            user.setUsername(userName);
-            user.setPassword(password);
             userRep.save(user);
         }
         catch (Exception ex) {

@@ -10,6 +10,7 @@ package teymi15.kassistant.service;
  * @since   2017-09-20
  */
 import org.springframework.stereotype.Service;
+import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 
@@ -59,5 +60,11 @@ public interface RecipeService {
     String mergeInstructions(String[] instructions);
 
     String[] splitInstructions(String instruction);
+    /**
+     * @return boolean
+     * @param user
+     * @param recipe
+     */
+    boolean likeRecipe(User user, Recipe recipe);
 
 }
