@@ -28,7 +28,7 @@
                     </div>
                     <!-- For Ingredients Results -->
                     <div class="card-content" th:unless="${isRecipe}">
-                        <a class="card-link" th:href="@{/ingredient/{id}(id=${results.getID()})}">
+                        <a class="card-link" th:href="@{/ingredient/{id}(id=${results.getId()})}">
                             <h2 class="card-header" th:text="${results.name}"></h2>
                         </a>
 
