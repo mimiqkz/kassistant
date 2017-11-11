@@ -163,6 +163,8 @@ public class Recipe {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int getNumberOfLikes(){return userLiked.size();}
     @PreRemove
     private void removeRecipe(){
         for(Ingredient ingredient: ingredients){
