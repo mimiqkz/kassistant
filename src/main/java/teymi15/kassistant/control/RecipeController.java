@@ -135,6 +135,25 @@ public class RecipeController {
     @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
     public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
         Recipe selected = RecipeService.getRecipeById(id);
+        session.setAttribute("recipe",selected);
+        displayRecipe(session, model, selected);
+        displayLoggedInUser(session, model);
+
+
+        return "recipe";
+    }
+
+    @RequestMapping(value="/saverecipe", method = RequestMethod.GET)
+    public String saveRecipe (HttpSession session, Model model){
+        Recipe selected = (Recipe) session.getAttribute("recipe");
+        User user = (User) session.getAttribute("user");
+        System.out.println("------------------------");
+        System.out.println(user.getUsername());
+        System.out.println("------------------------");
+        if(!session.isNew()) {
+            RecipeService.likeRecipe(user, selected);
+        }
+        session.setAttribute("recipe",selected);
         displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
 

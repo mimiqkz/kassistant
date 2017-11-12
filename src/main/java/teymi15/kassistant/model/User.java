@@ -3,6 +3,7 @@ package teymi15.kassistant.model;
 import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,10 +40,10 @@ public class User {
     private String photo;
 
     @OneToMany(mappedBy = "userCreator", cascade = CascadeType.ALL)
-    private Set<Recipe> myRecipes;
+    private Set<Recipe> myRecipes = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Recipe> likedRecipes;
+    private Set<Recipe> likedRecipes = new HashSet<>();
 
     public User(){}
 

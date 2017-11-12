@@ -62,6 +62,6 @@ public class VilluController implements ErrorController {
 		return this.errorAttributes.getErrorAttributes(requestAttributes,
 				includeStackTrace);
 	}
-    
+
 }
 
