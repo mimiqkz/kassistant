@@ -134,5 +134,14 @@ public class UserServiceImp implements UserService{
         return (userRep.findByUsername(username).isEmpty());
     }
 
+    @Override
+    public boolean hasLikedRecipe(Recipe recipe, User user) {
+        Set<Recipe> liked = user.getLikedRecipes();
+        for (Recipe r: liked) {
+            if(r.equals(recipe)) return true;
+        }
+        return false;
+    }
+
 
 }

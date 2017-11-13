@@ -75,4 +75,11 @@ public interface UserService {
      */
     boolean isUsernameFree(String username);
 
+    /**
+     * @param recipe
+     * @param user
+     * @return
+     */
+    boolean hasLikedRecipe(Recipe recipe,User user);
+
 }
