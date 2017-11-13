@@ -155,6 +155,7 @@ public class Recipe {
     public void setPhotoURL(String photoURL) {
         this.photoURL = photoURL;
     }
+
     @Column(name = "description", length = 1000)
     public String getDescription() {
         return description;

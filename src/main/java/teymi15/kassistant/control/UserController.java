@@ -9,6 +9,7 @@ package teymi15.kassistant.control;
  * @version 1.0
  * @since   2017-09-20
  */
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,8 +25,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
+import teymi15.kassistant.service.UserService;
 import teymi15.kassistant.service.UserServiceImp;
 
 import javax.servlet.http.HttpServletRequest;
@@ -74,6 +78,22 @@ public class UserController {
     }
 
 
+    @RequestMapping(value = "upload-user-image", method = RequestMethod.POST)
+    public String uploadUserImage (HttpSession session, HttpServletRequest request, Model model, @RequestParam("file") MultipartFile file,
+                                         RedirectAttributes redirectAttributes) throws IOException {
+            byte [] pic = null;
+            if(!file.isEmpty()){
+                pic = file.getBytes();
+            }
+        System.out.print(file);
+        userService.updatePhoto((User)session.getAttribute("user"), pic);
+        System.out.println("SIx");
+
+        displayLoggedInUser(session, model);
+            return "user-profile";
+
+    }
+
 
     @RequestMapping(value = "sign-up", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
@@ -109,11 +129,11 @@ public class UserController {
     public String displayUserProfile(HttpSession session, Model model){
         displayLoggedInUser(session, model);
         User u = (User) session.getAttribute("user");
-        if(userService.isUserInDatabase(u.getUsername(),u.getPassword())){
+      //  if(userService.isUserInDatabase(u.getUsername(),u.getPassword())){
             return "user-profile";
-        }else {
-            return "homepage";
-        }
+        //}else {
+          //  return "homepage";
+        //}
 
     }
 

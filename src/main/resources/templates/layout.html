@@ -65,11 +65,9 @@
                                 <span class="glyphicon glyphicon-user"/>
                                 <span th:text="' ' + ${user.username}"/> <b class="caret"></b></a>
                             <ul class="dropdown-menu dropdown-menu-user">
+                                <li><a th:href="@{/user-profile}">View Profile</a></li>
                                 <li><a th:href="@{/create-recipe}">Create Recipe</a></li>
                                 <li><a th:href="@{/create-ingredient}">Create Ingredient</a></li>
-                                <li><a href="#">View your recipes</a></li>
-                                <li><a th:href="@{/user-profile}">View Profile</a></li>
-                                <li><a href="#">Edit Profile</a></li>
                                 <li class="divider"></li>
                                 <li><a th:href="@{/signout}">Sign out</a></li>
                             </ul>

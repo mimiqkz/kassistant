@@ -82,4 +82,7 @@ public interface UserService {
      */
     Set<Recipe> hasLikedRecipe(User user);
 
+
+    void updatePhoto(User user, byte[] bytes);
+
 }

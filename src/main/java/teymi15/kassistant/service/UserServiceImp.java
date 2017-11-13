@@ -30,6 +30,10 @@ public class UserServiceImp implements UserService{
     UserRepository userRep;
 
 
+    @Autowired
+    PhotoServiceImp photoService;
+
+
     @Override
     @ResponseBody
     public User addUser(String name, String username, String password, String confirm) throws Exception {
@@ -142,6 +146,27 @@ public class UserServiceImp implements UserService{
         return liked;
     }
 
+    @ResponseBody
+    public void updatePhoto(User user, byte[] bytes) {
+        System.out.println("Three");
+
+        String pic = "";
+        try {
+            pic = photoService.addPhoto(bytes);
+            System.out.println("Four");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("Five");
+
+        user.setPhoto(pic);
+        try {
+            userRep.save(user);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 }
