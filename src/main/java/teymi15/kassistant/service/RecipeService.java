@@ -67,4 +67,12 @@ public interface RecipeService {
      */
     boolean likeRecipe(User user, Recipe recipe);
 
+    /**
+     *
+     * @param user
+     * @param recipe
+     * @return
+     */
+    boolean unlikeRecipe(User user, Recipe recipe);
+
 }

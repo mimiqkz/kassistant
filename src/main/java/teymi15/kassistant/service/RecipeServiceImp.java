@@ -181,4 +181,15 @@ public class RecipeServiceImp implements RecipeService {
         }
         return false;
     }
+    @Override
+    public boolean unlikeRecipe(User user, Recipe recipe){
+        user.getLikedRecipes().remove(recipe);
+        try{
+            userRepository.save(user);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  false;
+    }
 }
