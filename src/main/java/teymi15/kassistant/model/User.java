@@ -42,7 +42,7 @@ public class User {
     @OneToMany(mappedBy = "userCreator", cascade = CascadeType.ALL)
     private Set<Recipe> myRecipes = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Recipe> likedRecipes = new HashSet<>();
 
     public User(){}

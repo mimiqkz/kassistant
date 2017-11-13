@@ -17,6 +17,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -129,7 +130,7 @@ public class RecipeController {
      * @param model model
      * @return String
      */
-    @RequestMapping(value="recipe/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="recipe/{id}")
     public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
         Recipe selected = RecipeService.getRecipeById(id);
         session.setAttribute("recipe",selected);
@@ -143,7 +144,6 @@ public class RecipeController {
             System.out.println("----------");
         }
         return "recipe";
-
     }
 
 
