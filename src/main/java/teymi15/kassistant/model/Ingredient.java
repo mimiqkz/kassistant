@@ -45,6 +45,10 @@ public class Ingredient {
     @Size(min = 1, message = "The name of the store must be at least {min} letter.")
     private @SQLInjectionSafe String store; //The name of the store
 
+    @NotNull
+    @Size(min = 1, message = "The description must be at least {min} letter.")
+    private @SQLInjectionSafe String description;
+
     private String photoURL; //The URL of the photo, for now user must upload in image
 
     //many to many connection between the recipes and ingredients
@@ -136,5 +140,13 @@ public class Ingredient {
 
     public void setPhotoURL(String photoURL) {
         this.photoURL = photoURL;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
