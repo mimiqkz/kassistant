@@ -53,12 +53,14 @@ public class IngredientController {
     public String submitIngredient(HttpSession session, HttpServletRequest request, Model model, @RequestParam("file") MultipartFile file,
                                RedirectAttributes redirectAttributes) throws IOException {
         String name = request.getParameter("name");
-        String location = request.getParameter("location");
-        String store = request.getParameter("store");
-        double price = Double.parseDouble(request.getParameter("price"));
+        String description = request.getParameter("description");
+
+        //  String location = request.getParameter("location");
+       // String store = request.getParameter("store");
+       // double price = Double.parseDouble(request.getParameter("price"));
         //    public Ingredient(double price, String name, String location, String store, Set recipes) {
 
-        Ingredient ingredient = new Ingredient(price,name,location,store,null);
+        Ingredient ingredient = new Ingredient(name, description);
 
         byte [] bytes = null;
         if(!file.isEmpty()){
@@ -66,13 +68,12 @@ public class IngredientController {
         }
 
         String pic = photoService.addPhoto(bytes);
-        System.out.println(pic);
         ingredient.setPhotoURL(pic);
         String s = session.getAttribute("user").toString();
         ingredientService.addIngredient(ingredient);
         displayLoggedInUser(session, model);
 
-        return "homepage";
+        return "update-price";
     }
 
     /**

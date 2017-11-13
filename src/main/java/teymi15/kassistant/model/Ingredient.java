@@ -58,18 +58,12 @@ public class Ingredient {
 
     /**
      * The constructor
-     * @param price price of the ingredient
      * @param name name of the ingredient
-     * @param location the location of the store
-     * @param store the store where to buy the ingredient
-     * @param recipes the recipes which use the ingredient
+     * @param description the location of the store
      */
-    public Ingredient(double price, String name, String location, String store, Set recipes) {
-        this.price = price;
+    public Ingredient( String name, String description) {
         this.name = name;
-        this.location = location;
-        this.store = store;
-        this.recipes = recipes;
+        this.description = description;
     }
 
     public Ingredient() {
