@@ -22,7 +22,7 @@
 .recipe-header-left {
     overflow: hidden;
     max-width: 100%;
-    height: 400px;
+    height: auto;
 
 }
 .recipe-header-left img {
@@ -83,4 +83,19 @@
 .instruction-container {
     margin: 25px 0;
     border-top: 1px solid #c5b9a0;
+    display: flex;
+    justify-content: center;
+
 }
+
+.ingredients-col {
+    flex: 1;
+
+
+}
+
+.instructions-col {
+    flex: 1;
+
+}
+

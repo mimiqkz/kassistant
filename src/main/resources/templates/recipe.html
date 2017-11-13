@@ -43,15 +43,15 @@
                  </div>
                 <div class="row instruction-container">
                     <!--Ingredients-->
-                    <div class="ingredients-col col-sm-5 col-md-4 col-sd-4 col-lg-4">
-                        <div class="recipe-ingredients">
+                    <div class="ingredients-col">
+                        <div class="recipe-ingredients" style="margin-left: 100px">
                             <h2>Ingredients</h2>
                             <ul class="ingredient-list"  th:each="ingredient : ${recipe.ingredients}">
                                 <li th:text="${ingredient.name}"/>
                             </ul>
                         </div>
                     </div>
-                    <div class="instructions-col col-sm-7 col-md-8 col-sd-8 col-lg-8">
+                    <div class="instructions-col" >
                         <div class="recipe-instructions">
                             <h2>Method</h2>
                                 <ul class="recipe-steps" th:each = "instruction: ${instructions}">
