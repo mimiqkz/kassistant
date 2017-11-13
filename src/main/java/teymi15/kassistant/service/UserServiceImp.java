@@ -135,13 +135,13 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public boolean hasLikedRecipe(Recipe recipe, User user) {
+    @ResponseBody
+    public Set<Recipe> hasLikedRecipe(User user) {
         Set<Recipe> liked = user.getLikedRecipes();
-        for (Recipe r: liked) {
-            if(r.equals(recipe)) return true;
-        }
-        return false;
+
+        return liked;
     }
+
 
 
 }

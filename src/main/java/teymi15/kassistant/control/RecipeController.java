@@ -23,12 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.User;
-import teymi15.kassistant.service.IngredientServiceImp;
-import teymi15.kassistant.service.PhotoServiceImp;
-import teymi15.kassistant.service.RecipeServiceImp;
+import teymi15.kassistant.service.*;
 
 import teymi15.kassistant.model.Recipe;
-import teymi15.kassistant.service.UserServiceImp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -136,12 +133,19 @@ public class RecipeController {
     public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
         Recipe selected = RecipeService.getRecipeById(id);
         session.setAttribute("recipe",selected);
+        User user = (User) session.getAttribute("user");
         displayRecipe(session, model, selected);
-        displayLoggedInUser(session, model);
-
-
+        Set<Recipe> liked = (Set<Recipe>) session.getAttribute("liked");
+        for (Recipe r:liked
+             ) {
+            System.out.println("----------");
+            if(r.getId() == id) System.out.println("god like");
+            System.out.println("----------");
+        }
         return "recipe";
+
     }
+
 
     @RequestMapping(value="/saverecipe", method = RequestMethod.GET)
     public String saveRecipe (HttpSession session, Model model){

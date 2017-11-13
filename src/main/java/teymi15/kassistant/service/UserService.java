@@ -15,6 +15,7 @@ import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * The service class for the user controller, getting data from the repository
@@ -76,10 +77,9 @@ public interface UserService {
     boolean isUsernameFree(String username);
 
     /**
-     * @param recipe
      * @param user
      * @return
      */
-    boolean hasLikedRecipe(Recipe recipe,User user);
+    Set<Recipe> hasLikedRecipe(User user);
 
 }

@@ -27,7 +27,4 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findByUsername(String name);
 
-    List<Recipe> findLikedRecipesByName(String name);
-
-
 }

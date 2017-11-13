@@ -9,7 +9,9 @@ package teymi15.kassistant.control;
  * @version 1.0
  * @since   2017-09-20
  */
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.service.UserServiceImp;
 
@@ -58,7 +61,9 @@ public class UserController {
         if (userService.isUserInDatabase(username, password)) {
             User user = userService.getUser(username, password);
             //If login successful set the current user
+            Set<Recipe> liked = userService.hasLikedRecipe(user);
             session.setAttribute("user", user);
+            session.setAttribute("liked",liked);
             displayLoggedInUser(session, model);
 
             return "homepage";

@@ -107,7 +107,7 @@ public class User {
     }
 
     public Set<Recipe> getLikedRecipes() {
-        return likedRecipes;
+        return this.likedRecipes;
     }
 
     public void setLikedRecipes(Set<Recipe> likedRecipes) {
