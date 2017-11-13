@@ -146,20 +146,26 @@ public class RecipeController {
     @RequestMapping(value="/saverecipe", method = RequestMethod.GET)
     public String saveRecipe (HttpSession session, Model model){
         Recipe selected = (Recipe) session.getAttribute("recipe");
-        User user = (User) session.getAttribute("user");
-        System.out.println("------------------------");
-        System.out.println(user.getUsername());
-        System.out.println("------------------------");
-        if(!session.isNew()) {
-            RecipeService.likeRecipe(user, selected);
-        }
-        session.setAttribute("recipe",selected);
+
         displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
 
 
         return "recipe";
     }
+    @RequestMapping(value = "/saverecipe", method = RequestMethod.POST)
+    public String savePost(HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+        Recipe selected = (Recipe) session.getAttribute("recipe");
+        System.out.println("------------------------");
+        System.out.println(user.getUsername());
+        System.out.println("------------------------");
+        if(!session.isNew()) {
+            RecipeService.likeRecipe(user, selected);
+        }
+        return "recipe";
+    }
+
 
     @RequestMapping(value="delete-recipe", method = RequestMethod.GET)
     public String deleteRecipe (HttpSession session, Model model) {

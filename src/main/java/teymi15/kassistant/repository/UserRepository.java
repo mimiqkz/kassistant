@@ -21,7 +21,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
      * add to the recipe list
      * @param user
      */
-    public User save(User user);
+    User save(User user);
 
     User findByName(String name);
 

@@ -27,7 +27,9 @@ public class HttpRequestTest {
 
     @Autowired
     TestRestTemplate testRestTemplate;
-
+    /**
+     * checks to see if the it can get the hompage
+     * */
     @Test
     public void heimaSkilarName(){
                 assertThat(this.testRestTemplate.getForObject("http://localhost:" +port +"/",

@@ -10,6 +10,7 @@ package teymi15.kassistant.service;
  * @version 1.0
  * @since   2017-09-20
  */
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,7 @@ import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.repository.RecipeRepository;
+import teymi15.kassistant.repository.UserRepository;
 
 import java.util.HashSet;
 import java.util.List;
@@ -35,7 +37,7 @@ public class RecipeServiceImp implements RecipeService {
     PhotoServiceImp photoService;
 
     @Autowired
-    UserServiceImp userServiceImp;
+    UserRepository userRepository;
 
     @Override
     @ResponseBody
@@ -62,10 +64,12 @@ public class RecipeServiceImp implements RecipeService {
     }
 
     @Override
+    @ResponseBody
     public boolean isAlive() {
         return true;
     }
-
+    @Override
+    @ResponseBody
     public Recipe createRecipe(String name, String description, String[] instructions, String[] ingredients, byte[] bytes, User user) {
         Recipe recipe = new Recipe(name, mergeInstructions(instructions));
         try {
@@ -99,6 +103,7 @@ public class RecipeServiceImp implements RecipeService {
     }
 
     @Override
+    @ResponseBody
     public Recipe editRecipe(Recipe recipe, String name, String description, String[] instructions, String[] ingredients) {
         recipe.setName(name);
         recipe.setDescription(description);
@@ -111,6 +116,7 @@ public class RecipeServiceImp implements RecipeService {
     }
 
     @Override
+    @ResponseBody
     public void deleteRecipe(Recipe recipe) {
         /**int id = recipe.getId();
         System.out.println("_________Delete test __________");
@@ -140,10 +146,11 @@ public class RecipeServiceImp implements RecipeService {
        /** if (!(recipeRep.findByName(recipe.getName()).getName().isEmpty())) managedRecipe = recipe;
         else managedRecipe = recipeRep.save(recipe);
         managedRecipe.getIngredients().remove(managedRecipe);
-**/
+        **/
 
     }
-
+    @Override
+    @ResponseBody
     public String mergeInstructions(String[] instructions){
         String instruction = "";
         for(int i = 0; i < instructions.length; i++) {
@@ -157,14 +164,21 @@ public class RecipeServiceImp implements RecipeService {
     }
 
     @Override
+    @ResponseBody
     public String[] splitInstructions(String instruction) {
         return new String[0];
     }
 
     @Override
+    @ResponseBody
     public boolean likeRecipe(User user, Recipe recipe) {
         user.addLikedRecipes(recipe);
-        if(userServiceImp.updateUser(user)) return  true;
+        try{
+        userRepository.save(user);
+        return  true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return false;
     }
 }
