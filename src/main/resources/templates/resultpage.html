@@ -23,11 +23,8 @@
                         <a class="card-link" th:href="@{/recipe/{id}(id=${results.id})}">
                             <h2 class="card-header" th:text="${results.name}"></h2>
                         </a>
-                        <div style="display: flex; justify-content: flex-start">
 
                         <span class="card-likes" th:text="${results.getNumberOfLikes()} + ' likes'"/>
-                            <span class="card-likes">$200</span>
-                        </div>
 
                         <!--   <span class="card-likes" th:text="${results.getNumberOfLikes()} + ' likes'"> likes</span> -->
                         <p th:text="${results.description}"/>
@@ -37,9 +34,10 @@
                         <a class="card-link" th:href="@{/ingredient/{id}(id=${results.getId()})}">
                             <h2 class="card-header" th:text="${results.name}"></h2>
                         </a>
+                        <span class="card-likes" th:text="${results.price} + ' isk'"></span>
+                        <p th:text="${results.description}"/>
 
-"
-                            <p>Long description of recipe that should fit here who knows what could happens sounds like  a treat and a half</p>
+
                     </div>
 
                 </div>
