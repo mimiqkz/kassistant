@@ -10,6 +10,7 @@ package teymi15.kassistant.repository;
  * @since   2017-09-20
  */
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import teymi15.kassistant.model.Recipe;
@@ -50,8 +51,18 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
      */
     Recipe findById(int id);
 
+    /**
+     * Find recipe by name
+     * @param name
+     * @return the recipe
+     */
     Recipe findByName(String name);
 
-    int deleteRecipeById(int id);
+    /**
+     * Delete the recipe by id
+     * @param id
+     */
+    
+    void deleteRecipeById(int id);
 
 }

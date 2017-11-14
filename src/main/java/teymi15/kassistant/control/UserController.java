@@ -105,7 +105,7 @@ public class UserController {
 
     /**
      * a function that gets the data from
-     * the user and if correct creats a new user
+     * the user and if correct creates a new user
      * @param session
      * @param request
      * @param model
