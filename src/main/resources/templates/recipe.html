@@ -9,11 +9,9 @@
     <!--/*@thymesVar id="user" type="java"*/-->
 
     <!--/*@thymesVar id="sameUser" type="java"*/-->
-    <div th:if="${sameUser}">
-        <div class="page-header" style="top: 0; display: flex;  justify-content: center;">
-            <div><a th:href="@{/edit-recipe}" class="btn btn-default btn-lg recipe-btn">Edit Recipe</a></div>
-            <div><a th:href="@{/delete-recipe}" class="btn btn-default btn-lg recipe-btn">Delete Recipe</a></div>
-        </div>
+    <div th:if="${sameUser}" class="page-header" style="top: 0; display: flex;  justify-content: center;">
+        <div><a th:href="@{/edit-recipe}" class="btn btn-default btn-lg recipe-btn">Edit Recipe</a></div>
+        <div><a th:href="@{/delete-recipe}" class="btn btn-default btn-lg recipe-btn">Delete Recipe</a></div>
     </div>
 
     <div class="container recipe-container">

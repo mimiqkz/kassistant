@@ -123,4 +123,9 @@ public class IngredientController {
     }
 
 
+    @RequestMapping(value="update-price", method = RequestMethod.GET)
+    public String updatePrice (HttpSession session, Model model) {
+        displayLoggedInUser(session, model);
+        return "update-price";
+    }
 }
