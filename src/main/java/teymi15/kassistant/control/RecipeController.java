@@ -147,12 +147,14 @@ public class RecipeController {
      */
     @RequestMapping(value="/saverecipe", method = RequestMethod.GET)
     public String saveRecipe (HttpSession session, Model model){
-        Recipe selected = (Recipe) session.getAttribute("recipe");
-        if(!session.isNew()) {
-            RecipeService.likeRecipe((User) session.getAttribute("user"), selected);
-        }
-        displayRecipe(session, model, selected);
+        RecipeService.likeRecipe((User) session.getAttribute("user"),
+                    (Recipe) session.getAttribute("recipe"));
+
+        int i = ((Recipe) session.getAttribute("recipe")).getId();
+        Recipe recipe = RecipeService.getRecipeById(i);
+
         displayLoggedInUser(session, model);
+        displayRecipe(session, model, recipe);
         return "recipe";
     }
 
@@ -165,15 +167,14 @@ public class RecipeController {
     @RequestMapping(value="/unsaverecipe", method = RequestMethod.GET)
     public String unsaveRecipe (HttpSession session, Model model){
 
-        User user = (User) session.getAttribute("user");
-        Recipe selected = (Recipe) session.getAttribute("recipe");
-        RecipeService.unlikeRecipe(user, selected);
+        RecipeService.unlikeRecipe((User) session.getAttribute("user"),
+                (Recipe) session.getAttribute("recipe"));
 
+        int i = ((Recipe) session.getAttribute("recipe")).getId();
+        Recipe recipe = RecipeService.getRecipeById(i);
 
         displayLoggedInUser(session, model);
-        displayRecipe(session, model, selected);
-
-
+        displayRecipe(session, model, recipe);
         return "recipe";
     }
 

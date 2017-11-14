@@ -27,7 +27,8 @@
                         <h1 class="recipe-name" th:text=" ${recipe.name}"></h1>
                         <p class="recipe-author" th:text="'Created by ' + ${recipe.userCreator.username}"></p>
                         <p class="recipe-description" th:text="${recipe.description}"/>
-                        <div th:if="${loggedIn}" class="recipe-popularity" style="font-size: 14px">
+                        <div class="recipe-popularity" style="font-size: 14px">
+                            <div th:if="${loggedIn}" >
                              <div th:if="${liked}">
                                  <button  onclick="location.href='/unsaverecipe'" class="glyphicon glyphicon-heart recipe-favourite" style="border: none; background-color: transparent"/>
 
@@ -37,6 +38,8 @@
                                 <button  onclick="location.href='/saverecipe'" class="glyphicon glyphicon-heart-empty recipe-favourite" style="border: none; background-color: transparent"/>
                                 <span>Save recipe</span>
                             </div>
+                        </div>
+                            <span th:text="${recipe.getNumberOfLikes()} + ' Like this'"></span>
                         </div>
                     </div>
                  </div>
