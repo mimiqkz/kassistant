@@ -34,6 +34,7 @@ import teymi15.kassistant.service.UserServiceImp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sound.midi.Soundbank;
 import javax.validation.Valid;
 import javax.xml.ws.Response;
 
@@ -77,29 +78,26 @@ public class UserController {
         }
     }
 
-
     /**
      * a function that gets a picture frome the user and sends to the
      * userService
      * @param session
-     * @param request
      * @param model
      * @param file
-     * @param redirectAttributes
      * @return
      * @throws IOException
      */
-    @RequestMapping(value = "upload-user-image", method = RequestMethod.POST)
-    public String uploadUserImage (HttpSession session, HttpServletRequest request, Model model, @RequestParam("file") MultipartFile file,
-                                         RedirectAttributes redirectAttributes) throws IOException {
-            byte [] pic = null;
-            if(!file.isEmpty()){
-                pic = file.getBytes();
-            }
-        System.out.print(file);
-        userService.updatePhoto((User)session.getAttribute("user"), pic);
-        System.out.println("SIx");
-
+    @RequestMapping(value = "upload-user-image")
+    public String uploadUserImage (HttpSession session, Model model,
+                                   @RequestParam("file") MultipartFile file
+                                         ) throws IOException {
+        byte [] pic = null;
+        if(!file.isEmpty()){
+            pic = file.getBytes();
+        }
+        User user = (User)session.getAttribute("user");
+        userService.updatePhoto(user, pic);
+        System.out.println("get");
         displayLoggedInUser(session, model);
             return "user-profile";
 
@@ -146,12 +144,12 @@ public class UserController {
     @RequestMapping(value = "user-profile", method = RequestMethod.GET)
     public String displayUserProfile(HttpSession session, Model model){
         displayLoggedInUser(session, model);
-        User u = (User) session.getAttribute("user");
-      //  if(userService.isUserInDatabase(u.getUsername(),u.getPassword())){
+        if(session.isNew()){
+            return "homepage";
+        }else {
+            User u = (User) session.getAttribute("user");
             return "user-profile";
-        //}else {
-          //  return "homepage";
-        //}
+        }
 
     }
 

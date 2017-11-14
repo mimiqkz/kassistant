@@ -12,15 +12,12 @@
         <div class="profile">
             <img class ="profile-image" th:src="${user.photo}"/>
 
-            <form th:action="@{/upload-user-image}" method="post">
-                <input type="file" onchange="this.form.submit()" name="file" th:feild="*{file}"/>
-            </form>
-
+            <form method="post">
                 <div class="profile-buttons">
                     <a th:href="@{/create-recipe}"> Create Recipe</a>
                     <a th:href="@{/create-ingredient}"> Create Ingredient</a>
                 </div>
-
+            </form>
 
         </div>
         <div class="jumbotron"> Thinking about having these as just small boxes with image and link to new page</div>

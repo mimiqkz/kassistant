@@ -55,13 +55,15 @@ public class IngredientController {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
 
-        //  String location = request.getParameter("location");
-       // String store = request.getParameter("store");
-       // double price = Double.parseDouble(request.getParameter("price"));
-        //    public Ingredient(double price, String name, String location, String store, Set recipes) {
+          String location = request.getParameter("location");
+        String store = request.getParameter("store");
+        double price = Double.parseDouble(request.getParameter("price"));
+           // public Ingredient(double price, String name, String location, String store, Set recipes) {
 
         Ingredient ingredient = new Ingredient(name, description);
-
+        ingredient.setPrice(price);
+        ingredient.setLocation(location);
+        ingredient.setStore(store);
         byte [] bytes = null;
         if(!file.isEmpty()){
             bytes = file.getBytes();
