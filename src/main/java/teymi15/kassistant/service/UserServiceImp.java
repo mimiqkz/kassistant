@@ -168,5 +168,14 @@ public class UserServiceImp implements UserService{
         }
     }
 
+    @Override
+    public Boolean hasLikedRecipe(User user, Recipe recipe) {
+        for(Recipe r: user.getLikedRecipes()) {
+            if(r.getId() == recipe.getId()) return true;
+        }
+
+        return false;
+    }
+
 
 }

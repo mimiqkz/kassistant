@@ -85,4 +85,6 @@ public interface UserService {
 
     void updatePhoto(User user, byte[] bytes);
 
+    Boolean hasLikedRecipe(User user, Recipe recipe);
+
 }

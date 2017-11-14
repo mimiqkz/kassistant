@@ -133,16 +133,9 @@ public class RecipeController {
     @RequestMapping(value="recipe/{id}")
     public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
         Recipe selected = RecipeService.getRecipeById(id);
-        session.setAttribute("recipe",selected);
-        User user = (User) session.getAttribute("user");
         displayRecipe(session, model, selected);
-        Set<Recipe> liked = (Set<Recipe>) session.getAttribute("liked");
-       /* for (Recipe r:liked
-             ) {
-            System.out.println("----------");
-            if(r.getId() == id) System.out.println("god like");
-            System.out.println("----------");
-        }*/
+        displayLoggedInUser(session, model);
+
         return "recipe";
     }
 
@@ -156,13 +149,11 @@ public class RecipeController {
     @RequestMapping(value="/saverecipe", method = RequestMethod.GET)
     public String saveRecipe (HttpSession session, Model model){
         Recipe selected = (Recipe) session.getAttribute("recipe");
-        User user = (User) session.getAttribute("user");
+        if(!session.isNew()) {
+            RecipeService.likeRecipe((User) session.getAttribute("user"), selected);
+        }
         displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
-        System.out.println("here");
-        if(!session.isNew()) {
-            RecipeService.likeRecipe(user, selected);
-        }
         return "recipe";
     }
 
@@ -173,28 +164,20 @@ public class RecipeController {
      * @return
      */
     @RequestMapping(value="/unsaverecipe", method = RequestMethod.GET)
-    public String UnsaveRecipe (HttpSession session, Model model){
+    public String unsaveRecipe (HttpSession session, Model model){
+
+        User user = (User) session.getAttribute("user");
         Recipe selected = (Recipe) session.getAttribute("recipe");
-        displayRecipe(session, model, selected);
+        RecipeService.unlikeRecipe(user, selected);
+
+
         displayLoggedInUser(session, model);
+        displayRecipe(session, model, selected);
+
+
         return "recipe";
     }
 
-    /**
-     * a function that unlikes the recipe for the user
-     * @param session
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/unsaverecipe", method = RequestMethod.POST)
-    public String UnsavePost(HttpSession session, Model model){
-        User user = (User) session.getAttribute("user");
-        Recipe selected = (Recipe) session.getAttribute("recipe");
-        if(!session.isNew()) {
-            RecipeService.unlikeRecipe(user, selected);
-        }
-        return "recipe";
-    }
 
     /**
      * a function that askes the servic class to delet an recipe
@@ -254,23 +237,20 @@ public class RecipeController {
     public void displayRecipe(HttpSession session, Model model, Recipe recipe) {
         session.setAttribute("recipe", recipe);
         model.addAttribute("recipe", recipe);
-        model.addAttribute("author", recipe.getUserCreator());
 
-        //Split instructions into substeps
+        if(userServiceImp.hasLikedRecipe((User)session.getAttribute("user"), recipe)) {
+            System.out.println("LIkes this");
+            model.addAttribute("liked", true);
+        }
+        //Instructions variable is stored as one string, use this regex to split it up
         String[] instructions = recipe.getInstruction().split("[!][!]");
-        for(int i = 0 ; i <instructions.length; i ++ ) System.out.println(instructions[i]);
 
         model.addAttribute("instructions", instructions);
-        //model.addAttribute("liked", false);
 
         if(!session.isNew() && session.getAttribute("user")!=null) {
             // Check if author is the same as the one logged in
             User currentUser = (User)session.getAttribute("user");
 
-            // Need to do this by id, but id's are all over the place right now
-            System.out.println("1. " + currentUser.getUsername());
-            System.out.println("2. " + recipe.getName());
-            System.out.println("3. " + recipe.getUserCreator().getUsername());
             if(currentUser.getUsername().equals(recipe.getUserCreator().getUsername())) {
                 model.addAttribute("sameUser", true);
             }
