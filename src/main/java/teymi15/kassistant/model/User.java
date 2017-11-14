@@ -42,7 +42,7 @@ public class User {
     @OneToMany(mappedBy = "userCreator", cascade = CascadeType.ALL)
     private Set<Recipe> myRecipes = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Recipe> likedRecipes = new HashSet<>();
 
     public User(){}
@@ -64,7 +64,7 @@ public class User {
 
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int uid) {
@@ -73,7 +73,7 @@ public class User {
 
     @Column(name = "password")
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -82,7 +82,7 @@ public class User {
 
     @Column(name = "username",unique = true)
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
@@ -91,7 +91,7 @@ public class User {
 
     @Column(name = "name")
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -99,13 +99,14 @@ public class User {
     }
 
     public Set<Recipe> getMyRecipes() {
-        return myRecipes;
+        return this.myRecipes;
     }
 
     public void setMyRecipes(Set<Recipe> myRecipes) {
         this.myRecipes = myRecipes;
     }
 
+    @Column(name = "likedRecipes")
     public Set<Recipe> getLikedRecipes() {
         return this.likedRecipes;
     }
@@ -117,7 +118,7 @@ public class User {
     public void addLikedRecipes(Recipe recipe){this.likedRecipes.add(recipe);}
     @Column(name = "photo")
     public String getPhoto() {
-        return photo;
+        return this.photo;
     }
 
     public void setPhoto(String image) {

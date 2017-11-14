@@ -1,6 +1,7 @@
 package teymi15.kassistant.model;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.stereotype.Controller;
 import teymi15.kassistant.SQLsafety.SQLInjectionSafe;
 
 import javax.persistence.*;
@@ -45,7 +46,6 @@ public class Ingredient {
     @Size(min = 1, message = "The name of the store must be at least {min} letter.")
     private @SQLInjectionSafe String store; //The name of the store
 
-    @NotNull
     @Size(min = 1, message = "The description must be at least {min} letter.")
     private @SQLInjectionSafe String description;
 
@@ -81,6 +81,7 @@ public class Ingredient {
         this.id = id;
     }
 
+    @Column(name = "price")
     public double getPrice() {
         return price;
     }
@@ -89,6 +90,7 @@ public class Ingredient {
         this.price = price;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -97,6 +99,7 @@ public class Ingredient {
         this.name = name;
     }
 
+    @Column(name = "location")
     public String getLocation() {
         return location;
     }
@@ -105,6 +108,7 @@ public class Ingredient {
         this.location = location;
     }
 
+    @Column(name = "store")
     public String getStore() {
         return store;
     }
@@ -136,6 +140,7 @@ public class Ingredient {
         this.photoURL = photoURL;
     }
 
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }

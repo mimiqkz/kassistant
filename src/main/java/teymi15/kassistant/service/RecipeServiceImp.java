@@ -172,7 +172,10 @@ public class RecipeServiceImp implements RecipeService {
     @Override
     @ResponseBody
     public boolean likeRecipe(User user, Recipe recipe) {
-        user.addLikedRecipes(recipe);
+        if(!user.getLikedRecipes().contains(recipe)){
+            user.addLikedRecipes(recipe);
+        }
+
         try{
         userRepository.save(user);
         return  true;

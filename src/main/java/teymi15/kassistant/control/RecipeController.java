@@ -137,12 +137,12 @@ public class RecipeController {
         User user = (User) session.getAttribute("user");
         displayRecipe(session, model, selected);
         Set<Recipe> liked = (Set<Recipe>) session.getAttribute("liked");
-        for (Recipe r:liked
+       /* for (Recipe r:liked
              ) {
             System.out.println("----------");
             if(r.getId() == id) System.out.println("god like");
             System.out.println("----------");
-        }
+        }*/
         return "recipe";
     }
 
@@ -150,17 +150,10 @@ public class RecipeController {
     @RequestMapping(value="/saverecipe", method = RequestMethod.GET)
     public String saveRecipe (HttpSession session, Model model){
         Recipe selected = (Recipe) session.getAttribute("recipe");
-
+        User user = (User) session.getAttribute("user");
         displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
-
-
-        return "recipe";
-    }
-    @RequestMapping(value = "/saverecipe", method = RequestMethod.POST)
-    public String savePost(HttpSession session, Model model){
-        User user = (User) session.getAttribute("user");
-        Recipe selected = (Recipe) session.getAttribute("recipe");
+        System.out.println("here");
         if(!session.isNew()) {
             RecipeService.likeRecipe(user, selected);
         }
