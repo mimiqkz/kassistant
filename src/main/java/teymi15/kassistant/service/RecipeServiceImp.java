@@ -139,7 +139,7 @@ public class RecipeServiceImp implements RecipeService {
             }
         }**/
         try{
-            recipeRep.deleteRecipeById(recipe.getId());
+            recipeRep.deleteById(recipe.getId());
         }catch (Exception e){
             e.printStackTrace();
         }

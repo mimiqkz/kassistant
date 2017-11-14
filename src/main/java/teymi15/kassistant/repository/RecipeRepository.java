@@ -62,7 +62,6 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
      * Delete the recipe by id
      * @param id
      */
-    
-    void deleteRecipeById(int id);
+    void deleteById(int id);
 
 }
