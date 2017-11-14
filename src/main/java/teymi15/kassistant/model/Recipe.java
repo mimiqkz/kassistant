@@ -165,7 +165,15 @@ public class Recipe {
         this.description = description;
     }
 
-    public int getNumberOfLikes(){return userLiked.size();}
+    public int getNumberOfLikes(){
+        int size = 0;
+        for(User r : this.userLiked){
+            if(!r.getName().isEmpty()){
+                size ++;
+            }
+        }
+        return size ;
+    }
     @PreRemove
     private void removeRecipe(){
         for(Ingredient ingredient: ingredients){

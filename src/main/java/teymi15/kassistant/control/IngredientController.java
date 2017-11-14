@@ -108,7 +108,7 @@ public class IngredientController {
     @RequestMapping(value = "/edit-ingredient", method = RequestMethod.POST)
     public String submitIngredientEdit(HttpSession session, HttpServletRequest request,Model model) {
 
-        double price = Double.parseDouble(request.getParameter("price"));
+        int price = Integer.parseInt((request.getParameter("price")));
         String location = request.getParameter("location");
         String store = request.getParameter("store");
         // public Ingredient(double price, String name, String location, String store, Set recipes) {
