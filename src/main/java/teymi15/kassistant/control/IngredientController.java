@@ -68,8 +68,10 @@ public class IngredientController {
         String s = session.getAttribute("user").toString();
         ingredientService.addIngredient(ingredient);
         displayLoggedInUser(session, model);
-
-        return "update-price";
+        model.addAttribute("ingredient",ingredient);
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user",user);
+        return "editIngredient";
     }
 
     /**
@@ -126,9 +128,5 @@ public class IngredientController {
     }
 
 
-    @RequestMapping(value="update-price", method = RequestMethod.GET)
-    public String updatePrice (HttpSession session, Model model) {
-        displayLoggedInUser(session, model);
-        return "update-price";
-    }
+
 }
