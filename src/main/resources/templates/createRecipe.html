@@ -30,17 +30,21 @@
                 </div>
                 <div class="form-group" style="border-top: 1px solid #c5b9a0; padding-top: 20px; padding-bottom: 15px">
                     <label>Ingredients</label>
-                    <div class="input-group control-group after-add-more-ingredient" style="width: 100%">
-                        <select class="selectpicker select-ingredient" name="ingredient[]" data-live-search="true" required="required" style="width: 100% !important">
-                            <option th:each="ingredient : ${ingredients}" th:value="${ingredient.name}" th:text="${ingredient.name}"></option>
+                    <div class="input-group control-group after-add-more-ingredient" id="thing" style="width: 100%">
+                        <select class="select-ingredient form-control" name="ingredient[]" required="required" style="width: 100% !important">
+                           <option th:each="ingredient : ${ingredients}" th:value="${ingredient.name}" th:text="${ingredient.name}"></option>
                         </select>
                         <div class="input-group-btn">
                             <button class="btn btn-default add-more-ingredient" type="button"><i class="glyphicon glyphicon-plus"/></button>
                         </div>
                     </div>
+
+
+
+<!--
                     <div class="btn btn-default">
                         <a th:href="@{/create-ingredient}"> Create another Ingredient</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-group" style="border-top: 1px solid #c5b9a0; padding-top: 20px; padding-bottom: 15px">
                     <label>Instructions</label>
@@ -89,8 +93,10 @@
 
 <div class="copy-ingredient hide">
     <div class="control-group input-group" style="margin-top:10px">
-        <select class="selectpicker select-ingredient" name="ingredient[]" data-live-search="true" required="required">
-            <option th:each="ingredient : ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.name}"></option>
+        <select class="select-ingredient form-control" data-live-search="true" name="ingredient[]" required="required" style="width: 100% !important">
+         <option th:each="ingredient : ${ingredients}" th:value="${ingredient.name}" th:text="${ingredient.name}"></option> -->
+
+
         </select>
         <div class="input-group-btn">
             <button class="btn btn-default remove" type="button"><i class="glyphicon glyphicon-minus"/></button>
