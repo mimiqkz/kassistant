@@ -31,18 +31,15 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
     private double price; //Using different currency
 
     @NotNull
     @Size(min = 1, message = "The name of the ingredient must be at least {min} letter.")
     private @SQLInjectionSafe String name; //Name of the ingredient e.g cherry tomato, apple etc.
 
-    @NotNull
     @Size(min = 1, message = "The name of the location must be at least {min} letter.")
     private @SQLInjectionSafe String location; //Location of the store e.g Granda, Kringlan etc
 
-    @NotNull
     @Size(min = 1, message = "The name of the store must be at least {min} letter.")
     private @SQLInjectionSafe String store; //The name of the store
 
