@@ -17,17 +17,20 @@
     color: #a94442;
 }
 
+.recipe-header-right {
+    padding-left: 40px;
+}
 
-/* Image sizing - works well with the large picture of the chocolate cake right now */
-.recipe-header-left {
+.recipe-image-container {
     overflow: hidden;
     max-width: 100%;
-    height: auto;
-
+    height: 300px;
 }
-.recipe-header-left img {
-    max-width: 100%;
-    height: auto;
+.recipe-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
 }
 /***********************************************/
 .recipe-name {
@@ -60,9 +63,11 @@
     border-bottom: 1px solid #c5b9a0;
     line-height: 26px;
 }
-/*
+
+
+
 .recipe-description:before { content: open-quote; }
-.recipe-description:after  { content: close-quote; } */
+.recipe-description:after  { content: close-quote; }
 
 .recipe-popularity {
     border-bottom: 1px solid #c5b9a0;
@@ -91,11 +96,9 @@
 .ingredients-col {
     flex: 1;
 
-
 }
 
 .instructions-col {
     flex: 1;
-
 }
 

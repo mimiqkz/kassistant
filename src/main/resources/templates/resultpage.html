@@ -23,7 +23,13 @@
                         <a class="card-link" th:href="@{/recipe/{id}(id=${results.id})}">
                             <h2 class="card-header" th:text="${results.name}"></h2>
                         </a>
-                        <span class="card-likes">200 likes</span>
+                        <div style="display: flex; justify-content: flex-start">
+
+                        <span class="card-likes" th:text="${results.getNumberOfLikes()} + ' likes'"/>
+                            <span class="card-likes">$200</span>
+                        </div>
+
+                        <!--   <span class="card-likes" th:text="${results.getNumberOfLikes()} + ' likes'"> likes</span> -->
                         <p th:text="${results.description}"/>
                     </div>
                     <!-- For Ingredients Results -->

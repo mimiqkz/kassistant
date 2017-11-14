@@ -72,7 +72,6 @@ public class RecipeController {
 
         }
         displayLoggedInUser(session, model);
-
         model.addAttribute("searchvalue", search);
 
         return "resultpage";
@@ -187,8 +186,8 @@ public class RecipeController {
      */
     @RequestMapping(value="delete-recipe", method = RequestMethod.GET)
     public String deleteRecipe (HttpSession session, Model model) {
-        Recipe recipe = (Recipe)session.getAttribute("recipe");
-        RecipeService.deleteRecipe(recipe);
+        RecipeService.deleteRecipe((Recipe)session.getAttribute("recipe"));
+        displayLoggedInUser(session, model);
         return "homepage";
     }
 
