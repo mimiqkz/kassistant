@@ -238,10 +238,6 @@ public class RecipeController {
         session.setAttribute("recipe", recipe);
         model.addAttribute("recipe", recipe);
 
-        if(userServiceImp.hasLikedRecipe((User)session.getAttribute("user"), recipe)) {
-            System.out.println("LIkes this");
-            model.addAttribute("liked", true);
-        }
         //Instructions variable is stored as one string, use this regex to split it up
         String[] instructions = recipe.getInstruction().split("[!][!]");
 
@@ -250,7 +246,12 @@ public class RecipeController {
         if(!session.isNew() && session.getAttribute("user")!=null) {
             // Check if author is the same as the one logged in
             User currentUser = (User)session.getAttribute("user");
-
+            //Check if user has liked recipe
+            if(userServiceImp.hasLikedRecipe(currentUser, recipe)) {
+                System.out.println("LIkes this");
+                model.addAttribute("liked", true);
+            }
+            //Check if user is viewing own recipe
             if(currentUser.getUsername().equals(recipe.getUserCreator().getUsername())) {
                 model.addAttribute("sameUser", true);
             }

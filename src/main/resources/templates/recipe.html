@@ -46,8 +46,8 @@
                     <div class="ingredients-col">
                         <div class="recipe-ingredients" style="margin-left: 100px">
                             <h2>Ingredients</h2>
-                            <ul class="ingredient-list"  th:each="ingredient : ${recipe.ingredients}">
-                                <li th:text="${ingredient.name}"/>
+                            <ul class="ingredient-list">
+                                <li th:each="ingredient : ${recipe.ingredients}"  th:text="${ingredient.name}"/>
                             </ul>
                         </div>
                     </div>
