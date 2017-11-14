@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
+import teymi15.kassistant.model.User;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.PhotoServiceImp;
 import teymi15.kassistant.service.UserServiceImp;
@@ -96,6 +97,8 @@ public class IngredientController {
         displayLoggedInUser(session, model);
         Ingredient ingredient = (Ingredient) session.getAttribute("selectIngredient");
         model.addAttribute("ingredient",ingredient);
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user",user);
         return "editIngredient";
     }
 
