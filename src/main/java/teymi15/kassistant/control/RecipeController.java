@@ -146,7 +146,13 @@ public class RecipeController {
         return "recipe";
     }
 
-
+    /**
+     * a function that sends user and recipe to the service class so thay
+     * will be linked to gether in userLikedRecipes
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/saverecipe", method = RequestMethod.GET)
     public String saveRecipe (HttpSession session, Model model){
         Recipe selected = (Recipe) session.getAttribute("recipe");
@@ -159,6 +165,13 @@ public class RecipeController {
         }
         return "recipe";
     }
+
+    /**
+     * a function that unlikes the recipe for the user
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/unsaverecipe", method = RequestMethod.GET)
     public String UnsaveRecipe (HttpSession session, Model model){
         Recipe selected = (Recipe) session.getAttribute("recipe");
@@ -166,6 +179,13 @@ public class RecipeController {
         displayLoggedInUser(session, model);
         return "recipe";
     }
+
+    /**
+     * a function that unlikes the recipe for the user
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/unsaverecipe", method = RequestMethod.POST)
     public String UnsavePost(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
@@ -176,7 +196,12 @@ public class RecipeController {
         return "recipe";
     }
 
-
+    /**
+     * a function that askes the servic class to delet an recipe
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value="delete-recipe", method = RequestMethod.GET)
     public String deleteRecipe (HttpSession session, Model model) {
         Recipe recipe = (Recipe)session.getAttribute("recipe");
@@ -184,6 +209,12 @@ public class RecipeController {
         return "homepage";
     }
 
+    /**
+     * a function that displays the eddit recipe page
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value="edit-recipe", method = RequestMethod.GET)
     public String displayEditForm (HttpSession session, Model model) {
         displayRecipe(session, model, (Recipe)session.getAttribute("recipe"));
@@ -191,6 +222,14 @@ public class RecipeController {
         return "edit-recipe";
     }
 
+    /**
+     * a function that gets information from the user and
+     * sends to service so the recipe can be editit
+     * @param session
+     * @param model
+     * @param request
+     * @return
+     */
     @RequestMapping(value="edit-recipe", method = RequestMethod.POST)
     public String editRecipe (HttpSession session, Model model, HttpServletRequest request) {
         String name = request.getParameter("name");
@@ -206,7 +245,12 @@ public class RecipeController {
         return "recipe";
     }
 
-
+    /**
+     *
+     * @param session
+     * @param model
+     * @param recipe
+     */
     public void displayRecipe(HttpSession session, Model model, Recipe recipe) {
         session.setAttribute("recipe", recipe);
         model.addAttribute("recipe", recipe);
@@ -249,6 +293,11 @@ public class RecipeController {
         }
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/alive", method = RequestMethod.GET)
     public String alive(Model model) {
         Recipe a = new Recipe();

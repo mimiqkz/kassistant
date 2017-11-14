@@ -78,6 +78,17 @@ public class UserController {
     }
 
 
+    /**
+     * a function that gets a picture frome the user and sends to the
+     * userService
+     * @param session
+     * @param request
+     * @param model
+     * @param file
+     * @param redirectAttributes
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "upload-user-image", method = RequestMethod.POST)
     public String uploadUserImage (HttpSession session, HttpServletRequest request, Model model, @RequestParam("file") MultipartFile file,
                                          RedirectAttributes redirectAttributes) throws IOException {
@@ -94,7 +105,14 @@ public class UserController {
 
     }
 
-
+    /**
+     * a function that gets the data from
+     * the user and if correct creats a new user
+     * @param session
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "sign-up", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity signup(HttpSession session, HttpServletRequest request, Model model) {
