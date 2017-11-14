@@ -166,13 +166,11 @@ public class RecipeController {
      */
     @RequestMapping(value="/unsaverecipe", method = RequestMethod.GET)
     public String unsaveRecipe (HttpSession session, Model model){
-
         RecipeService.unlikeRecipe((User) session.getAttribute("user"),
                 (Recipe) session.getAttribute("recipe"));
 
         int i = ((Recipe) session.getAttribute("recipe")).getId();
         Recipe recipe = RecipeService.getRecipeById(i);
-
         displayLoggedInUser(session, model);
         displayRecipe(session, model, recipe);
         return "recipe";
