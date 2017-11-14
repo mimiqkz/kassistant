@@ -185,10 +185,27 @@ public class RecipeServiceImp implements RecipeService {
         return false;
     }
     @Override
+    @ResponseBody
     public boolean unlikeRecipe(User user, Recipe recipe){
-        user.getLikedRecipes().remove(recipe);
+        if(user.getLikedRecipes().remove(recipe)){
+            System.out.println("eyddi útt úr");
+        }
+        Set<Recipe> recipes = user.getLikedRecipes();
+        //user.getLikedRecipes().remove(this);
+        System.out.println("-----------------");
+        System.out.println("----liked-recipe---");
+        for (Recipe r: recipes){
+            if(r.getName().equals(recipe.getName())){
+                if(recipes.remove(r)){
+                    System.out.println("eyðir útt");
+                }
+            }
+            System.out.println(r.getName());
+        }
+        user.setLikedRecipes(recipes);
         try{
             userRepository.save(user);
+            System.out.println("unlike");
             return true;
         }catch (Exception e){
             e.printStackTrace();

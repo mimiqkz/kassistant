@@ -106,7 +106,7 @@ public class IngredientController {
      * @return String
      */
     @RequestMapping(value = "/edit-ingredient", method = RequestMethod.POST)
-    public String submitIngredientEdit(HttpSession session, HttpServletRequest request) {
+    public String submitIngredientEdit(HttpSession session, HttpServletRequest request,Model model) {
 
         double price = Double.parseDouble(request.getParameter("price"));
         String location = request.getParameter("location");
@@ -117,7 +117,7 @@ public class IngredientController {
         ingredient.setLocation(location);
         ingredient.setStore(store);
         boolean b = ingredientService.addIngredient(ingredient);
-
+        displayLoggedInUser(session, model);
         System.out.println(b);
         return "homepage";
     }

@@ -63,7 +63,7 @@ public class Recipe {
      * relacion makes a table that conects the ingredients and recipes
     * */
     
-    @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     public Recipe() {}
