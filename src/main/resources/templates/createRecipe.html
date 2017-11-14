@@ -31,7 +31,8 @@
                 <div class="form-group" style="border-top: 1px solid #c5b9a0; padding-top: 20px; padding-bottom: 15px">
                     <label>Ingredients</label>
                     <div class="input-group control-group after-add-more-ingredient" style="width: 100%">
-                        <select class="selectpicker select-ingredient" name="ingredient[]" data-live-search="true" required="required" style="width: 100% !important">
+                        <select class="selectpicker select-ingredient" th:field="*{ingredient}" name="ingredient[]" data-live-search="true" required="required" style="width: 100% !important">
+                            <option th:each="ingredient: ${ingredient}" th:value="${ingredient.name}" th:text="${ingredient.name}"></option>
                             <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
                             <option data-tokens="mustard">Burger, Shake and a Smile</option>
                             <option data-tokens="frosting">Sugar, Spice and all things nice</option>

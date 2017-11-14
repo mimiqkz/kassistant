@@ -31,7 +31,7 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private double price; //Using different currency
+     private double price; //Using different currency
 
     @NotNull
     @Size(min = 1, message = "The name of the ingredient must be at least {min} letter.")
