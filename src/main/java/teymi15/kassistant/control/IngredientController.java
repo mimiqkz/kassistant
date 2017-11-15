@@ -71,7 +71,7 @@ public class IngredientController {
         model.addAttribute("ingredient",ingredient);
         User user = (User) session.getAttribute("user");
         model.addAttribute("user",user);
-        return "editIngredient";
+        return "update-price";
     }
 
     /**
@@ -101,7 +101,7 @@ public class IngredientController {
         model.addAttribute("ingredient",ingredient);
         User user = (User) session.getAttribute("user");
         model.addAttribute("user",user);
-        return "editIngredient";
+        return "update-price";
     }
 
     /**
@@ -123,7 +123,8 @@ public class IngredientController {
         ingredient.setStore(store);
         boolean b = ingredientService.addIngredient(ingredient);
         displayLoggedInUser(session, model);
-        return "homepage";
+        model.addAttribute("ingredient", ingredient);
+        return "ingredient";
     }
 
 

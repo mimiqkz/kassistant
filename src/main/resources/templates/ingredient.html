@@ -9,7 +9,7 @@
 <!--/*@thymesVar id="user" type="java"*/-->
 
 <!--/*@thymesVar id="sameUser" type="java"*/-->
-<div class="page-header" style="top: 0; display: flex;  justify-content: center;">
+<div th:if="${loggedIn}" class="page-header" style="top: 0; display: flex;  justify-content: center;">
     <div><a th:href="@{/edit-ingredient}" class="btn btn-default btn-lg recipe-btn">Update Price</a></div>
 </div>
 
@@ -23,7 +23,11 @@
                 <div class="col-lg-7 col-md-7 col-sm-6 col-sm-ls-5 recipe-header-right">
                     <h1 class="recipe-name" th:text=" ${ingredient.name}"></h1>
                     <p class="recipe-description" th:text="${ingredient.description}"/>
-                    <span class="recipe-popularity" th:text="${ingredient.price} + 'isk'"></span>
+                    <div>
+                        <span class="recipe-popularity" th:if="${ingredient.price}" th:text="'Cheapest price ' + ${ingredient.price} + ' isk'"></span>
+                        <span class="recipe-popularity" th:if="${ingredient.store}" th:text="'Store:  ' + ${ingredient.store} + ' isk'"></span>
+                    </div>
+
                 </div>
             </div>
         </div>

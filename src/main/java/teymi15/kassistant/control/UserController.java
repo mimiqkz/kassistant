@@ -46,6 +46,7 @@ public class UserController {
         System.out.println("Im signed out");
         displayLoggedInUser(session, model);
         session.setAttribute("user",null);
+        displayLoggedInUser(session, model);
         return "homepage";
     }
 
@@ -63,9 +64,7 @@ public class UserController {
         if (userService.isUserInDatabase(username, password)) {
             User user = userService.getUser(username, password);
             //If login successful set the current user
-            Set<Recipe> liked = userService.hasLikedRecipe(user);
             session.setAttribute("user", user);
-            session.setAttribute("liked",liked);
             displayLoggedInUser(session, model);
 
             return "homepage";
@@ -94,7 +93,7 @@ public class UserController {
         User user = (User)session.getAttribute("user");
         userService.updatePhoto(user, pic);
         displayLoggedInUser(session, model);
-            return "user-profile";
+        return "user-profile";
 
     }
 
