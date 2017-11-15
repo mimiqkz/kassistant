@@ -20,6 +20,9 @@ public class IngredientServiceImp implements IngredientService{
     @Autowired
     IngredientRepository ingredientRepository;
 
+    @Autowired
+    PhotoServiceImp photoService;
+
 
 
     @Override
@@ -51,6 +54,16 @@ public class IngredientServiceImp implements IngredientService{
             }
         }
         return matched;
+    }
+
+    @Override
+    public Ingredient createIngredient(String name, String description, byte[] bytes) {
+        String pic = photoService.addPhoto(bytes);
+        Ingredient ingredient = new Ingredient(name, description);
+        ingredient.setPhotoURL(pic);
+        addIngredient(ingredient);
+        return ingredient;
+
     }
 
     @Override

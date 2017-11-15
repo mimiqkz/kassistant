@@ -57,7 +57,7 @@ public class IngredientController {
     public String selectIngredient (@PathVariable int id, HttpSession session, Model model) {
         Ingredient selected = ingredientService.getIngredientById(id);
         model.addAttribute("ingredient", selected);
-        session.setAttribute("selectIngredient",selected);
+        session.setAttribute("ingredient",selected);
         displayLoggedInUser(session, model);
         return "ingredient";
     }
@@ -75,21 +75,14 @@ public class IngredientController {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
 
-        Ingredient ingredient = new Ingredient(name, description);
-
         byte [] bytes = null;
         if(!file.isEmpty()){
             bytes = file.getBytes();
         }
-
-        String pic = photoService.addPhoto(bytes);
-        ingredient.setPhotoURL(pic);
-        String s = session.getAttribute("user").toString();
-        ingredientService.addIngredient(ingredient);
-        displayLoggedInUser(session, model);
+        Ingredient ingredient = ingredientService.createIngredient(name, description, bytes);
+        session.setAttribute("ingredient", ingredient);
         model.addAttribute("ingredient",ingredient);
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user",user);
+        displayLoggedInUser(session, model);
         return "update-price";
     }
 
@@ -120,7 +113,7 @@ public class IngredientController {
     @RequestMapping(value = "/edit-ingredient", method = RequestMethod.GET)
     public String displayIngredientEditForm(HttpSession session, Model model) {
         displayLoggedInUser(session, model);
-        Ingredient ingredient = (Ingredient) session.getAttribute("selectIngredient");
+        Ingredient ingredient = (Ingredient) session.getAttribute("ingredient");
         model.addAttribute("ingredient",ingredient);
         User user = (User) session.getAttribute("user");
         model.addAttribute("user",user);
@@ -134,18 +127,33 @@ public class IngredientController {
      * @return String
      */
     @RequestMapping(value = "/edit-ingredient", method = RequestMethod.POST)
-    public String submitIngredientEdit(HttpSession session, HttpServletRequest request,Model model) {
-
+    public String submitPriceUpdate(HttpSession session, HttpServletRequest request,Model model) {
+        System.out.println("one");
         int price = Integer.parseInt((request.getParameter("price")));
+        System.out.println("two");
+
         String location = request.getParameter("location");
+        System.out.println("three");
+
         String store = request.getParameter("store");
+        System.out.println("four");
+
         // public Ingredient(double price, String name, String location, String store, Set recipes) {
-        Ingredient ingredient = (Ingredient) session.getAttribute("selectIngredient");
+        System.out.println("five");
+        System.out.println(((Ingredient)session.getAttribute("ingredient")).getName());
+        Ingredient ingredient = (Ingredient) session.getAttribute("ingredient");
+        System.out.println("six");
+
         ingredient.setPrice(price);
+        System.out.println("seven");
+
         ingredient.setLocation(location);
         ingredient.setStore(store);
+
         boolean b = ingredientService.addIngredient(ingredient);
+
         displayLoggedInUser(session, model);
+
         model.addAttribute("ingredient", ingredient);
         return "ingredient";
     }

@@ -44,6 +44,10 @@ public interface IngredientService {
     List<Ingredient> getAllIngredient();
 
     List<Ingredient> getAllMatchingIngredients(String [] names);
+
+
+    Ingredient createIngredient(String name, String description, byte[] bytes);
+
     /**
      * @return boolean
      * @param ingredient
