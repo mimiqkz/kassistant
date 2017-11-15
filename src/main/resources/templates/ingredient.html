@@ -23,9 +23,9 @@
                 <div class="col-lg-7 col-md-7 col-sm-6 col-sm-ls-5 recipe-header-right">
                     <h1 class="recipe-name" th:text=" ${ingredient.name}"></h1>
                     <p class="recipe-description" th:text="${ingredient.description}"/>
-                    <div class="recipe-popularity">
-                        <span  th:if="${ingredient.price}" th:text="'Cheapest price ' + ${ingredient.price} + ' isk'"></span>
-                        <span th:if="${ingredient.store}" th:text="'Store:  ' + ${ingredient.store}"></span>
+                    <div th:if="${ingredient.price}" class="recipe-popularity">
+                        <span th:text="'Cheapest price ' + ${ingredient.price} + ' isk'"></span>
+                        <span th:text="'Store:  ' + ${ingredient.store}"></span>
                     </div>
 
                 </div>

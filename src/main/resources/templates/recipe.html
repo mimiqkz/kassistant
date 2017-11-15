@@ -47,7 +47,8 @@
                         <div class="recipe-ingredients" style="margin-left: 100px">
                             <h2>Ingredients</h2>
                             <ul class="ingredient-list">
-                                <li th:each="ingredient : ${recipe.ingredients}"  th:text="${ingredient.name}"/>
+                                <a class="card-link"  th:each="ingredient : ${recipe.ingredients}" th:href="@{/ingredient/{id}(id=${ingredient.getId()})}">
+                                    <li style="margin: 10px 0" th:text="${ingredient.name}"/></a>
                             </ul>
                         </div>
                     </div>
@@ -55,7 +56,7 @@
                         <div class="recipe-instructions">
                             <h2>Method</h2>
                                 <ul class="recipe-steps" th:each = "instruction: ${instructions}">
-                                    <li th:text="${instruction}"></li>
+                                    <li style="margin: 20px 0" th:text="${instruction}"></li>
                                 </ul>
                         </div>
                     </div>
