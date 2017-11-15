@@ -59,7 +59,6 @@ public class MainController {
      * @return void
      */
     public void displayLoggedInUser(HttpSession session, Model model) {
-        System.out.println("Im logged in");
         if(!session.isNew()) {
             if(!(session.getAttribute("user") == null)) {
                 model.addAttribute("user", session.getAttribute("user"));

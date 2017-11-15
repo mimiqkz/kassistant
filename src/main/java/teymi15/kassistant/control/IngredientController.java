@@ -56,9 +56,9 @@ public class IngredientController {
     @RequestMapping(value="ingredient/{id}", method = RequestMethod.GET)
     public String selectIngredient (@PathVariable int id, HttpSession session, Model model) {
         Ingredient selected = ingredientService.getIngredientById(id);
-        displayLoggedInUser(session, model);
         model.addAttribute("ingredient", selected);
         session.setAttribute("selectIngredient",selected);
+        displayLoggedInUser(session, model);
         return "ingredient";
     }
 
@@ -101,8 +101,12 @@ public class IngredientController {
      */
     public void displayLoggedInUser(HttpSession session, Model model) {
         if(!session.isNew()) {
-            model.addAttribute("user", session.getAttribute("user"));
-            model.addAttribute("loggedIn", true);
+            if(!(session.getAttribute("user") == null)) {
+                model.addAttribute("user", session.getAttribute("user"));
+                model.addAttribute("loggedIn", true);
+            }else {
+                model.addAttribute("loggedIn", false);
+            }
         }
     }
 

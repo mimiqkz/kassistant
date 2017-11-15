@@ -32,14 +32,14 @@
             </div>
             <div class="row">
                 <h2 style="margin: 30px 0">Related Recipes:</h2>
-                    <div th:each="recipe: ${ingredient.recipes}" class="col-xs-18 col-sm-6 col-md-3">
+                    <a class="col-xs-18 col-sm-6 col-md-3" th:each="recipe: ${ingredient.recipes}" th:href="@{/recipe/{id}(id=${recipe.id})}" >
                         <div class="thumbnail">
                             <img th:src="${recipe.photoURL}"/>
                             <div class="caption">
                                 <h4 th:text="${recipe.name}"></h4>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
             </div>
         </div>
