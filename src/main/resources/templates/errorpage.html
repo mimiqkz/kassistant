@@ -8,6 +8,10 @@
 <div th:replace="layout :: navigation-top-bar"></div>
 
 <h1>ERROR PAGE</h1>
-
+<!--/*@thymesVar id="attrs" type="java"*/-->
+<div>
+    <h3 th:text="|HTTP ${attrs.status} ${attrs.error}|"></h3>
+    <p th:text="${attrs.message}"></p>
+</div>
 </body>
 </html>

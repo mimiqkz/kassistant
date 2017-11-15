@@ -158,7 +158,6 @@ public class UserController {
      * User attribute to the current page
      * @param session httpSession
      * @param model model
-     * @return void
      */
     public void displayLoggedInUser(HttpSession session, Model model) {
         if(!session.isNew()) {
