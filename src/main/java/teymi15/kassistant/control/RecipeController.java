@@ -238,7 +238,6 @@ public class RecipeController {
     public void displayRecipe(HttpSession session, Model model, Recipe recipe) {
         session.setAttribute("recipe", recipe);
         model.addAttribute("recipe", recipe);
-
         //Instructions variable is stored as one string, use this regex to split it up
         String[] instructions = recipe.getInstruction().split("[!][!]");
 

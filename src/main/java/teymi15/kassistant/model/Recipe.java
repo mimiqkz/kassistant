@@ -57,7 +57,7 @@ public class Recipe {
     private User userCreator;
 
     @ManyToMany(mappedBy = "likedRecipes", cascade = CascadeType.ALL)
-    private Set<User> userLiked;
+    private Set<User> userLiked = new HashSet<User>();
     /**
     * connecting the to tables recipe and user with a many to many
      * relacion makes a table that conects the ingredients and recipes
