@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -90,7 +91,12 @@ public class RecipeController {
         List <Ingredient> ingredients = IngredientService.getAllIngredient();
         model.addAttribute("ingredients", ingredients);
         displayLoggedInUser(session, model);
-        return "createRecipe";
+        if(session.isNew() || session.getAttribute("user") == null){
+            return "homepage";
+        }else {
+            return "createRecipe";
+
+        }
     }
 
     /**
@@ -102,7 +108,7 @@ public class RecipeController {
      */
     @RequestMapping(value = "/create-recipe", method = RequestMethod.POST)
     public String createRecipe(HttpSession session, HttpServletRequest request, Model model,@RequestParam("file") MultipartFile file,
-                               RedirectAttributes redirectAttributes) throws IOException {
+                               RedirectAttributes redirectAttributes) throws IOException, InterruptedException {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         String[] instructions = request.getParameterValues("instruction[]");
@@ -113,7 +119,6 @@ public class RecipeController {
             pic = file.getBytes();
         }
         Recipe recipe = RecipeService.createRecipe(name, description, instructions, ingredients, pic, user);
-
         displayRecipe(session, model, recipe);
         displayLoggedInUser(session, model);
         return "recipe";
