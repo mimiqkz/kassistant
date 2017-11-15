@@ -12,13 +12,31 @@ import java.util.List;
 
 @Transactional
 public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
-
+    /**
+     *
+     * @return
+     */
     List<Ingredient> findAll();
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     List<Ingredient> findAllByNameLikeIgnoreCase(String name);
 
+    /**
+     *
+     * @param ingredient
+     * @return
+     */
     Ingredient save(Ingredient ingredient);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     Ingredient findById(int id);
 
     //Ingredient insert(Ingredient ingredient);

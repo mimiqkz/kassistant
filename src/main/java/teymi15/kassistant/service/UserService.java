@@ -82,9 +82,19 @@ public interface UserService {
      */
     Set<Recipe> hasLikedRecipe(User user);
 
-
+    /**
+     *
+     * @param user
+     * @param bytes
+     */
     void updatePhoto(User user, byte[] bytes);
 
+    /**
+     *
+     * @param user
+     * @param recipe
+     * @return
+     */
     Boolean hasLikedRecipe(User user, Recipe recipe);
 
 }

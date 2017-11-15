@@ -51,12 +51,40 @@ public interface RecipeService {
      */
     boolean isAlive();
 
+    /**
+     *
+     * @param name
+     * @param description
+     * @param instructions
+     * @param ingredients
+     * @param pic
+     * @param user
+     * @return
+     */
     Recipe createRecipe(String name, String description, String[] instructions, String[] ingredients, byte[] pic, User user);
 
+    /**
+     *
+     * @param recipe
+     * @param name
+     * @param description
+     * @param instructions
+     * @param ingredients
+     * @return
+     */
     Recipe editRecipe(Recipe recipe, String name, String description, String[] instructions, String[] ingredients);
 
+    /**
+     *
+     * @param recipe
+     */
     void deleteRecipe(Recipe recipe);
 
+    /**
+     *
+     * @param instructions
+     * @return
+     */
     String mergeInstructions(String[] instructions);
 
     String[] splitInstructions(String instruction);

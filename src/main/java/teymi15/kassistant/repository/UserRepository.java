@@ -23,8 +23,18 @@ public interface UserRepository extends CrudRepository<User, Long> {
      */
     User save(User user);
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     User findByName(String name);
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     List<User> findByUsername(String name);
 
 }
