@@ -133,14 +133,6 @@ public class UserServiceImp implements UserService{
         return (userRep.findByUsername(username).isEmpty());
     }
 
-    @Override
-    @ResponseBody
-    public Set<Recipe> hasLikedRecipe(User user) {
-        Set<Recipe> liked = user.getLikedRecipes();
-
-        return liked;
-    }
-
     @ResponseBody
     public void updatePhoto(User user, byte[] bytes) {
 

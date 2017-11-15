@@ -11,6 +11,7 @@ package teymi15.kassistant.control;
  */
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -202,6 +203,8 @@ public class RecipeController {
     public String displayEditForm (HttpSession session, Model model) {
         displayRecipe(session, model, (Recipe)session.getAttribute("recipe"));
         displayLoggedInUser(session, model);
+        model.addAttribute("ingredients", IngredientService.getAllIngredient());
+
         return "edit-recipe";
     }
 
@@ -221,7 +224,6 @@ public class RecipeController {
         String[] ingredients = request.getParameterValues("ingredient[]");
         User user = (User)session.getAttribute("user");
         Recipe recipe = RecipeService.editRecipe((Recipe)session.getAttribute("recipe"), name, description, instructions, ingredients);
-
         displayRecipe(session, model, recipe);
         displayLoggedInUser(session, model);
         return "recipe";
