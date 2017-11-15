@@ -4,6 +4,7 @@ import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teymi15.kassistant.model.Ingredient;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
+import teymi15.kassistant.service.IngredientService;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.PhotoServiceImp;
 import teymi15.kassistant.service.UserServiceImp;
@@ -41,6 +43,23 @@ public class IngredientController {
     public String displayIngredientForm(HttpSession session, Model model) {
         displayLoggedInUser(session, model);
         return "createIngredient";
+    }
+
+    /**
+     * The function returns a string with the route which should be rendered. This
+     *  is initiated when the user selects a link that represents a Recipe. This Recipe
+     *  should then be displayed on the recipe page.
+     * @param id int
+     * @param model model
+     * @return String
+     */
+    @RequestMapping(value="ingredient/{id}", method = RequestMethod.GET)
+    public String selectIngredient (@PathVariable int id, HttpSession session, Model model) {
+        Ingredient selected = ingredientService.getIngredientById(id);
+        displayLoggedInUser(session, model);
+        model.addAttribute("ingredient", selected);
+        session.setAttribute("selectIngredient",selected);
+        return "ingredient";
     }
 
     /**
