@@ -10,33 +10,21 @@ package teymi15.kassistant.control;
  * @since   2017-09-20
  */
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
-import teymi15.kassistant.service.UserService;
 import teymi15.kassistant.service.UserServiceImp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.sound.midi.Soundbank;
-import javax.validation.Valid;
-import javax.xml.ws.Response;
 
 /**
  * The class manages user data
@@ -47,11 +35,20 @@ public class UserController {
     @Autowired
     UserServiceImp userService;
 
+    /**
+     * After signing out, user is redirect to the homepage
+     * @param session
+     * @param model
+     * @return String
+     */
     @RequestMapping(value = "signout", method = RequestMethod.GET)
     public String signOut(HttpSession session,Model model){
+        System.out.println("Im signed out");
+        displayLoggedInUser(session, model);
         session.setAttribute("user",null);
         return "homepage";
     }
+
     /**
      * The function returns a string with the route which should be rendered depending
      * on user input.
@@ -79,25 +76,23 @@ public class UserController {
     }
 
     /**
-     * a function that gets a picture frome the user and sends to the
+     * A function that gets a picture from the user and sends to the
      * userService
      * @param session
      * @param model
      * @param file
-     * @return
+     * @return String
      * @throws IOException
      */
     @RequestMapping(value = "upload-user-image")
     public String uploadUserImage (HttpSession session, Model model,
-                                   @RequestParam("file") MultipartFile file
-                                         ) throws IOException {
+                                   @RequestParam("file") MultipartFile file) throws IOException {
         byte [] pic = null;
         if(!file.isEmpty()){
             pic = file.getBytes();
         }
         User user = (User)session.getAttribute("user");
         userService.updatePhoto(user, pic);
-        System.out.println("get");
         displayLoggedInUser(session, model);
             return "user-profile";
 
@@ -164,6 +159,8 @@ public class UserController {
             if(!(session.getAttribute("user") == null)) {
                 model.addAttribute("user", session.getAttribute("user"));
                 model.addAttribute("loggedIn", true);
+            }else {
+                model.addAttribute("loggedIn", false);
             }
         }
     }

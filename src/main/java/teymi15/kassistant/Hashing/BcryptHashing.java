@@ -34,10 +34,8 @@ public class BcryptHashing {
 
         if(hashedPassword.equals(dbPassword)){
             isAuthenticated = true;
-            System.out.print("satt");
         }else{
             isAuthenticated = false;
-            System.out.print("false");
         }
         return isAuthenticated;
     }

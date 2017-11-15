@@ -65,14 +65,9 @@ public class UserServiceImp implements UserService{
     public boolean isUserInDatabase(String username, String password) {
         List<User> users = userRep.findAll();
         for (int i = 0; i < users.size(); i++) {
-            System.out.println(users.get(i).getUsername());
             if (username.equals(users.get(i).getUsername()) &&
                     BcryptHashing.match(password,users.get(i).getPassword())){
                 Set<Recipe> myRecipe = users.get(i).getMyRecipes();
-                for (Recipe r: myRecipe
-                     ) {
-                    System.out.println(r.getName());
-                }
                 return true;
             }
         }
@@ -148,17 +143,14 @@ public class UserServiceImp implements UserService{
 
     @ResponseBody
     public void updatePhoto(User user, byte[] bytes) {
-        System.out.println("Three");
 
         String pic = "";
         try {
             pic = photoService.addPhoto(bytes);
-            System.out.println("Four");
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println("Five");
 
         user.setPhoto(pic);
         try {
@@ -173,7 +165,6 @@ public class UserServiceImp implements UserService{
         for(Recipe r: user.getLikedRecipes()) {
             if(r.getId() == recipe.getId()) return true;
         }
-
         return false;
     }
 

@@ -123,7 +123,6 @@ public class IngredientController {
         ingredient.setStore(store);
         boolean b = ingredientService.addIngredient(ingredient);
         displayLoggedInUser(session, model);
-        System.out.println(b);
         return "homepage";
     }
 

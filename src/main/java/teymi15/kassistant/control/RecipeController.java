@@ -214,7 +214,6 @@ public class RecipeController {
     @RequestMapping(value="edit-recipe", method = RequestMethod.POST)
     public String editRecipe (HttpSession session, Model model, HttpServletRequest request) {
         String name = request.getParameter("name");
-        System.out.println("Edited name " + name);
         String description = request.getParameter("description");
         String[] instructions = request.getParameterValues("instruction[]");
         String[] ingredients = request.getParameterValues("ingredient[]");
@@ -246,7 +245,6 @@ public class RecipeController {
             User currentUser = (User)session.getAttribute("user");
             //Check if user has liked recipe
             if(userServiceImp.hasLikedRecipe(currentUser, recipe)) {
-                System.out.println("LIkes this");
                 model.addAttribute("liked", true);
             }
             //Check if user is viewing own recipe
