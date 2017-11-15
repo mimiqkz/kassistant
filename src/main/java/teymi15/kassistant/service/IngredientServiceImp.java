@@ -20,6 +20,9 @@ public class IngredientServiceImp implements IngredientService{
     @Autowired
     IngredientRepository ingredientRepository;
 
+    @Autowired
+    PhotoServiceImp photoService;
+
 
 
     @Override
@@ -54,6 +57,16 @@ public class IngredientServiceImp implements IngredientService{
     }
 
     @Override
+    public Ingredient createIngredient(String name, String description, byte[] bytes) {
+        String pic = photoService.addPhoto(bytes);
+        Ingredient ingredient = new Ingredient(name, description);
+        ingredient.setPhotoURL(pic);
+        addIngredient(ingredient);
+        return ingredient;
+
+    }
+
+    @Override
     public boolean addIngredient(Ingredient ingredient) {
 
         try{
@@ -66,14 +79,13 @@ public class IngredientServiceImp implements IngredientService{
     }
 
     @Override
-    public boolean updateIngredient(Ingredient ingredient) {
-        try{
-            //ingredientRepository.insert(ingredient);
-            return true;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return false;
+    public Ingredient updatePrice(Ingredient ingredient, String store, String location, int price) {
+        ingredient.setPrice(price);
+        ingredient.setLocation(location);
+        ingredient.setStore(store);
+        addIngredient(ingredient);
+        return ingredient;
     }
+
 
 }

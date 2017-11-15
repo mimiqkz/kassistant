@@ -79,7 +79,7 @@ public class Ingredient {
     }
 
     @Column(name = "price")
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 

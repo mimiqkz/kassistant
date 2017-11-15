@@ -26,12 +26,12 @@
                     <p class="recipe-description" th:text="${ingredient.description}"/>
                     <div th:if="${ingredient.price}" class="recipe-popularity">
                         <span th:text="'Cheapest price ' + ${ingredient.price} + ' isk'"></span>
-                        <span th:text="'Store:  ' + ${ingredient.store}"></span>
+                        <span th:text="'Store:  ' + ${ingredient.store} + ', ' + ${ingredient.location}"></span>
                     </div>
 
                 </div>
             </div>
-            <div class="row">
+            <div th:if="${!ingredient.recipes.empty}" class="row">
                 <h2 style="margin: 30px 0">Related Recipes:</h2>
                     <a class="col-xs-18 col-sm-6 col-md-3" th:each="recipe: ${ingredient.recipes}" th:href="@{/recipe/{id}(id=${recipe.id})}" >
                         <div class="thumbnail">

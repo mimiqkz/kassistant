@@ -3,15 +3,19 @@
 <head th:replace="layout :: head">
 
 </head>
-<body>
+<body style="margin-top: 50px">
 
 <div th:replace="layout :: navigation-top-bar"></div>
+<div style="position: relative; width: 100%;">
+    <img style="position: absolute; width: 100vw;" src="/images/error.jpg"/>
+    <div style="padding: 50px;  position: absolute; color: white; z-index: 1; margin: 0 auto">
+        <h1>OOPS! Something went wrong!</h1>
+        <h3 th:text="|HTTP ${attrs.status} ${attrs.error}|"></h3>
+        <p th:text="${attrs.message}"></p>
+    </div>
 
-<h1>ERROR PAGE</h1>
-<!--/*@thymesVar id="attrs" type="java"*/-->
-<div>
-    <h3 th:text="|HTTP ${attrs.status} ${attrs.error}|"></h3>
-    <p th:text="${attrs.message}"></p>
 </div>
+<!--/*@thymesVar id="attrs" type="java"*/-->
+
 </body>
 </html>
