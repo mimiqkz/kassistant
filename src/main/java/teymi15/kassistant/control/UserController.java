@@ -43,8 +43,7 @@ public class UserController {
      */
     @RequestMapping(value = "signout", method = RequestMethod.GET)
     public String signOut(HttpSession session,Model model){
-        System.out.println("Im signed out");
-        displayLoggedInUser(session, model);
+        System.out.println("Signing out");
         session.setAttribute("user",null);
         return "homepage";
     }

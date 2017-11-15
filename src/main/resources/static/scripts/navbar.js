@@ -24,7 +24,8 @@ function sendData()
             success: function(data, textStatus, jqXHR)
             {
                 $(".alert-danger-signup").hide();
-                window.location.reload();
+                if(window.location.pathname == '/signout') window.location.href = "/";
+                else window.location.reload();
             },
             error: function(jqXHR)
             {
@@ -46,7 +47,9 @@ function sendLogin()
             success: function(data, textStatus, jqXHR)
             {
                 $(".alert-danger-login").hide();
-                window.location.reload();
+                if(window.location.pathname == '/signout') window.location.href = "/";
+                else window.location.reload();
+
             },
             error: function(jqXHR)
             {

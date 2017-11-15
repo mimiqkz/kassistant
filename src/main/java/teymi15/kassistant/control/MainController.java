@@ -44,7 +44,7 @@ public class MainController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayHomePage(HttpSession session, Model model) {
-        System.out.println("Im displayed");
+        System.out.println("displayHomePage called");
         displayLoggedInUser(session, model);
         return "homepage";
     }
@@ -59,6 +59,7 @@ public class MainController {
      * @return void
      */
     public void displayLoggedInUser(HttpSession session, Model model) {
+        System.out.println("displayLoggedInUser called");
         if(!session.isNew()) {
             if(!(session.getAttribute("user") == null)) {
                 model.addAttribute("user", session.getAttribute("user"));
@@ -66,6 +67,8 @@ public class MainController {
             }else {
                 model.addAttribute("loggedIn", false);
             }
+        }else {
+            model.addAttribute("loggedIn", false);
         }
     }
 
