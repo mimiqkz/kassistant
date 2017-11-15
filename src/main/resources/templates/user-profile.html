@@ -9,19 +9,25 @@
 </div>
 
     <div class="container">
-        <div class="profile">
-
             <form method="post">
                 <div class="profile-buttons">
                     <a th:href="@{/create-recipe}"> Create Recipe</a>
                     <a th:href="@{/create-ingredient}"> Create Ingredient</a>
                 </div>
             </form>
-
+        <div class="row">
+            <h2 style="margin: 30px 0">Your favourites:</h2>
+            <a class="col-xs-18 col-sm-6 col-md-3" th:each="recipe: ${user.likedRecipes}" th:href="@{/recipe/{id}(id=${recipe.id})}">
+                <div class="thumbnail">
+                    <img th:src="${recipe.photoURL}"/>
+                    <div class="caption">
+                        <h4 th:text="${recipe.name}"></h4>
+                    </div>
+                </div>
+            </a>
         </div>
-        <div class="jumbotron"> Thinking about having these as just small boxes with image and link to new page</div>
-        <div class="jumbotron"> Thinking about having these as just small boxes with image and link to new page</div>
     </div>
+
 <div th:replace="layout :: scripts"></div>
 </body>
 </html>

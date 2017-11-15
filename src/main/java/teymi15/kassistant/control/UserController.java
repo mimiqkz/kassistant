@@ -135,12 +135,8 @@ public class UserController {
     @RequestMapping(value = "user-profile", method = RequestMethod.GET)
     public String displayUserProfile(HttpSession session, Model model){
         displayLoggedInUser(session, model);
-        if(session.isNew()){
-            return "homepage";
-        }else {
-            User u = (User) session.getAttribute("user");
-            return "user-profile";
-        }
+        return "user-profile";
+
 
     }
 
