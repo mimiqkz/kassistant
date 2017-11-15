@@ -128,32 +128,12 @@ public class IngredientController {
      */
     @RequestMapping(value = "/edit-ingredient", method = RequestMethod.POST)
     public String submitPriceUpdate(HttpSession session, HttpServletRequest request,Model model) {
-        System.out.println("one");
-        int price = Integer.parseInt((request.getParameter("price")));
-        System.out.println("two");
-
-        String location = request.getParameter("location");
-        System.out.println("three");
-
         String store = request.getParameter("store");
-        System.out.println("four");
-
-        // public Ingredient(double price, String name, String location, String store, Set recipes) {
-        System.out.println("five");
-        System.out.println(((Ingredient)session.getAttribute("ingredient")).getName());
-        Ingredient ingredient = (Ingredient) session.getAttribute("ingredient");
-        System.out.println("six");
-
-        ingredient.setPrice(price);
-        System.out.println("seven");
-
-        ingredient.setLocation(location);
-        ingredient.setStore(store);
-
-        boolean b = ingredientService.addIngredient(ingredient);
-
+        String location = request.getParameter("location");
+        int price = Integer.parseInt((request.getParameter("price")));
+        Ingredient ingredient = ingredientService.updatePrice((Ingredient) session.getAttribute("ingredient"),
+                store, location, price);
         displayLoggedInUser(session, model);
-
         model.addAttribute("ingredient", ingredient);
         return "ingredient";
     }

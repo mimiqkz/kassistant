@@ -57,9 +57,11 @@ public interface IngredientService {
 
     /**
      * @return boolean
-     * @param ingredient
-     * **/
-    boolean updateIngredient(Ingredient ingredient);
+     * @param store
+     * @param location
+     * @param price
+     **/
+    Ingredient updatePrice(Ingredient ingredient, String store, String location, int price);
 
 
 }

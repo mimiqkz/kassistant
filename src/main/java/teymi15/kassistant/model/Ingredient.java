@@ -84,11 +84,7 @@ public class Ingredient {
     }
 
     public void setPrice(int price) {
-        System.out.println("price before");
         this.price = price;
-        System.out.println("price after");
-        System.out.println(this.price);
-
     }
 
     @Column(name = "name")
