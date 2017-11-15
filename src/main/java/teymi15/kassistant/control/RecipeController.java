@@ -10,15 +10,10 @@ package teymi15.kassistant.control;
  * @since   2017-09-20
  */
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -124,8 +119,6 @@ public class RecipeController {
         return "recipe";
     }
 
-
-
     /**
      * The function returns a string with the route which should be rendered. This
      *  is initiated when the user selects a link that represents a Recipe. This Recipe
@@ -143,11 +136,11 @@ public class RecipeController {
     }
 
     /**
-     * a function that sends user and recipe to the service class so thay
-     * will be linked to gether in userLikedRecipes
+     * A function that sends user and recipe to the service class so they
+     * will be linked together in userLikedRecipes
      * @param session
      * @param model
-     * @return
+     * @return String
      */
     @RequestMapping(value="/saverecipe", method = RequestMethod.GET)
     public String saveRecipe (HttpSession session, Model model){
@@ -163,10 +156,10 @@ public class RecipeController {
     }
 
     /**
-     * a function that unlikes the recipe for the user
+     * A function that unlikes the recipe for the user
      * @param session
      * @param model
-     * @return
+     * @return String
      */
     @RequestMapping(value="/unsaverecipe", method = RequestMethod.GET)
     public String unsaveRecipe (HttpSession session, Model model){
@@ -182,10 +175,10 @@ public class RecipeController {
 
 
     /**
-     * a function that askes the servic class to delet an recipe
+     * A function that asks the service class to delete an recipe
      * @param session
      * @param model
-     * @return
+     * @return String
      */
     @RequestMapping(value="delete-recipe", method = RequestMethod.GET)
     public String deleteRecipe (HttpSession session, Model model) {
@@ -195,10 +188,10 @@ public class RecipeController {
     }
 
     /**
-     * a function that displays the eddit recipe page
+     * A function that displays the edit recipe page
      * @param session
      * @param model
-     * @return
+     * @return String
      */
     @RequestMapping(value="edit-recipe", method = RequestMethod.GET)
     public String displayEditForm (HttpSession session, Model model) {
@@ -208,12 +201,12 @@ public class RecipeController {
     }
 
     /**
-     * a function that gets information from the user and
-     * sends to service so the recipe can be editit
+     * A function that gets information from the user and
+     * sends to service so the recipe can be edit
      * @param session
      * @param model
      * @param request
-     * @return
+     * @return String
      */
     @RequestMapping(value="edit-recipe", method = RequestMethod.POST)
     public String editRecipe (HttpSession session, Model model, HttpServletRequest request) {
@@ -230,7 +223,7 @@ public class RecipeController {
     }
 
     /**
-     *
+     * The method allows to display the selected recipe to the users
      * @param session
      * @param model
      * @param recipe
@@ -274,9 +267,9 @@ public class RecipeController {
     }
 
     /**
-     *
+     * The function that test whether the recipe service is "alive" or not
      * @param model
-     * @return
+     * @return String
      */
     @RequestMapping(value = "/alive", method = RequestMethod.GET)
     public String alive(Model model) {

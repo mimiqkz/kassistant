@@ -1,5 +1,14 @@
 package teymi15.kassistant.SQLsafety;
-
+/**
+ * The program allows user to search for recipe with the matching name.
+ * For example, "Apple pie", "Brocoli soup", "Chocolate Cake" , etc.
+ *
+ * @author Nu Phan Quynh Do
+ * @author  Alexander Freyr Sveinsson
+ * @author Alexandra Mjöll Young
+ * @version 1.3
+ * @since   2017-11-01
+ */
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
@@ -7,7 +16,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-
+/**
+ * SQL injection validator
+ */
 public class SQLInjectionSafeConstraintValidator implements ConstraintValidator<SQLInjectionSafe, String> {
     public static final String SQL_TYPES =
             "TABLE, TABLESPACE, PROCEDURE, FUNCTION, TRIGGER, KEY, VIEW, MATERIALIZED VIEW, LIBRARY" +

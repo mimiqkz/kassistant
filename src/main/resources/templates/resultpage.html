@@ -6,7 +6,8 @@
 <div th:replace="layout :: navigation-top-bar"></div>
 
     <div class="page-header">
-        <h2>Your search: <span id="searchresult" th:text="${searchvalue}"></span> <span th:text="'(' + ${resultsList.size()} + ' results)' "></span></h2>
+        <h2>Your search: <!--/*@thymesVar id="searchvalue" type="java"*/-->
+        <span id="searchresult" th:text="${searchvalue}"></span> <span th:text="'(' + ${resultsList.size()} + ' results)' "></span></h2>
     </div>
 
         <!--/*@thymesVar id="resultsList" type="java"*/-->

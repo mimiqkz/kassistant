@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- *
+ * The classes that controls the errors
  * @author Alexander Freyr Sveinsson
  */
 @Controller
@@ -51,7 +51,7 @@ public class VilluController implements ErrorController {
     
     
     /**
-     * gets the error-attribute that came from the Http request
+     * Gets the error-attribute that came from the Http request
      * @param request
      * @param includeStackTrace if true then return the trace
      * @return

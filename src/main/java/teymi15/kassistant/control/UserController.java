@@ -6,11 +6,10 @@ package teymi15.kassistant.control;
  * @author Nu Phan Quynh Do
  * @author  Alexander Freyr Sveinsson
  * @author Alexandra Mjöll Young
- * @version 1.0
+ * @version 1.2
  * @since   2017-09-20
  */
 import java.io.IOException;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
 import teymi15.kassistant.service.UserServiceImp;
 
@@ -96,12 +94,12 @@ public class UserController {
     }
 
     /**
-     * a function that gets the data from
+     * The function that gets the data from
      * the user and if correct creates a new user
      * @param session
      * @param request
      * @param model
-     * @return
+     * @return nothing
      */
     @RequestMapping(value = "sign-up", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
@@ -123,7 +121,7 @@ public class UserController {
     }
 
     /**
-     * checks if the login is correct
+     * Checks if the login is correct
      * @param username
      * @param password
      * @return boolean
@@ -133,6 +131,12 @@ public class UserController {
         return false;
     }
 
+    /**
+     * Display the user information
+     * @param session
+     * @param model
+     * @return String
+     */
     @RequestMapping(value = "user-profile", method = RequestMethod.GET)
     public String displayUserProfile(HttpSession session, Model model){
         displayLoggedInUser(session, model);

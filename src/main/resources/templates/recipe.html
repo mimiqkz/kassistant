@@ -26,6 +26,7 @@
                         <p class="recipe-author" th:text="'Created by ' + ${recipe.userCreator.username}"></p>
                         <p class="recipe-description" th:text="${recipe.description}"/>
                         <div class="recipe-popularity" style="font-size: 14px">
+                            <!--/*@thymesVar id="loggedIn" type="java"*/-->
                             <div th:if="${loggedIn}" >
                              <div th:if="${liked}">
                                  <button  onclick="location.href='/unsaverecipe'" class="glyphicon glyphicon-heart recipe-favourite" style="border: none; background-color: transparent"/>
@@ -44,6 +45,7 @@
                 <div class="row instruction-container">
                     <!--Ingredients-->
                     <div class="ingredients-col">
+                        <!--/*@thymesVar id="results" type="java"*/-->
                         <div class="recipe-ingredients" style="margin-left: 100px">
                             <h2>Ingredients</h2>
                             <ul class="ingredient-list">
@@ -55,6 +57,7 @@
                     <div class="instructions-col" >
                         <div class="recipe-instructions">
                             <h2>Method</h2>
+                                <!--/*@thymesVar id="instructions" type="java"*/-->
                                 <ul class="recipe-steps" th:each = "instruction: ${instructions}">
                                     <li style="margin: 20px 0" th:text="${instruction}"></li>
                                 </ul>
