@@ -22,17 +22,15 @@ import java.util.List;
 @Service
 public interface RecipeService {
 
-
     /**
-     * Add the recipe
-     *
-     * @param k Recipe
+     * Add recipe
+     * @param k recipe
+     * @return boolean
      */
     boolean addRecipe(Recipe k);
 
     /**
      * Return all of the matching recipe
-     *
      * @param name the name of the recipe
      * @return list of matching recipe
      */
@@ -52,54 +50,61 @@ public interface RecipeService {
     boolean isAlive();
 
     /**
-     *
+     * Create recipe
      * @param name
      * @param description
      * @param instructions
      * @param ingredients
-     * @param pic
-     * @param user
-     * @return
+     * @param pic of the recipe
+     * @param user who creates the recipe
+     * @return the recipe
      */
     Recipe createRecipe(String name, String description, String[] instructions, String[] ingredients, byte[] pic, User user);
 
     /**
-     *
+     * Edit the recipe
      * @param recipe
      * @param name
      * @param description
      * @param instructions
      * @param ingredients
-     * @return
+     * @return the recipe
      */
     Recipe editRecipe(Recipe recipe, String name, String description, String[] instructions, String[] ingredients);
 
     /**
-     *
+     * Delete selected recipe
      * @param recipe
      */
     void deleteRecipe(Recipe recipe);
 
     /**
-     *
+     * Merging the intruction to store in the database
      * @param instructions
-     * @return
+     * @return String of intructions
      */
     String mergeInstructions(String[] instructions);
 
-    String[] splitInstructions(String instruction);
     /**
-     * @return boolean
+     * Split the instructions
+     * @param instruction
+     * @return The array of splitted instructions
+     */
+    String[] splitInstructions(String instruction);
+
+    /**
+     * The recipe which has been liked by user
      * @param user
      * @param recipe
+     * @return boolean
      */
     boolean likeRecipe(User user, Recipe recipe);
 
     /**
-     *
+     * The recipe which was unliked by user
      * @param user
      * @param recipe
-     * @return
+     * @return boolean
      */
     boolean unlikeRecipe(User user, Recipe recipe);
 

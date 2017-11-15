@@ -39,7 +39,6 @@ public class MainController {
     /**
      * The function tells the search page to be displayed at route predefined
      * in the configuration application.properties
-     *
      * @return String
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -56,7 +55,6 @@ public class MainController {
      * User attribute to the current page
      * @param session httpSession
      * @param model model
-     * @return void
      */
     public void displayLoggedInUser(HttpSession session, Model model) {
         System.out.println("displayLoggedInUser called");

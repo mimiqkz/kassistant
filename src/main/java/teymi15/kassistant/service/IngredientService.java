@@ -17,6 +17,9 @@ import teymi15.kassistant.model.Recipe;
 
 import java.util.List;
 
+/**
+ * The service class for ingredient
+ */
 @Service
 public interface IngredientService {
 
@@ -43,19 +46,31 @@ public interface IngredientService {
      */
     List<Ingredient> getAllIngredient();
 
+    /**
+     * Get all matching ingredients by names
+     * @param names
+     * @return List of the ingredient with the matching names
+     */
     List<Ingredient> getAllMatchingIngredients(String [] names);
 
-
+    /**
+     * Create an ingredient
+     * @param name of the ingredient
+     * @param description of the ingredient
+     * @param bytes image of the ingredient
+     * @return the created ingredient
+     */
     Ingredient createIngredient(String name, String description, byte[] bytes);
 
     /**
-     * @return boolean
+     * Adding the ingredient
      * @param ingredient
-     *
-     * */
+     * @return boolean
+     */
     boolean addIngredient(Ingredient ingredient);
 
     /**
+     * Update the ingredient
      * @return boolean
      * @param store
      * @param location

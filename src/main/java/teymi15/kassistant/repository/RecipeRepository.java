@@ -10,11 +10,8 @@ package teymi15.kassistant.repository;
  * @since   2017-09-20
  */
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import teymi15.kassistant.model.Recipe;
-import teymi15.kassistant.model.User;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -26,7 +23,7 @@ import java.util.List;
 public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 
     /**
-     * get the list of all recipe
+     * Get the list of all recipe
      * @return List of all recipe
      */
     List <Recipe> findAll();
@@ -62,6 +59,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
      * Delete the recipe by id
      * @param id
      */
+    @Transactional
     void deleteById(int id);
 
 }

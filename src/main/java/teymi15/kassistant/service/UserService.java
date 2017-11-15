@@ -77,23 +77,17 @@ public interface UserService {
     boolean isUsernameFree(String username);
 
     /**
+     * Let user update photo
      * @param user
-     * @return
-     */
-    Set<Recipe> hasLikedRecipe(User user);
-
-    /**
-     *
-     * @param user
-     * @param bytes
+     * @param bytes photo which stores in bytes
      */
     void updatePhoto(User user, byte[] bytes);
 
     /**
-     *
+     * Check if the user has liked a recipe
      * @param user
      * @param recipe
-     * @return
+     * @return boolean
      */
     Boolean hasLikedRecipe(User user, Recipe recipe);
 

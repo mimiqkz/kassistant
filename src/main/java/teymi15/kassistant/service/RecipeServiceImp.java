@@ -118,36 +118,11 @@ public class RecipeServiceImp implements RecipeService {
     @Override
     @ResponseBody
     public void deleteRecipe(Recipe recipe) {
-        /**int id = recipe.getId();
-        System.out.println("_________Delete test __________");
-        Set<Ingredient> ingredients = recipe.getIngredients();
-        for (Ingredient in: ingredients) {
-            System.out.println(in.getName());
-            List<Ingredient> thisIngredient =  ingredientService.getMatchingIngredient(in.getName());
-            for (Ingredient tin: thisIngredient) {
-                tin.removeRecipe(recipe);
-                ingredientService.addIngredient(tin);
-            }
-        }
-
-        /**List<Ingredient> ingredients = ingredientService.getMatchingIngredient("");
-        for (Ingredient in:ingredients) {
-            System.out.println(in.getName());
-            Set<Recipe> recipes = in.getRecipes();
-            for (Recipe re:recipes) {
-                System.out.println(re.getName());
-            }
-        }**/
         try{
             recipeRep.deleteById(recipe.getId());
         }catch (Exception e){
             e.printStackTrace();
         }
-       /** if (!(recipeRep.findByName(recipe.getName()).getName().isEmpty())) managedRecipe = recipe;
-        else managedRecipe = recipeRep.save(recipe);
-        managedRecipe.getIngredients().remove(managedRecipe);
-        **/
-
     }
     @Override
     @ResponseBody

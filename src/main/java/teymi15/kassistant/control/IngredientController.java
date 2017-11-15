@@ -1,6 +1,14 @@
 package teymi15.kassistant.control;
-
-import org.codehaus.groovy.runtime.powerassert.SourceText;
+/**
+ * The program allows user to search for recipe with the matching name.
+ * For example, "Apple pie", "Brocoli soup", "Chocolate Cake" , etc.
+ *
+ * @author Nu Phan Quynh Do
+ * @author  Alexander Freyr Sveinsson
+ * @author Alexandra Mjöll Young
+ * @version 1.3
+ * @since   2017-09-20
+ */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teymi15.kassistant.model.Ingredient;
-import teymi15.kassistant.model.Recipe;
 import teymi15.kassistant.model.User;
-import teymi15.kassistant.service.IngredientService;
 import teymi15.kassistant.service.IngredientServiceImp;
 import teymi15.kassistant.service.PhotoServiceImp;
 import teymi15.kassistant.service.UserServiceImp;
@@ -21,8 +27,10 @@ import teymi15.kassistant.service.UserServiceImp;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
+/**
+ * The controller which sees over the ingredients
+ */
 @Controller
 public class IngredientController {
     @Autowired
