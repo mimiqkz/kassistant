@@ -46,7 +46,6 @@ public class UserController {
         System.out.println("Im signed out");
         displayLoggedInUser(session, model);
         session.setAttribute("user",null);
-        displayLoggedInUser(session, model);
         return "homepage";
     }
 
