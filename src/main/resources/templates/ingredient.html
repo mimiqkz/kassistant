@@ -23,16 +23,41 @@
                 <div class="col-lg-7 col-md-7 col-sm-6 col-sm-ls-5 recipe-header-right">
                     <h1 class="recipe-name" th:text=" ${ingredient.name}"></h1>
                     <p class="recipe-description" th:text="${ingredient.description}"/>
-                    <div>
-                        <span class="recipe-popularity" th:if="${ingredient.price}" th:text="'Cheapest price ' + ${ingredient.price} + ' isk'"></span>
-                        <span class="recipe-popularity" th:if="${ingredient.store}" th:text="'Store:  ' + ${ingredient.store} + ' isk'"></span>
+                    <div class="recipe-popularity">
+                        <span  th:if="${ingredient.price}" th:text="'Cheapest price ' + ${ingredient.price} + ' isk'"></span>
+                        <span th:if="${ingredient.store}" th:text="'Store:  ' + ${ingredient.store}"></span>
                     </div>
 
                 </div>
             </div>
+            <div class="row">
+                <h2 style="margin: 30px 0">Related Recipes:</h2>
+                    <div th:each="recipe: ${ingredient.recipes}" class="col-xs-18 col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img th:src="${recipe.photoURL}"/>
+                            <div class="caption">
+                                <h4 th:text="${recipe.name}"></h4>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+
+    .scrolling-wrapper {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+    .results-card {
+        display: inline-block;
+
+    }
+</style>
 
 <div th:replace="layout :: scripts"></div>
 </body>

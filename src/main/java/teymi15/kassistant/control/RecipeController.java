@@ -139,7 +139,6 @@ public class RecipeController {
         Recipe selected = RecipeService.getRecipeById(id);
         displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
-
         return "recipe";
     }
 
