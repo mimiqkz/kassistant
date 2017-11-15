@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -103,7 +104,7 @@ public class RecipeController {
      */
     @RequestMapping(value = "/create-recipe", method = RequestMethod.POST)
     public String createRecipe(HttpSession session, HttpServletRequest request, Model model,@RequestParam("file") MultipartFile file,
-                               RedirectAttributes redirectAttributes) throws IOException, InterruptedException {
+                               RedirectAttributes redirectAttributes) throws IOException, InterruptedException, TimeoutException {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         String[] instructions = request.getParameterValues("instruction[]");
@@ -113,11 +114,15 @@ public class RecipeController {
         if(!file.isEmpty()){
             pic = file.getBytes();
         }
-        Recipe recipe = RecipeService.createRecipe(name, description, instructions, ingredients, pic, user);
-        displayRecipe(session, model, recipe);
-        displayLoggedInUser(session, model);
+        if(user != null) {
+            Recipe recipe = RecipeService.createRecipe(name, description, instructions, ingredients, pic, user);
+            displayRecipe(session, model, recipe);
+            displayLoggedInUser(session, model);
+        } else  throw new TimeoutException("Session Expired");
         return "recipe";
     }
+
+
 
     /**
      * The function returns a string with the route which should be rendered. This
@@ -128,7 +133,7 @@ public class RecipeController {
      * @return String
      */
     @RequestMapping(value="recipe/{id}")
-    public String selectRecipe (@PathVariable int id, HttpSession session, Model model) {
+    public String displayRecipe (@PathVariable int id, HttpSession session, Model model) {
         Recipe selected = RecipeService.getRecipeById(id);
         displayRecipe(session, model, selected);
         displayLoggedInUser(session, model);
